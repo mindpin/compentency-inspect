@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :users, :skip => :all
+  devise_scope :user do
+    get    "/admin/users/sign_in"  => "admin/sessions#new"
+    post   "/admin/users/sign_in"  => "admin/sessions#create"
+    delete "/admin/users/sign_out" => "admin/sessions#destroy"
+  end
+  namespace :admin do
+    get "/dashboard", to: "dashboard#index"
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
