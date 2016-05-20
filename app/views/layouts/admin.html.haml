@@ -7,5 +7,15 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = link_to "登出", "/admin/users/sign_out", method: :delete
-    = yield
+    .ui.menu
+      .right.menu
+        = link_to "登出", "/admin/sign_out", method: :delete, class: 'item'
+    .ui.grid
+      .row
+        .three.wide.column
+          .ui.vertical.menu
+            %a.item{href: "#"} 用户管理
+            %a.item{href: "#"} 题库管理
+            %a.item{href: "#"} 答卷浏览
+        .thirteen.wide.column
+          = yield

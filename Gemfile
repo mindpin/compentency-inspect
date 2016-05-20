@@ -51,15 +51,21 @@ end
 group :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'database_cleaner', '~> 1.5.1'
-  gem "factory_girl_rails"
+  gem 'factory_girl_rails'
   gem 'capybara'
   gem 'mongoid-rspec', '~> 2.1.0'
 end
 
-gem "mongoid",  "4.0.2"
-gem "haml",     "4.0.7"
-gem "devise",   "4.1.1"
-gem "kaminari", "0.16.3"
+gem 'mongoid',  '4.0.2'
+gem 'haml',     '4.0.7'
+gem 'devise',   '4.1.1'
+gem 'kaminari', '0.16.3'
 
-gem 'question_bank', github: 'mindpin/question_bank',
-                     :ref => "18763e8"
+gem 'question_bank',   github: 'mindpin/question_bank',
+                     ref: '18763e8'
+
+gem 'lily-components', github: 'kc-train/lily-components',
+                     ref: 'b8f7672'
+
+source 'https://rails-assets.org'
+gem 'rails-assets-semantic'

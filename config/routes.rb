@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, :skip => :all
   devise_scope :user do
-    get    "/admin/users/sign_in"  => "admin/sessions#new"
-    post   "/admin/users/sign_in"  => "admin/sessions#create"
-    delete "/admin/users/sign_out" => "admin/sessions#destroy"
+    get    "/admin/sign_in"  => "admin/sessions#new"
+    post   "/admin/sign_in"  => "admin/sessions#create"
+    delete "/admin/sign_out" => "admin/sessions#destroy"
   end
   namespace :admin do
     get "/dashboard", to: "dashboard#index"

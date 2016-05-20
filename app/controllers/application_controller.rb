@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource)
     if params[:controller] == "admin/sessions"
-      return "/admin/users/sign_in"
+      return "/admin/sign_in"
     end
     "/"
   end
