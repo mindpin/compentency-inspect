@@ -8,7 +8,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
-  field :email,              type: String, default: ""
+  field :login,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
 
   ## Recoverable
@@ -35,4 +35,15 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
+
+  validates :login, presence: true, uniqueness: true, length: 4..20
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
+
 end
