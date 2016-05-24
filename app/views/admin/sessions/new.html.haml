@@ -2,7 +2,7 @@
   .column{style: "max-width:450px;"}
     = form_for(resource, as: resource_name, url: admin_sign_in_path, html: {class: "ui large form"}) do |f|
       .field
-        = f.text_field :email, required: false, autofocus: true, placeholder: "管理员邮箱"
+        = f.text_field :login, required: false, autofocus: true, placeholder: "管理员账号"
       .field
         = f.password_field :password, required: false, placeholder: "管理员密码"
       .field
