@@ -26,3 +26,4 @@ public/assets/
 /config/application.yml
 .floo
 .flooignore
+script/

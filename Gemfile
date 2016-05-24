@@ -60,6 +60,7 @@ gem 'mongoid',  '4.0.2'
 gem 'haml',     '4.0.7'
 gem 'devise',   '4.1.1'
 gem 'kaminari', '0.16.3'
+gem 'enumerize', '~> 1.1', '>= 1.1.1'
 
 gem 'question_bank',   github: 'mindpin/question_bank',
                      ref: '18763e8'

@@ -252,6 +252,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner (~> 1.5.1)
   devise (= 4.1.1)
+  enumerize (~> 1.1, >= 1.1.1)
   factory_girl_rails
   haml (= 4.0.7)
   jbuilder (~> 2.0)

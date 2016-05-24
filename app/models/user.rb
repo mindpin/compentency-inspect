@@ -1,6 +1,8 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  extend Enumerize
+  include UserTestPaper::UserMethods
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -45,5 +47,7 @@ class User
   def email_changed?
     false
   end
+
+  enumerize :role, in: [:admin, :normal], default: :normal
 
 end
