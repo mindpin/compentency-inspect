@@ -13,6 +13,19 @@ class UserTestPaper
       after_create :_build_test_paper
     end
 
+    def inspect_test_paper_result
+      QuestionBank::TestPaperResult.where(user_id: self.id, test_paper_id: self.user_test_paper.test_paper_id).first
+    end
+
+    def start_test!
+      return if !self.inspect_test_paper_result.blank?
+
+      QuestionBank::TestPaperResult.create(
+        user_id: self.id,
+        test_paper_id: self.user_test_paper.test_paper_id
+      )
+    end
+
     def _build_test_paper
       sections = [
         ["single_choice", 19, 1],

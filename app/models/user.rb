@@ -48,6 +48,7 @@ class User
     false
   end
 
+  field :name, type: String
   enumerize :role, in: [:admin, :normal], default: :normal
 
 end
