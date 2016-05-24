@@ -68,5 +68,8 @@ gem 'question_bank',   github: 'mindpin/question_bank',
 gem 'lily-components', github: 'kc-train/lily-components',
                      ref: 'b8f7672'
 
+gem 'react-rails', '1.7.1'
+gem 'sprockets-coffee-react', '4.0.0'
+
 source 'https://rails-assets.org'
 gem 'rails-assets-semantic'

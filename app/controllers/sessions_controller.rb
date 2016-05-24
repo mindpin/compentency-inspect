@@ -1,4 +1,4 @@
-class Admin::SessionsController < Devise::SessionsController
+class SessionsController < Devise::SessionsController
   layout "sign_in"
 # before_action :configure_sign_in_params, only: [:create]
 
@@ -10,7 +10,7 @@ class Admin::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     self.resource = warden.authenticate!(auth_options)
-    if !self.resource.role.admin?
+    if !self.resource.role.normal?
       Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
       self.resource = resource_class.new(sign_in_params)
       clean_up_passwords(resource)
