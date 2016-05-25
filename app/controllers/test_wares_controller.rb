@@ -17,6 +17,15 @@ class TestWaresController < ApplicationController
     render json: result
   end
 
+  def answer
+    question = QuestionBank::Question.find params[:id]
+    if current_user.save_answer(question, params[:answer])
+      render json: { status: 200 }
+    else
+      render status: 500, json: {status: 500}
+    end
+  end
+
   def index
     questions = []
     [
