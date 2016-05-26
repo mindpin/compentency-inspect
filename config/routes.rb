@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount FilePartUpload::Engine => '/file_part_upload', :as => 'file_part_upload'
+
   devise_for :users, skip: :all
   devise_scope :user do
     get    "/admin/sign_in",  to: "admin/sessions#new"
