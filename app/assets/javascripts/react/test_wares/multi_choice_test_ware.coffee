@@ -12,8 +12,10 @@
       <div className="field">
         {
           @props.data.choices.map (arr, index)=>
+            checked = false
+            checked = true if @props.data.answer.indexOf(arr["id"]) >= 0
             <label key={index}>
-              <input type="checkbox" name={@props.data.id} value={arr["id"]} onChange={@handleAnswer} />
+              <input type="checkbox" name={@props.data.id} value={arr["id"]} onChange={@handleAnswer} checked={checked} />
               {arr["text"]}
             </label>
         }

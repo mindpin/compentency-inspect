@@ -13,7 +13,7 @@
         {
           @props.data.choices.map (arr, index)=>
               <div className="ui radio" key={index}>
-                <input type="radio" name={@props.data.id} className="hidden" value={arr["id"]} onChange={@handleAnswer} />
+                <input type="radio" name={@props.data.id} className="hidden" value={arr["id"]} onChange={@handleAnswer} checked={arr["id"] == @props.data.answer} />
                 <label>{arr["text"]}</label>
               </div>
         }
