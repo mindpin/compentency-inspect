@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   post "/test_status/start", to: "test_status#start"
 
   get  "/test_wares/data",   to: "test_wares#data"
+
+  get '/test', to: 'test#show'
 end
