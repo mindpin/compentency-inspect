@@ -1,5 +1,16 @@
 @BoolTestWare = React.createClass
+  getInitialState: ->
+    answer: @props.data.answer
+
   render: ->
+    true_input_attr  = {}
+    false_input_attr = {}
+    if @state.answer
+      true_input_attr.checked = "checked"
+    else
+      false_input_attr.checked = "checked"
+
+
     <div className="ui form">
       <div>
         {
@@ -11,13 +22,13 @@
 
       <div className="field">
         <div className="ui radio">
-          <input type="radio" name="result" className="hidden" value="true" onChange={@handleAnswer} />
+          <input type="radio" name={@props.data.id} className="hidden" value="true" onChange={@handleAnswer} {...true_input_attr}/>
           <label>对</label>
         </div>
       </div>
       <div className="field">
         <div className="ui radio">
-          <input type="radio" name="result" className="hidden" value="false" onChange={@handleAnswer} />
+          <input type="radio" name={@props.data.id} className="hidden" value="false" onChange={@handleAnswer} {...false_input_attr}/>
           <label>错</label>
         </div>
       </div>
@@ -27,6 +38,9 @@
     value = false
     value = true if evt.target.value == "true"
 
+    @setState
+      answer: value
+
     jQuery.ajax
       url: "/test_wares/#{@props.data.id}/answer"
       type: "POST"
@@ -35,4 +49,3 @@
       dataType: "json"
       success: (res) =>
         console.log res
-
