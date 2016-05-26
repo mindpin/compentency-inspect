@@ -38,14 +38,12 @@ group :development, :test do
   gem 'spring'
 end
 
-# Access an IRB console on exception pages or by using <%= console %> in views
-gem 'web-console', group: :development
-
 ##
 # 更友好的出错页面
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'web-console', '~> 2.3.0'
 end
 
 group :test do
