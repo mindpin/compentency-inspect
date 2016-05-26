@@ -1,5 +1,13 @@
 @MultiChoiceTestWare = React.createClass
+  getInitialState: ->
+    answer: @props.data.answer
+
   render: ->
+    input_attrs = {}
+    @props.data.choices.map (choice, index)=>
+      if @state.answer.indexOf(choice.id) != -1
+        input_attrs[choice.id] = {checked: "checked"}
+
     <div className="ui form">
       <div>
         {
@@ -12,11 +20,9 @@
       <div className="field">
         {
           @props.data.choices.map (arr, index)=>
-            checked = false
-            checked = true if @props.data.answer.indexOf(arr["id"]) >= 0
             <label key={index}>
-              <input type="checkbox" name={@props.data.id} value={arr["id"]} onChange={@handleAnswer} checked={checked} />
-              {arr["text"]}
+              <input type="checkbox" name={@props.data.id} value={arr.id} onChange={@handleAnswer} {...input_attrs[arr.id]} />
+              {arr.text}
             </label>
         }
       </div>
@@ -25,6 +31,10 @@
   handleAnswer: (evt)->
     $values = jQuery("input[name='#{@props.data.id}']:checked").map (i)-> @value
     values = $values.toArray()
+
+    @setState
+      answer: values
+
     jQuery.ajax
       url: "/test_wares/#{@props.data.id}/answer"
       type: "POST"
@@ -33,4 +43,3 @@
       dataType: "json"
       success: (res) =>
         console.log res
-
