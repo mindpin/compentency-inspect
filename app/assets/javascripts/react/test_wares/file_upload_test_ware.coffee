@@ -76,9 +76,10 @@
               file_entity_id: file_entity_id
 
             jQuery.ajax
-              url: "/test_wares/#{@props.question_id}/answer"
+              url: "/test_wares/save_answer"
               type: "POST"
               data:
+                id: @props.question_id
                 answer: file_entity_id
               dataType: "json"
               success: (res) =>
