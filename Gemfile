@@ -62,7 +62,7 @@ gem 'enumerize', '~> 1.1', '>= 1.1.1'
 gem "figaro", "~> 1.1.1"
 
 gem 'question_bank',   github: 'mindpin/question_bank',
-                       ref: '18763e8'
+                       ref: '46e0cd8'
 
 # gem 'lily-components', github: 'kc-train/lily-components',
 #                        ref: 'b8f7672'

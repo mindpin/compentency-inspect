@@ -36,9 +36,10 @@
       answer: values
 
     jQuery.ajax
-      url: "/test_wares/#{@props.data.id}/answer"
+      url: "/test_wares/save_answer"
       type: "POST"
       data:
+        id: @props.data.id
         answer: values
       dataType: "json"
       success: (res) =>

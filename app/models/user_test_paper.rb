@@ -26,6 +26,12 @@ class UserTestPaper
       )
     end
 
+    def reset_test!
+      tpr = self.inspect_test_paper_result
+      return if tpr.blank?
+      tpr.destroy
+    end
+
     def save_answer(question, answer)
       tpr = self.inspect_test_paper_result
       return false if tpr.blank?
