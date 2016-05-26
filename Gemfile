@@ -64,8 +64,10 @@ gem "figaro", "~> 1.1.1"
 gem 'question_bank',   github: 'mindpin/question_bank',
                        ref: '18763e8'
 
-gem 'lily-components', github: 'kc-train/lily-components',
-                       ref: 'b8f7672'
+# gem 'lily-components', github: 'kc-train/lily-components',
+#                        ref: 'b8f7672'
+
+gem 'lily-components', path: '/web/ben7th/lily-components'
 
 gem 'file-part-upload', github: "mindpin/file-part-upload",
                         tag: "3.2.0"
