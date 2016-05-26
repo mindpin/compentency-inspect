@@ -30,7 +30,7 @@ class UserTestPaper
       tpr = self.inspect_test_paper_result
       return false if tpr.blank?
 
-      question_ids = current_user.user_test_paper.test_paper.sections.map do |section|
+      question_ids = self.user_test_paper.test_paper.sections.map do |section|
         section.question_ids.map{|id|id.to_s}
       end.flatten
       return false if !question_ids.include?(question.id.to_s)

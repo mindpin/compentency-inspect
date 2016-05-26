@@ -19,6 +19,12 @@ module QuestionFormer
         qr = QuestionBank::QuestionRecord.where(test_paper_result_id: tpr.id, question_id: instance.id).first
         return nil if qr.blank?
 
+        if instance.kind.to_sym == :file_upload
+          return {
+            file_entity_id: qr.answer,
+            download_url: FilePartUpload::FileEntity.find(qr.answer).download_url
+          }
+        end
         return qr.answer
       }
 

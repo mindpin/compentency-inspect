@@ -7,4 +7,5 @@
 
 //= require semantic
 
+//= require file_part_upload/uploader
 //= require_tree ./react
