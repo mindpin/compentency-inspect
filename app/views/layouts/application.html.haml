@@ -6,5 +6,21 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+
+    :javascript
+      (function(){
+        window.file_part_upload_dom_data = fd = #{FilePartUpload.get_dom_data.to_json};
+        window.$$browse_btn_data = {
+          'data-qiniu-domain':        fd.qiniu_domain,
+          'data-qiniu-base-path':     fd.qiniu_base_path,
+          'data-qiniu-uptoken-url':   fd.qiniu_uptoken_url,
+          'data-qiniu-callback-url':  fd.qiniu_callback_url,
+        }
+      })();
+
   %body
-    = yield
+    .ui.menu
+      .right.menu
+        = link_to "登出", "/sign_out", method: :delete, class: 'item'
+    .ui.container
+      = yield

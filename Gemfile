@@ -59,12 +59,19 @@ gem 'haml',     '4.0.7'
 gem 'devise',   '4.1.1'
 gem 'kaminari', '0.16.3'
 gem 'enumerize', '~> 1.1', '>= 1.1.1'
+gem "figaro", "~> 1.1.1"
 
 gem 'question_bank',   github: 'mindpin/question_bank',
-                     ref: '18763e8'
+                       ref: '18763e8'
 
 gem 'lily-components', github: 'kc-train/lily-components',
-                     ref: 'b8f7672'
+                       ref: 'b8f7672'
+
+gem 'file-part-upload', github: "mindpin/file-part-upload",
+                        tag: "3.2.0"
+
+gem 'react-rails', '1.7.1'
+gem 'sprockets-coffee-react', '4.0.0'
 
 source 'https://rails-assets.org'
 gem 'rails-assets-semantic'

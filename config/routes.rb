@@ -1,18 +1,29 @@
 Rails.application.routes.draw do
-  devise_for :users, :skip => :all
+  mount FilePartUpload::Engine => '/file_part_upload', :as => 'file_part_upload'
+
+  devise_for :users, skip: :all
   devise_scope :user do
-    get    "/admin/sign_in"  => "admin/sessions#new"
-    post   "/admin/sign_in"  => "admin/sessions#create"
-    delete "/admin/sign_out" => "admin/sessions#destroy"
+    get    "/admin/sign_in",  to: "admin/sessions#new"
+    post   "/admin/sign_in",  to: "admin/sessions#create"
+    delete "/admin/sign_out", to: "admin/sessions#destroy"
   end
+
+  devise_scope :user do
+    get    "/sign_in",  to: "sessions#new"
+    post   "/sign_in",  to: "sessions#create"
+    delete "/sign_out", to: "sessions#destroy"
+  end
+
   namespace :admin do
     get "/dashboard", to: "dashboard#index"
   end
 
   get  "/test_status",       to: "test_status#index"
   post "/test_status/start", to: "test_status#start"
+  get  "/test_wares/data",       to: "test_wares#data"
+  post "/test_wares/:id/answer", to: "test_wares#answer"
 
-  get  "/test_wares/data",   to: "test_wares#data"
+  get  "/test_wares",   to: "test_wares#index"
 
   get '/test', to: 'test#show'
 end

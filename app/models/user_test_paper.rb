@@ -26,6 +26,24 @@ class UserTestPaper
       )
     end
 
+    def save_answer(question, answer)
+      tpr = self.inspect_test_paper_result
+      return false if tpr.blank?
+
+      question_ids = self.user_test_paper.test_paper.sections.map do |section|
+        section.question_ids.map{|id|id.to_s}
+      end.flatten
+      return false if !question_ids.include?(question.id.to_s)
+
+      qr = tpr.question_records.build(
+        user: self,
+        answer: answer,
+        question: question
+      )
+
+      qr.save
+    end
+
     def _build_test_paper
       sections = [
         ["single_choice", 19, 1],
