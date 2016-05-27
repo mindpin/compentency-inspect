@@ -1,9 +1,9 @@
 class IndexController < ApplicationController
   def index
     if current_user.blank?
-      return "/sign_in"
+      redirect_to "/sign_in"
     else
-      return "/test"
+      redirect_to "/test"
     end
   end
 end
