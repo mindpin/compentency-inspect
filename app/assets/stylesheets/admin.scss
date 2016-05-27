@@ -1,0 +1,70 @@
+@import "lily-components";
+
+body.admin {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .layout-admin-top-menu.admin{
+    position: absolute;
+    left: 180px;
+    right: 0;
+    width: auto;
+  }
+
+  .layout-admin-sidebar{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    background-color: #293038;
+    font-size: 12px;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding-bottom: 80px;
+
+    .sidebar-inner{
+      width: 180px;
+
+      .item{
+        a{
+          display: block;
+          color: white;
+          height: 40px;
+          line-height: 40px;
+          text-align: left;
+          &:hover {
+            background-color: #414d5c;
+          }
+          i{
+            height: 40px;
+            line-height: 40px;
+            color: #aeb9c2;
+            width: 50px;
+            margin-right: 0;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  .admin-page_content{
+    position: absolute;
+    top: 0;
+    left: 180px;
+    bottom: 0;
+    right: 0;
+    background-color: #EAEDF1;
+    overflow: auto;
+    top: 40px;
+
+    .func-content{
+      padding: 1rem 2rem;
+    }
+  }
+}

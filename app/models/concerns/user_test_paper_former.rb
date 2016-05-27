@@ -41,6 +41,10 @@ module UserTestPaperFormer
           }
         end
       }
+
+      url :admin_show_url, ->(instance) {
+        "/admin/test_results/#{instance.id}"
+      }
     end
 
   end

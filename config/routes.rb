@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/dashboard", to: "dashboard#index"
+    resources :test_results
   end
 
   get  "/test_status",       to: "test_status#index"
@@ -25,4 +26,6 @@ Rails.application.routes.draw do
   post "/test_wares/save_answer", to: "test_wares#save_answer"
 
   get  "/test_wares",   to: "test_wares#index"
+
+  get "/", to: "index#index"
 end
