@@ -16,13 +16,16 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/dashboard", to: "dashboard#index"
+    resources :test_results
   end
 
   get  "/test_status",       to: "test_status#index"
   post "/test_status/start", to: "test_status#start"
-
-  get  "/test_wares/data",       to: "test_wares#data"
-  post "/test_wares/:id/answer", to: "test_wares#answer"
+  get  "/test_wares/data",        to: "test_wares#data"
+  post "/test_wares/save_answer", to: "test_wares#save_answer"
 
   get  "/test_wares",   to: "test_wares#index"
+
+  get '/test', to: 'test#show'
+  get "/", to: "index#index"
 end

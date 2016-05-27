@@ -5,25 +5,20 @@
   render: ->
     input_attrs = {}
     @props.data.choices.map (choice, index)=>
-      if @state.answer.indexOf(choice.id) != -1
+      if (@state.answer || []).indexOf(choice.id) != -1
         input_attrs[choice.id] = {checked: "checked"}
 
-    <div className="ui form">
-      <div>
-        {
-          @props.data.content
-        }
-      </div>
-
-      <br />
-
-      <div className="field">
+    <div className='multi-choice ui form'>
+      <div className='grouped fields'>
+        <label className='content'>{@props.data.content}</label>
         {
           @props.data.choices.map (arr, index)=>
-            <label key={index}>
-              <input type="checkbox" name={@props.data.id} value={arr.id} onChange={@handleAnswer} {...input_attrs[arr.id]} />
-              {arr.text}
-            </label>
+            <div className='field' key={index}>
+              <div className='ui checkbox'>
+                <input type="checkbox" name={@props.data.id} value={arr.id} onChange={@handleAnswer} {...input_attrs[arr.id]} />
+                <label>{arr.text}</label>
+              </div>
+            </div>
         }
       </div>
     </div>
@@ -35,11 +30,5 @@
     @setState
       answer: values
 
-    jQuery.ajax
-      url: "/test_wares/#{@props.data.id}/answer"
-      type: "POST"
-      data:
-        answer: values
-      dataType: "json"
-      success: (res) =>
-        console.log res
+    @setState answer: values
+    @props.on_answer_change(@props.data.id, values)

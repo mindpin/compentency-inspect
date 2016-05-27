@@ -17,7 +17,7 @@ class TestWaresController < ApplicationController
     render json: result
   end
 
-  def answer
+  def save_answer
     question = QuestionBank::Question.find params[:id]
     if current_user.save_answer(question, params[:answer])
       render json: { status: 200 }

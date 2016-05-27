@@ -38,14 +38,12 @@ group :development, :test do
   gem 'spring'
 end
 
-# Access an IRB console on exception pages or by using <%= console %> in views
-gem 'web-console', group: :development
-
 ##
 # 更友好的出错页面
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'web-console', '~> 2.3.0'
 end
 
 group :test do
@@ -64,10 +62,12 @@ gem 'enumerize', '~> 1.1', '>= 1.1.1'
 gem "figaro", "~> 1.1.1"
 
 gem 'question_bank',   github: 'mindpin/question_bank',
-                       ref: '18763e8'
+                       ref: '71298e4'
 
 gem 'lily-components', github: 'kc-train/lily-components',
-                       ref: 'b8f7672'
+                       ref: 'b064ed9'
+
+# gem 'lily-components', path: '/web/ben7th/lily-components'
 
 gem 'file-part-upload', github: "mindpin/file-part-upload",
                         tag: "3.2.0"

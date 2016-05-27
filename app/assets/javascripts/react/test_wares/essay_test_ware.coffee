@@ -5,25 +5,13 @@
   render: ->
     <div className="ui form">
       <p>
-        {@props.data.content}
+        <strong>{@props.data.content}</strong>
       </p>
-
-      <br />
-
       <div className="field">
-        <textarea rows=20 onBlur={@handleAnswer} defaultValue={@state.answer}></textarea>
+        <textarea rows=10 onBlur={@handleAnswer} defaultValue={@state.answer}></textarea>
       </div>
     </div>
 
   handleAnswer: (evt)->
-    @setState
-      answer: evt.target.value
-
-    jQuery.ajax
-      url: "/test_wares/#{@props.data.id}/answer"
-      type: "POST"
-      data:
-        answer: evt.target.value
-      dataType: "json"
-      success: (res) =>
-        console.log res
+    @setState answer: evt.target.value
+    @props.on_answer_change(@props.data.id, evt.target.value)

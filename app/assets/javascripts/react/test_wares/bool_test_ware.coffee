@@ -5,31 +5,28 @@
   render: ->
     true_input_attr  = {}
     false_input_attr = {}
-    if @state.answer
+    if @state.answer == true
       true_input_attr.checked = "checked"
-    else
+    if @state.answer == false
       false_input_attr.checked = "checked"
 
 
-    <div className="ui form">
-      <div>
-        {
-          @props.data.content
-        }
-      </div>
+    <div className='bool ui form'>
+      <div className='grouped fields'>
+        <label className='content'>{@props.data.content}</label>
 
-      <br />
-
-      <div className="field">
-        <div className="ui radio">
-          <input type="radio" name={@props.data.id} className="hidden" value="true" onChange={@handleAnswer} {...true_input_attr}/>
-          <label>对</label>
+        <div className="field">
+          <div className="ui radio checkbox">
+            <input type="radio" value="true" onChange={@handleAnswer} {...true_input_attr}/>
+            <label>正确</label>
+          </div>
         </div>
-      </div>
-      <div className="field">
-        <div className="ui radio">
-          <input type="radio" name={@props.data.id} className="hidden" value="false" onChange={@handleAnswer} {...false_input_attr}/>
-          <label>错</label>
+
+        <div className="field">
+          <div className="ui radio checkbox">
+            <input type="radio" value="false" onChange={@handleAnswer} {...false_input_attr}/>
+            <label>错误</label>
+          </div>
         </div>
       </div>
     </div>
@@ -38,14 +35,5 @@
     value = false
     value = true if evt.target.value == "true"
 
-    @setState
-      answer: value
-
-    jQuery.ajax
-      url: "/test_wares/#{@props.data.id}/answer"
-      type: "POST"
-      data:
-        answer: value
-      dataType: "json"
-      success: (res) =>
-        console.log res
+    @setState answer: value
+    @props.on_answer_change(@props.data.id, value)
