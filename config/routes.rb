@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/dashboard", to: "dashboard#index"
+    resources :test_results
   end
 
   get  "/test_status",       to: "test_status#index"
@@ -26,4 +27,5 @@ Rails.application.routes.draw do
   get  "/test_wares",   to: "test_wares#index"
 
   get '/test', to: 'test#show'
+  get "/", to: "index#index"
 end

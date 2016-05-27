@@ -4,6 +4,7 @@ class DataFormer
   include UserFormer
   include UserTestPaperFormer
   include QuestionFormer
+  include TestPaperResultFormer
 
   def self.paginate_data(models)
     begin
