@@ -60,6 +60,8 @@ gem 'devise',   '4.1.1'
 gem 'kaminari', '0.16.3'
 gem 'enumerize', '~> 1.1', '>= 1.1.1'
 gem "figaro", "~> 1.1.1"
+gem "mina", "0.3.7"
+gem "unicorn"
 
 gem 'question_bank',   github: 'mindpin/question_bank',
                        ref: '71298e4'
