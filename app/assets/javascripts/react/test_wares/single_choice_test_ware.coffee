@@ -8,36 +8,21 @@
       if choice.id == @state.answer
         input_attrs[choice.id] = {checked: "checked"}
 
-    <div className="ui form">
-      <div>
-        {
-          @props.data.content
-        }
-      </div>
-
-      <br />
-
-      <div className="field">
+    <div className='single-choice ui form'>
+      <div className='grouped fields'>
+        <label className='content'>{@props.data.content}</label>
         {
           @props.data.choices.map (arr, index)=>
-            <div className="ui radio" key={index}>
-              <input type="radio" name={@props.data.id} className="hidden" value={arr.id} onChange={@handleAnswer} {...input_attrs[arr.id]} />
-              <label>{arr.text}</label>
+            <div className='field' key={index}>
+              <div className="ui radio checkbox" key={index}>
+                <input type='radio' value={arr.id} onChange={@handleAnswer} {...input_attrs[arr.id]} />
+                <label>{arr.text}</label>
+              </div>
             </div>
         }
       </div>
     </div>
 
   handleAnswer: (evt)->
-    @setState
-      answer: evt.target.value
-
-    jQuery.ajax
-      url: "/test_wares/save_answer"
-      type: "POST"
-      data:
-        id: @props.data.id
-        answer: evt.target.value
-      dataType: "json"
-      success: (res) =>
-        console.log res
+    @setState answer: evt.target.value
+    @props.on_answer_change(@props.data.id, evt.target.value)

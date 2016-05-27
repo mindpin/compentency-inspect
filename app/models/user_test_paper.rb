@@ -41,11 +41,16 @@ class UserTestPaper
       end.flatten
       return false if !question_ids.include?(question.id.to_s)
 
-      qr = tpr.question_records.build(
-        user: self,
-        answer: answer,
-        question: question
-      )
+      qr = tpr.question_records.where(user_id: self.id, question_id: question.id).first
+      if qr.blank?
+        qr = tpr.question_records.build(
+          user: self,
+          answer: answer,
+          question: question
+        )
+      else
+        qr.answer = answer
+      end
 
       qr.save
     end

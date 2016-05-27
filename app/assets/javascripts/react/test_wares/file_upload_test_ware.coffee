@@ -2,10 +2,15 @@
   render: ->
     <div className="ui segments">
       <div className="ui segment">
-        {@props.data.content}
+        <strong>{@props.data.content}</strong>
       </div>
       <div className="ui segment">
-        <FileUploadTestWare.Upload question_id={@props.data.id} file_entity_id={@props.data.answer?.file_entity_id} download_url={@props.data.answer?.download_url} />
+        <FileUploadTestWare.Upload 
+          question_id={@props.data.id} 
+          file_entity_id={@props.data.answer?.file_entity_id} 
+          download_url={@props.data.answer?.download_url} 
+          on_answer_change={@props.on_answer_change}
+        />
       </div>
     </div>
 
@@ -75,16 +80,7 @@
               download_url: download_url
               file_entity_id: file_entity_id
 
-            jQuery.ajax
-              url: "/test_wares/save_answer"
-              type: "POST"
-              data:
-                id: @props.question_id
-                answer: file_entity_id
-              dataType: "json"
-              success: (res) =>
-                console.log res
-
+            @props.on_answer_change(@props.question_id, file_entity_id)
 
       set_preview_data_url: (qiniu_file)->
         console.log "set_preview_data_url"
@@ -125,4 +121,4 @@
         if @props.download_url
           <a href={@props.download_url}>下载已经上传的压缩包</a>
         else
-          <a />
+          <div />

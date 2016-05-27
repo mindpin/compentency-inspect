@@ -62,12 +62,12 @@ gem 'enumerize', '~> 1.1', '>= 1.1.1'
 gem "figaro", "~> 1.1.1"
 
 gem 'question_bank',   github: 'mindpin/question_bank',
-                       ref: '46e0cd8'
+                       ref: '71298e4'
 
-# gem 'lily-components', github: 'kc-train/lily-components',
-#                        ref: 'b8f7672'
+gem 'lily-components', github: 'kc-train/lily-components',
+                       ref: 'b064ed9'
 
-gem 'lily-components', path: '/web/ben7th/lily-components'
+# gem 'lily-components', path: '/web/ben7th/lily-components'
 
 gem 'file-part-upload', github: "mindpin/file-part-upload",
                         tag: "3.2.0"
