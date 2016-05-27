@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/kc-train/lily-components.git
-  revision: b8f7672b88ffc3aa783e37bfa16771edf18e71b9
-  ref: b8f7672
+  revision: b064ed9ea43a7a7a0b73d18487f694808b577661
+  ref: b064ed9
   specs:
     lily-components (0.0.2)
 
@@ -17,8 +17,8 @@ GIT
 
 GIT
   remote: git://github.com/mindpin/question_bank.git
-  revision: 18763e85b2f36c4d76205e369ce879518241fd92
-  ref: 18763e8
+  revision: 71298e4d993335dca8e95548c5ccea460be6a7be
+  ref: 71298e4
   specs:
     question_bank (0.0.1)
       enumerize
@@ -323,7 +323,7 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
-  web-console
+  web-console (~> 2.3.0)
 
 BUNDLED WITH
    1.11.2
