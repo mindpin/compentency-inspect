@@ -4,7 +4,7 @@
       <div className="sidebar-inner">
       {
         for item in @props.data.items
-          <div className="item" >
+          <div className="item" key={item.id} >
             <a href={item.url} >
               <i className={"icon " + item.icon} >
               </i>

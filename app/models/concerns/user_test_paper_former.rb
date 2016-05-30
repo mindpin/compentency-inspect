@@ -4,6 +4,7 @@ module UserTestPaperFormer
   included do
 
     former "UserTestPaper" do
+      field :id, ->(instance) {instance.id.to_s}
       field :current_user, ->(instance) {
         {
           id:   instance.user_id.to_s,
@@ -43,7 +44,9 @@ module UserTestPaperFormer
       }
 
       url :admin_show_url, ->(instance) {
-        "/admin/test_results/#{instance.id}"
+        tpr = instance.user.inspect_test_paper_result
+        return "" if tpr.blank?
+        "/admin/test_results/#{tpr.id}"
       }
     end
 
