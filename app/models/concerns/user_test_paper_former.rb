@@ -38,7 +38,19 @@ module UserTestPaperFormer
           {
             kind: section.kind,
             score: section.score,
-            test_wares: section.question_ids.map(&:to_s)
+            test_wares: section.questions.map do |question|
+              filled = false
+              tpr = instance.user.inspect_test_paper_result
+              if !tpr.blank?
+                qr = QuestionBank::QuestionRecord.where(test_paper_result_id: tpr.id, question_id: question.id).first
+                filled = true if !qr.blank?
+              end
+
+              {
+                id: question.id.to_s,
+                filled: filled
+              }
+            end
           }
         end
       }
