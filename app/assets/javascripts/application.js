@@ -7,6 +7,9 @@
 
 //= require semantic
 
+// https://github.com/medialize/URI.js
+//= require URIjs
+
 //= require file_part_upload/uploader
 //= require lily-components-projects-kc
 //= require_tree ./react

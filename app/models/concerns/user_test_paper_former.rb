@@ -4,6 +4,7 @@ module UserTestPaperFormer
   included do
 
     former "UserTestPaper" do
+      field :id, ->(instance) {instance.id.to_s}
       field :current_user, ->(instance) {
         {
           id:   instance.user_id.to_s,
@@ -37,13 +38,30 @@ module UserTestPaperFormer
           {
             kind: section.kind,
             score: section.score,
-            test_wares: section.question_ids.map(&:to_s)
+            test_wares: section.questions.map do |question|
+              filled = false
+              tpr = instance.user.inspect_test_paper_result
+
+              if tpr.blank?
+                filled = false
+              else
+                answer_status = tpr.question_answer_status(question)
+                filled = answer_status[:filled]
+              end
+
+              {
+                id: question.id.to_s,
+                filled: filled
+              }
+            end
           }
         end
       }
 
       url :admin_show_url, ->(instance) {
-        "/admin/test_results/#{instance.id}"
+        tpr = instance.user.inspect_test_paper_result
+        return "" if tpr.blank?
+        "/admin/test_results/#{tpr.id}"
       }
     end
 

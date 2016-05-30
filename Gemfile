@@ -67,7 +67,7 @@ gem 'question_bank',   github: 'mindpin/question_bank',
                        ref: '71298e4'
 
 gem 'lily-components', github: 'kc-train/lily-components',
-                       ref: 'b064ed9'
+                       ref: '8c18568'
 
 # gem 'lily-components', path: '/web/ben7th/lily-components'
 
@@ -80,3 +80,5 @@ gem 'non-stupid-digest-assets'
 
 source 'https://rails-assets.org'
 gem 'rails-assets-semantic'
+#http://medialize.github.io/URI.js/
+gem 'rails-assets-URIjs'
