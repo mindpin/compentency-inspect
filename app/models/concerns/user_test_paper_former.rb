@@ -41,9 +41,12 @@ module UserTestPaperFormer
             test_wares: section.questions.map do |question|
               filled = false
               tpr = instance.user.inspect_test_paper_result
-              if !tpr.blank?
-                qr = QuestionBank::QuestionRecord.where(test_paper_result_id: tpr.id, question_id: question.id).first
-                filled = true if !qr.blank?
+
+              if tpr.blank?
+                filled = false
+              else
+                answer_status = tpr.question_answer_status(question)
+                filled = answer_status[:filled]
               end
 
               {

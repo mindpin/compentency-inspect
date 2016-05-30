@@ -3,10 +3,8 @@
     answer: @props.data.answer
 
   render: ->
-    <div className="ui form">
-      <p>
-        <strong>{@props.data.content}</strong>
-      </p>
+    <div className="ui form essay">
+      <label className='content'>{@props.data.content}</label>
       <div className="field">
         <textarea rows=10 onBlur={@handleAnswer} defaultValue={@state.answer}></textarea>
       </div>

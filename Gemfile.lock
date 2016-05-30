@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/kc-train/lily-components.git
-  revision: b064ed9ea43a7a7a0b73d18487f694808b577661
-  ref: b064ed9
+  revision: 8c18568886e6be24adfb868fda2bfea469ae89c3
+  ref: 8c18568
   specs:
     lily-components (0.0.2)
 
