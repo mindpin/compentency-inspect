@@ -7,14 +7,14 @@ class ApplicationController < ActionController::Base
     if params[:controller] == "admin/sessions"
       return "/admin/dashboard"
     end
-    "/test_wares"
+    "/"
   end
 
   def after_sign_out_path_for(resource)
     if params[:controller] == "admin/sessions"
       return "/admin/sign_in"
     end
-    "/sign_in"
+    "/"
   end
 
   # 覆盖 rails 默认的 render :template => params[:action] 行为
