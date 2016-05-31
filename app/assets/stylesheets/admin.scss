@@ -66,5 +66,15 @@ body.admin {
     .func-content{
       padding: 1rem 2rem;
     }
+
+    .admin-test-paper-results-page{
+      background-color: white;
+      .test-ware.correct-true{
+        background-color: #eaffea;
+      }
+      .test-ware.correct-false{
+        background-color: #ffecec;
+      }
+    }
   }
 }

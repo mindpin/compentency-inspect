@@ -3,7 +3,9 @@ class TestWaresController < ApplicationController
 
   def data
     ids = [params[:ids]].flatten
-    questions = QuestionBank::Question.find ids
+    questions = ids.map do |id|
+      QuestionBank::Question.find id
+    end
 
     result = questions.map do |question|
       case question.kind.to_sym
