@@ -1,6 +1,15 @@
 @AdminTestResultShowPage = React.createClass
   render: ->
     <div className="admin-test-paper-results-page">
+      <div className="header">
+        <div className="tuli">
+          <span>图例:</span>
+          <span className="correct-true"></span>
+          <span>回答正确</span>
+          <span className="correct-false"></span>
+          <span>回答错误</span>
+        </div>
+      </div>
       {
         for section in @props.data.test_paper.sections
           <div className="section ui segments" key={section.kind}>
@@ -169,7 +178,7 @@
         @setState {}
 
       show_modal: ->
-        jQuery.open_modal <AdminTestResultShowPage.ReviewForm data={@props.data} target={@} />
+        jQuery.open_modal_v2 <AdminTestResultShowPage.ReviewForm data={@props.data} target={@} />
 
 
     FileUpload: React.createClass

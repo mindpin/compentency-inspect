@@ -1,4 +1,4 @@
-jQuery.open_modal = (component, config={})->
+jQuery.open_modal_v2 = (component, config={})->
   # jQuery('.ui.dimmer.modals').remove()
 
   $dom = jQuery """
