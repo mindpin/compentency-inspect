@@ -22,7 +22,9 @@ class TestWaresController < ApplicationController
   def save_answer
     question = QuestionBank::Question.find params[:id]
     if current_user.save_answer(question, params[:answer])
-      render json: { status: 200 }
+      tpr = current_user.inspect_test_paper_result
+      status = tpr.question_answer_status(question)
+      render json: status
     else
       render status: 500, json: {status: 500}
     end

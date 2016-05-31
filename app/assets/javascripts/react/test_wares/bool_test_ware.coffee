@@ -11,20 +11,34 @@
       false_input_attr.checked = "checked"
 
 
-    <div className='bool ui form'>
+    <div className='bool ui form' ref='form'>
       <div className='grouped fields'>
         <label className='content'>{@props.data.content}</label>
 
         <div className="field">
           <div className="ui radio checkbox">
-            <input type="radio" value="true" onChange={@handleAnswer} {...true_input_attr}/>
+            <input 
+              type="radio"
+              className='hidden'
+              name={@props.data.id}  
+              value="true" 
+              onChange={->} 
+              {...true_input_attr}
+            />
             <label>正确</label>
           </div>
         </div>
 
         <div className="field">
           <div className="ui radio checkbox">
-            <input type="radio" value="false" onChange={@handleAnswer} {...false_input_attr}/>
+            <input 
+              type="radio" 
+              className='hidden'
+              name={@props.data.id} 
+              value="false" 
+              onChange={->} 
+              {...false_input_attr}
+            />
             <label>错误</label>
           </div>
         </div>
@@ -32,8 +46,14 @@
     </div>
 
   handleAnswer: (evt)->
-    value = false
-    value = true if evt.target.value == "true"
+    value = jQuery("input[name='#{@props.data.id}']:checked").val() == 'true'
 
     @setState answer: value
     @props.on_answer_change(@props.data.id, value)
+
+  componentDidMount: ->
+    jQuery ReactDOM.findDOMNode @refs.form
+      .find('.ui.checkbox')
+      .checkbox {
+        onChange: @handleAnswer
+      }
