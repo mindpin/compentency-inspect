@@ -9,6 +9,13 @@ QuestionBank::TestPaperResult.class_eval do
       }
     end
 
+    if qr.kind == "bool"
+      return {
+        answer: qr.answer,
+        filled: !qr.answer.nil?
+      }
+    end
+
     return {
       answer: qr.answer,
       filled: qr.answer.present?
