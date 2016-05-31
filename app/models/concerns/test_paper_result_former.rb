@@ -29,26 +29,18 @@ module TestPaperResultFormer
 
               case question.kind
               when "bool"
-                is_correct  = false
-                user_answer = nil
-                qr = QuestionBank::QuestionRecord.where(test_paper_result_id: instance.id, question_id: question.id, user_id: instance.user_id).first
-                if !qr.blank?
-                  is_correct = qr.is_correct
-                  user_answer = qr.answer
-                end
+                status = instance.question_answer_status(question)
+                is_correct  = status[:is_correct]
+                user_answer = status[:answer]
                 hash.merge!({
                   correct_answer: question.answer,
                   user_answer: user_answer,
                   is_correct: is_correct
                 })
               when "single_choice"
-                is_correct  = false
-                user_answer = nil
-                qr = QuestionBank::QuestionRecord.where(test_paper_result_id: instance.id, question_id: question.id, user_id: instance.user_id).first
-                if !qr.blank?
-                  is_correct = qr.is_correct
-                  user_answer = qr.answer
-                end
+                status = instance.question_answer_status(question)
+                is_correct  = status[:is_correct]
+                user_answer = status[:answer]
                 hash.merge!({
                   choices: question.answer["choices"],
                   correct_answer: question.answer["correct"],
@@ -56,13 +48,9 @@ module TestPaperResultFormer
                   is_correct: is_correct
                 })
               when "multi_choice"
-                is_correct  = false
-                user_answer = nil
-                qr = QuestionBank::QuestionRecord.where(test_paper_result_id: instance.id, question_id: question.id, user_id: instance.user_id).first
-                if !qr.blank?
-                  is_correct = qr.is_correct
-                  user_answer = qr.answer
-                end
+                status = instance.question_answer_status(question)
+                is_correct  = status[:is_correct]
+                user_answer = status[:answer]
                 hash.merge!({
                   choices: question.answer["choices"],
                   correct_answer: question.answer["corrects"],
@@ -70,28 +58,14 @@ module TestPaperResultFormer
                   is_correct: is_correct
                 })
               when "essay", "file_upload"
-                score = nil
-                comment = nil
-                user_answer = nil
-                qr = QuestionBank::QuestionRecord.where(test_paper_result_id: instance.id, question_id: question.id, user_id: instance.user_id).first
-                if !qr.blank?
-                  user_answer = qr.answer
-
-                  tprr = QuestionBank::TestPaperResultReview.where(test_paper_result_id: instance.id, user_id: reviewer.id).first
-                  if !tprr.blank?
-                    qrr = QuestionBank::QuestionRecordReview.where(question_record_id: qr.id, test_paper_result_review_id: tprr.id).first
-                    if !qrr.blank?
-                      score = qrr.score
-                      comment = qrr.comment
-                    end
-                  end
-                end
+                status = instance.question_review_status(question, reviewer)
+                score = status[:score]
+                comment = status[:comment]
                 hash.merge!({
-                  question_record_id: qr.blank? ? nil : qr.id.to_s,
                   test_paper_result_id: instance.id.to_s,
-                  create_question_record_url: "/admin/question_record_reviews",
+                  create_test_paper_result_question_review_url: "/admin/test_paper_result_question_reviews",
                   max_score: section.score,
-                  user_answer: user_answer,
+                  user_answer: instance.question_answer_status(question)[:answer],
                   score: score,
                   comment: comment
                 })

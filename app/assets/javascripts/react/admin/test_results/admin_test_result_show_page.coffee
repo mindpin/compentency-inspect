@@ -228,7 +228,7 @@
           label_width: '100px'
 
         data =
-          question_record_id: @props.data.question_record_id
+          question_id: @props.data.id
           test_paper_result_id: @props.data.test_paper_result_id
           score: @props.data.score
           comment: @props.data.comment
@@ -236,14 +236,14 @@
         <div>
           <h3 className='ui header'>评价</h3>
           <SimpleDataForm
-            model='question_record_review'
-            post={@props.data.create_question_record_url}
+            model='test_paper_result_question_review'
+            post={@props.data.create_test_paper_result_question_review_url}
             data={data}
             done={@done}
           >
             <SelectField {...layout} label='得分：' name='score' values={[0..@props.data.max_score]} />
             <TextAreaField  {...layout} label='评语：' name='comment' required />
-            <HiddenField  {...layout}  name='question_record_id' />
+            <HiddenField  {...layout}  name='question_id' />
             <HiddenField  {...layout}  name='test_paper_result_id' />
             <Submit {...layout} text='确定保存' />
           </SimpleDataForm>

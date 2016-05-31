@@ -7,13 +7,13 @@ class QuestionBank::TestPaperResultReview
   belongs_to :user
   belongs_to :test_paper_result, class_name: "QuestionBank::TestPaperResult"
 
-  has_many :question_record_reivews, class_name: "QuestionBank::QuestionRecordReview"
+  has_many :question_reviews, class_name: "QuestionBank::TestPaperResultQuestionReview"
 
-  def save_question_record_review(question_record, score, comment)
-    qrr = self.question_record_reivews.where(question_record_id: question_record.id).first
+  def save_question_review(question, score, comment)
+    qrr = self.question_reviews.where(question_id: question.id).first
     if qrr.blank?
-      qrr = self.question_record_reivews.create(
-        question_record_id: question_record.id,
+      qrr = self.question_reviews.create(
+        question_id: question.id,
         score: score,
         comment: comment
       )
@@ -21,6 +21,21 @@ class QuestionBank::TestPaperResultReview
       qrr.score = score
       qrr.comment = comment
       qrr.save
+    end
+  end
+
+  def question_review_status(question, reviewer)
+    qrr = self.question_reviews.where(question_id: question.id).first
+    if qrr.blank?
+      return {
+        score: nil,
+        comment: nil
+      }
+    else
+      return {
+        score: qrr.score,
+        comment: qrr.comment
+      }
     end
   end
 end

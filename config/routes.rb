@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get "/dashboard", to: "dashboard#index"
     resources :test_results
     resources :user_test_papers
-    resources :question_record_reviews
+    resources :test_paper_result_question_reviews
     resources :test_paper_result_reviews
   end
 
