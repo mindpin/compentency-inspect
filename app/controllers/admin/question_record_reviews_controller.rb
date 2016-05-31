@@ -4,7 +4,7 @@ class Admin::QuestionRecordReviewsController < Admin::ApplicationController
     qr  = QuestionBank::QuestionRecord.find  params[:question_record_review][:question_record_id]
     score   = params[:question_record_review][:score]
     comment = params[:question_record_review][:comment]
-    tpr.reivew(current_user).save_question_record_review(qr, score, comment)
+    tpr.review(current_user).save_question_record_review(qr, score, comment)
     render json: {
       score: score,
       comment: comment

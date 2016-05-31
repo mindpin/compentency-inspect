@@ -37,7 +37,35 @@
             </div>
           </div>
       }
+      {
+        if @props.data.test_paper.review_comment != null
+          <div className="total-review">
+            <div className="review-comment">
+              你给出的总评价是：
+              <pre>
+                {@props.data.test_paper.review_comment}
+              </pre>
+            </div>
+            <button className="ui teal button" onClick={@show_modal}>
+              修改总评价
+            </button>
+          </div>
+        else
+          <div className="total-review">
+            <button className="ui teal button" onClick={@show_modal}>
+              增加总评价
+            </button>
+          </div>
+      }
     </div>
+
+  sync_review_comment: (review_comment)->
+    @props.data.test_paper.review_comment = review_comment
+    @setState {}
+
+  show_modal: ->
+    jQuery.open_modal_v2 <AdminTestResultShowPage.TotalReviewForm data={@props.data} target={@} />
+
   statics:
     Bool: React.createClass
       render: ->
@@ -223,4 +251,37 @@
 
       done: (data)->
         @props.target.sync_score_and_comment(data.score, data.comment)
+        @state.close()
+
+    TotalReviewForm: React.createClass
+      render: ->
+        {
+          TextAreaField
+          HiddenField
+          Submit
+        } = DataForm
+
+        layout =
+          label_width: '100px'
+
+        data =
+          test_paper_result_id: @props.data.test_paper.test_paper_result_id
+          review_comment: @props.data.test_paper.review_comment
+
+        <div>
+          <h3 className='ui header'>总评价</h3>
+          <SimpleDataForm
+            model='test_paper_result_review'
+            post={@props.data.test_paper.create_test_paper_result_review_url}
+            data={data}
+            done={@done}
+          >
+            <TextAreaField  {...layout} label='评语：' name='review_comment' required />
+            <HiddenField  {...layout}  name='test_paper_result_id' />
+            <Submit {...layout} text='确定保存' />
+          </SimpleDataForm>
+        </div>
+
+      done: (data)->
+        @props.target.sync_review_comment(data.review_comment)
         @state.close()

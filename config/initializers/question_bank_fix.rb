@@ -22,18 +22,27 @@ QuestionBank::TestPaperResult.class_eval do
     }
   end
 
-  def reivew(user)
-    reivew = QuestionBank::TestPaperResultReview.where(
-      user_id: user.id,
+  def review_comment(reviewer)
+    review = QuestionBank::TestPaperResultReview.where(
+      user_id: reviewer.id,
       test_paper_result_id: self.id
     ).first
 
-    if reivew.blank?
-      reivew = QuestionBank::TestPaperResultReview.create(
-        user_id: user.id,
+    review.blank? ? nil : review.comment
+  end
+
+  def review(reviewer)
+    review = QuestionBank::TestPaperResultReview.where(
+      user_id: reviewer.id,
+      test_paper_result_id: self.id
+    ).first
+
+    if review.blank?
+      review = QuestionBank::TestPaperResultReview.create(
+        user_id: reviewer.id,
         test_paper_result_id: self.id
       )
     end
-    reivew
+    review
   end
 end

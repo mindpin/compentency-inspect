@@ -102,7 +102,12 @@ module TestPaperResultFormer
           }
         end
 
-        {sections: sections}
+        {
+          test_paper_result_id: instance.id.to_s,
+          review_comment: instance.review_comment(reviewer),
+          create_test_paper_result_review_url: "/admin/test_paper_result_reviews",
+          sections: sections
+        }
       }
 
     end

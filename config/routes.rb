@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :test_results
     resources :user_test_papers
     resources :question_record_reviews
+    resources :test_paper_result_reviews
   end
 
   get  "/test_status",       to: "test_status#index"
