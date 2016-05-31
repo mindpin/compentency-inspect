@@ -38,7 +38,7 @@
           </div>
           <div className="correct-answer">
           {
-            "正确答案是 #{@props.data.correct_answer ? '正确' : '错误'}"
+            "正确答案是 #{if @props.data.correct_answer then '正确' else '错误'}"
           }
           </div>
           <div className="user-answer">
@@ -69,7 +69,7 @@
           <div className="choices">
           {
             for choice, index in @props.data.choices
-              <div className="choice">
+              <div className="choice" key={choice.id}>
                 {"#{index+1}, #{choice.text}"}
               </div>
           }
@@ -100,17 +100,118 @@
             user_answer_indexs.push(index + 1)
 
         <div className="multi_choice">
-          {@props.data.content}
+          <div className="content">
+            {@props.data.content}
+          </div>
+          <div className="choices">
+          {
+            for choice, index in @props.data.choices
+              <div className="choice" key={choice.id}>
+                {"#{index+1}, #{choice.text}"}
+              </div>
+          }
+          </div>
+          <div className="correct-answer">
+          {
+            "正确答案是 #{correct_answer_indexs.join(',')}"
+          }
+          </div>
+          <div className="user-answer">
+          {
+            if user_answer_indexs.length == 0
+              "他没有回答这道题"
+            else
+              "他选择的答案是 #{user_answer_indexs.join(',')}"
+          }
+          </div>
         </div>
 
     Essay: React.createClass
       render: ->
         <div className="essay">
-          {@props.data.content}
+          <div className="content">
+            {@props.data.content}
+          </div>
+          <div className="user-answer">
+            他的回答：
+            <pre>
+              {@props.data.user_answer}
+            </pre>
+          </div>
+          {
+              if @props.data.score == null || @props.data.comment == null
+                <div className="review">
+                  <button className="ui teal button" onClick={@show_modal}>
+                    增加评价
+                  </button>
+                </div>
+              else
+                <div className="review">
+                  <div className="score">
+                    你给出的得分是：{@props.data.score}
+                  </div>
+                  <div className="comment">
+                    你给出的评价是：
+                    <pre>
+                      {@props.data.comment}
+                    </pre>
+                  </div>
+                  <button className="ui teal button"  onClick={@show_modal} >
+                    修改评价
+                  </button>
+                </div>
+            }
         </div>
+
+      sync_score_and_comment: (score, comment)->
+        @props.data.score = score
+        @props.data.comment = comment
+        @setState {}
+
+      show_modal: ->
+        jQuery.open_modal <AdminTestResultShowPage.ReviewForm data={@props.data} target={@} />
+
 
     FileUpload: React.createClass
       render: ->
         <div className="file_upload">
           {@props.data.content}
         </div>
+
+    ReviewForm: React.createClass
+      render: ->
+        {
+          SelectField
+          TextAreaField
+          HiddenField
+          Submit
+        } = DataForm
+
+        layout =
+          label_width: '100px'
+
+        data =
+          question_record_id: @props.data.question_record_id
+          test_paper_result_id: @props.data.test_paper_result_id
+          score: @props.data.score
+          comment: @props.data.comment
+
+        <div>
+          <h3 className='ui header'>评价</h3>
+          <SimpleDataForm
+            model='question_record_review'
+            post={@props.data.create_question_record_url}
+            data={data}
+            done={@done}
+          >
+            <SelectField {...layout} label='得分：' name='score' values={[0..@props.data.max_score]} />
+            <TextAreaField  {...layout} label='评语：' name='comment' required />
+            <HiddenField  {...layout}  name='question_record_id' />
+            <HiddenField  {...layout}  name='test_paper_result_id' />
+            <Submit {...layout} text='确定保存' />
+          </SimpleDataForm>
+        </div>
+
+      done: (data)->
+        @props.target.sync_score_and_comment(data.score, data.comment)
+        @state.close()

@@ -21,4 +21,19 @@ QuestionBank::TestPaperResult.class_eval do
       filled: qr.answer.present?
     }
   end
+
+  def reivew(user)
+    reivew = QuestionBank::TestPaperResultReview.where(
+      user_id: user.id,
+      test_paper_result_id: self.id
+    ).first
+
+    if reivew.blank?
+      reivew = QuestionBank::TestPaperResultReview.create(
+        user_id: user.id,
+        test_paper_result_id: self.id
+      )
+    end
+    reivew
+  end
 end

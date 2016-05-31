@@ -7,4 +7,5 @@ class QuestionBank::QuestionRecordReview
 
   belongs_to :question_record,          class_name: "QuestionBank::QuestionRecord"
   belongs_to :test_paper_result_review, class_name: "QuestionBank::TestPaperResultReview"
+
 end

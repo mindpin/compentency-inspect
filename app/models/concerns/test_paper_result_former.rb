@@ -31,7 +31,7 @@ module TestPaperResultFormer
               when "bool"
                 is_correct  = false
                 user_answer = nil
-                qr = QuestionBank::QuestionRecord.where(test_paper_id: instance.id, question_id: question.id, user_id: instance.user_id).first
+                qr = QuestionBank::QuestionRecord.where(test_paper_result_id: instance.id, question_id: question.id, user_id: instance.user_id).first
                 if !qr.blank?
                   is_correct = qr.is_correct
                   user_answer = qr.answer
@@ -44,7 +44,7 @@ module TestPaperResultFormer
               when "single_choice"
                 is_correct  = false
                 user_answer = nil
-                qr = QuestionBank::QuestionRecord.where(test_paper_id: instance.id, question_id: question.id, user_id: instance.user_id).first
+                qr = QuestionBank::QuestionRecord.where(test_paper_result_id: instance.id, question_id: question.id, user_id: instance.user_id).first
                 if !qr.blank?
                   is_correct = qr.is_correct
                   user_answer = qr.answer
@@ -58,7 +58,7 @@ module TestPaperResultFormer
               when "multi_choice"
                 is_correct  = false
                 user_answer = nil
-                qr = QuestionBank::QuestionRecord.where(test_paper_id: instance.id, question_id: question.id, user_id: instance.user_id).first
+                qr = QuestionBank::QuestionRecord.where(test_paper_result_id: instance.id, question_id: question.id, user_id: instance.user_id).first
                 if !qr.blank?
                   is_correct = qr.is_correct
                   user_answer = qr.answer
@@ -70,10 +70,10 @@ module TestPaperResultFormer
                   is_correct: is_correct
                 })
               when "essay", "file_upload"
-                score = -1
+                score = nil
                 comment = nil
                 user_answer = nil
-                qr = QuestionBank::QuestionRecord.where(test_paper_id: instance.id, question_id: question.id, user_id: instance.user_id).first
+                qr = QuestionBank::QuestionRecord.where(test_paper_result_id: instance.id, question_id: question.id, user_id: instance.user_id).first
                 if !qr.blank?
                   user_answer = qr.answer
 
@@ -87,6 +87,10 @@ module TestPaperResultFormer
                   end
                 end
                 hash.merge!({
+                  question_record_id: qr.blank? ? nil : qr.id.to_s,
+                  test_paper_result_id: instance.id.to_s,
+                  create_question_record_url: "/admin/question_record_reviews",
+                  max_score: section.score,
                   user_answer: user_answer,
                   score: score,
                   comment: comment

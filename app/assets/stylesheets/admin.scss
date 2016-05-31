@@ -75,6 +75,25 @@ body.admin {
       .test-ware.correct-false{
         background-color: #ffecec;
       }
+      .test-ware{
+        .content{
+          font-size: 15px;
+        }
+        .choices{
+          padding: 5px 0 0 10px;
+        }
+        .correct-answer{
+          padding: 15px 0 0 0;
+        }
+        .essay{
+          .user-answer{
+            padding: 15px 0 0 0;
+          }
+          .review{
+            height: 200px;
+          }
+        }
+      }
     }
   }
 }
