@@ -9,6 +9,7 @@ module TestPaperResultReviewFormer
         DataFormer.new(instance.user).data
       }
       field :status
+      field :total_score, ->(instance) {instance.total_score}
 
       logic :test_paper_result, ->(instance){
         DataFormer.new(instance.test_paper_result)
