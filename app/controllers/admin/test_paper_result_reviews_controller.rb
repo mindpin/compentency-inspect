@@ -1,12 +1,19 @@
 class Admin::TestPaperResultReviewsController < Admin::ApplicationController
   def create
     tpr = QuestionBank::TestPaperResult.find params[:test_paper_result_review][:test_paper_result_id]
-    review_comment = params[:test_paper_result_review][:review_comment]
+    comment = params[:test_paper_result_review][:comment]
     review = tpr.review(current_user)
-    review.comment = review_comment
+    review.comment = comment
     review.save
     render json: {
-      review_comment: review_comment
+      comment: comment
     }
+  end
+
+  def complete
+    tpr = QuestionBank::TestPaperResult.find params[:test_paper_result_id]
+    review = tpr.review(current_user)
+    review.complete!
+    render json: {status: review.status}
   end
 end

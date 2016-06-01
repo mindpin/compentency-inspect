@@ -25,13 +25,24 @@ QuestionBank::TestPaperResult.class_eval do
     }
   end
 
-  def review_comment(reviewer)
+  def review_status(reviewer)
     review = QuestionBank::TestPaperResultReview.where(
       user_id: reviewer.id,
       test_paper_result_id: self.id
     ).first
 
-    review.blank? ? nil : review.comment
+    if review.blank?
+      return {
+        comment: nil,
+        status: nil
+      }
+    end
+
+    return {
+      comment: review.comment,
+      status: review.status
+    }
+
   end
 
   def question_review_status(question, reviewer)
@@ -48,6 +59,17 @@ QuestionBank::TestPaperResult.class_eval do
     end
 
     review.question_review_status(question, reviewer)
+  end
+
+  def has_completed_reviews?
+    completed_reviews.count > 0
+  end
+
+  def completed_reviews
+    QuestionBank::TestPaperResultReview.where(
+      test_paper_result_id: self.id,
+      status: "completed"
+    )
   end
 
   def review(reviewer)

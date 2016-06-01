@@ -36,19 +36,31 @@
               data = ""
 
             if x.status == "FINISHED"
-              actions_disabled = ""
+              actions_create_review_disabled = ""
             else
-              actions_disabled = "disabled"
+              actions_create_review_disabled = "disabled"
+
+            if x.has_completed_reviews
+              actions_reviews_disabled = ""
+            else
+              actions_reviews_disabled = "disabled"
+
             {
               id: x.id
               user_name: x.current_user.name
               status: status
               deadline_time: data
               actions:
-                <a className="ui button mini blue basic #{actions_disabled}" href={x.admin_show_url}>
-                  <i className='icon pencil' />
-                  阅卷
-                </a>
+                <div>
+                  <a className="ui button mini blue basic #{actions_create_review_disabled}" href={x.admin_show_url}>
+                    <i className='icon write' />
+                    阅卷
+                  </a>
+                  <a className="ui button mini blue basic #{actions_reviews_disabled}" href={x.reviews_url}>
+                    <i className='icon unhide' />
+                    浏览完成的阅卷
+                  </a>
+                </div>
             }
 
           th_classes: {}

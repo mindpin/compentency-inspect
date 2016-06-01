@@ -16,10 +16,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/dashboard", to: "dashboard#index"
-    resources :test_results
+    resources :test_results do
+      get :reviews, on: :member
+    end
     resources :user_test_papers
     resources :test_paper_result_question_reviews
-    resources :test_paper_result_reviews
+    resources :test_paper_result_reviews do
+      post :complete, on: :collection
+    end
     resources :users
   end
 
