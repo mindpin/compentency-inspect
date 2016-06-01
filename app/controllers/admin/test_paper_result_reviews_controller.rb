@@ -14,6 +14,6 @@ class Admin::TestPaperResultReviewsController < Admin::ApplicationController
     tpr = QuestionBank::TestPaperResult.find params[:test_paper_result_id]
     review = tpr.review(current_user)
     review.complete!
-    render json: {status: 200}
+    render json: {status: review.status}
   end
 end

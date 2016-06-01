@@ -12,7 +12,7 @@ class QuestionBank::TestPaperResultReview
   has_many :question_reviews, class_name: "QuestionBank::TestPaperResultQuestionReview"
 
   def complete!
-    self.status = completed
+    self.status = 'completed'
     self.save!
   end
 

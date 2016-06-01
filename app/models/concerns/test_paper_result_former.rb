@@ -77,12 +77,14 @@ module TestPaperResultFormer
         question_reviews = []
         instance.test_paper.sections.each do |section|
           section.questions.each do |question|
-            status = instance.question_review_status(question, reviewer)
-            question_reviews.push({
-              question_id: question.id.to_s,
-              score: status[:score],
-              comment: status[:comment]
-            })
+            if question.kind == "essay" || question.kind ==  "file_upload"
+              status = instance.question_review_status(question, reviewer)
+              question_reviews.push({
+                question_id: question.id.to_s,
+                score: status[:score],
+                comment: status[:comment]
+              })
+            end
           end
         end
 
