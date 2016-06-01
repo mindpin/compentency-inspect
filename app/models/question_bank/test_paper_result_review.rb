@@ -1,13 +1,20 @@
 class QuestionBank::TestPaperResultReview
   include Mongoid::Document
   include Mongoid::Timestamps
+  extend Enumerize
 
   field :comment, type: String
+  enumerize :status, in: [:processing, :completed], default: :processing
 
   belongs_to :user
   belongs_to :test_paper_result, class_name: "QuestionBank::TestPaperResult"
 
   has_many :question_reviews, class_name: "QuestionBank::TestPaperResultQuestionReview"
+
+  def complete!
+    self.status = completed
+    self.save!
+  end
 
   def save_question_review(question, score, comment)
     qrr = self.question_reviews.where(question_id: question.id).first

@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     resources :test_results
     resources :user_test_papers
     resources :test_paper_result_question_reviews
-    resources :test_paper_result_reviews
+    resources :test_paper_result_reviews do
+      post :complete, on: :collection
+    end
   end
 
   get  "/test_status",       to: "test_status#index"

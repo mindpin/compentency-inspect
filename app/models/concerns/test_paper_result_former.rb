@@ -58,16 +58,9 @@ module TestPaperResultFormer
                   is_correct: is_correct
                 })
               when "essay", "file_upload"
-                status = instance.question_review_status(question, reviewer)
-                score = status[:score]
-                comment = status[:comment]
                 hash.merge!({
-                  test_paper_result_id: instance.id.to_s,
-                  create_test_paper_result_question_review_url: "/admin/test_paper_result_question_reviews",
                   max_score: section.score,
-                  user_answer: instance.question_answer_status(question)[:answer],
-                  score: score,
-                  comment: comment
+                  user_answer: instance.question_answer_status(question)[:answer]
                 })
               end
 
@@ -76,15 +69,44 @@ module TestPaperResultFormer
           }
         end
 
+        {sections: sections}
+      }
+
+      logic :review, ->(instance, reviewer) {
+        review_status = instance.review_status(reviewer)
+        question_reviews = []
+        instance.test_paper.sections.each do |section|
+          section.questions.each do |question|
+            status = instance.question_review_status(question, reviewer)
+            question_reviews.push({
+              question_id: question.id.to_s,
+              score: status[:score],
+              comment: status[:comment]
+            })
+          end
+        end
+
         {
-          test_paper_result_id: instance.id.to_s,
-          review_comment: instance.review_comment(reviewer),
-          create_test_paper_result_review_url: "/admin/test_paper_result_reviews",
-          sections: sections
+          status: review_status[:status],
+          comment: review_status[:comment],
+          test_ware_reviews: question_reviews
         }
       }
 
+      url :create_question_review_url, ->(instance){
+        "/admin/test_paper_result_question_reviews"
+      }
+
+      url :create_review_url, ->(instance){
+        "/admin/test_paper_result_reviews"
+      }
+
+      url :set_review_complete_url, ->(instance){
+        "/admin/test_paper_result_reviews/complete"
+      }
     end
+
+
 
   end
 end
