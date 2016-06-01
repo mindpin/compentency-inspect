@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/kc-train/lily-components.git
+  revision: 407d27d262cec16504c4b9fa944bc107c7d9701f
+  ref: 407d27d
+  specs:
+    lily-components (0.0.2)
+
+GIT
   remote: git://github.com/mindpin/file-part-upload.git
   revision: c1b0579f4041a4a8b0746d10af166cb28d997353
   tag: 3.2.0
@@ -17,11 +24,6 @@ GIT
       enumerize
       kaminari
       simple_form
-
-PATH
-  remote: /web/ben7th/lily-components
-  specs:
-    lily-components (0.0.2)
 
 GEM
   remote: https://ruby.taobao.org/
