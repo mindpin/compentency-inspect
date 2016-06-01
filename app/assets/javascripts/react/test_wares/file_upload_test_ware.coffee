@@ -1,7 +1,7 @@
 @FileUploadTestWare = React.createClass
   render: ->
-    <div className="ui segments">
-      <div className="ui segment">
+    <div className='file-upload-ware'>
+      <div>
         <strong>{@props.data.content}</strong>
       </div>
       <div className="ui segment">
@@ -23,28 +23,25 @@
         download_url:   @props.download_url
 
       render: ->
-        h = 50
-        w = 320
-
-        browse_style =
-          width: "#{w}px"
-          height: "#{h}px"
-
         <div className='one-upload'>
-          <div className='browse' style={browse_style}>
-            <FileUploadTestWare.UploadProgress {...@state} />
+          <div className='browse'>
             {
               title = @props.title || '把编写好的代码文件打包成压缩包上传'
               desc = @props.desc ||
                 <div>
-                  支持 ZIP/RAR/TAR/GZ/BZ2/7Z/XZ 格式，最大 3MB
+                  支持 ZIP / RAR / TAR / GZ / BZ2 / 7Z / XZ 压缩格式，最大 3MB
                 </div>
-
+              <div className='desc ui message warning'>
+                {title}<br/>
+                {desc}
+              </div>
+            }
+            <FileUploadTestWare.UploadProgress {...@state} />
+            {
               <UploadWidget.BrowseButton ref='browse_btn' status={@state.status}>
-                <div className='btn-text'>
-                  <div className='header'>{title}</div>
-                  <div className='desc'>{desc}</div>
-                </div>
+                <a href='javascript:;' className='ui button green mini'>
+                  <i className='icon upload' /> 上传文件
+                </a>
               </UploadWidget.BrowseButton>
             }
             <FileUploadTestWare.DownloadBar download_url={@state.download_url} />
@@ -118,7 +115,11 @@
 
     DownloadBar: React.createClass
       render: ->
-        if @props.download_url
-          <a href={@props.download_url}>下载已经上传的压缩包</a>
-        else
-          <div />
+        <div className='download' style={marginTop: '1rem'}>
+        {
+          if @props.download_url
+            <a className='download' href={@props.download_url}>
+              <i className='icon attach' /> 下载已经上传的压缩包
+            </a>
+        }
+        </div>

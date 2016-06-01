@@ -12,7 +12,7 @@
         when UPLOADING, REMOTE_DONE
           display: 'none'
         when LOCAL_DONE, ERROR
-          opacity: 0
+          opacity: 1
 
       <div className='browse-btn' {...window.$$browse_btn_data} style={style}>
       {@props.children}
