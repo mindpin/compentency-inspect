@@ -14,10 +14,15 @@
       sidebar_data = {
         items: [
           {
-            icon: 'dashboard',
+            icon: 'users',
+            url: '/admin/users',
+            name: '账号管理'
+          },
+          {
+            icon: 'check',
             url: '/admin/user_test_papers',
             name: "答卷审阅"
-          }
+          },
         ]
       }
     = react_component 'LayoutAdminSidebar', data: sidebar_data

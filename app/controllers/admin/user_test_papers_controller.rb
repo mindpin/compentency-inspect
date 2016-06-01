@@ -6,7 +6,11 @@ class Admin::UserTestPapersController < Admin::ApplicationController
 
     user_test_papers = UserTestPaper.all.page(params[:page])
     data = user_test_papers.map do |tr|
-      DataFormer.new(tr).url(:admin_show_url).data
+      DataFormer.new(tr)
+        .logic(:has_completed_reviews)
+        .url(:admin_show_url)
+        .url(:reviews_url)
+        .data
     end
 
     @component_data = {

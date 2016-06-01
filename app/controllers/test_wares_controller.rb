@@ -24,7 +24,10 @@ class TestWaresController < ApplicationController
     if current_user.save_answer(question, params[:answer])
       tpr = current_user.inspect_test_paper_result
       status = tpr.question_answer_status(question)
-      render json: status
+      render json: {
+        answer: status[:answer],
+        filled: status[:filled]
+      }
     else
       render status: 500, json: {status: 500}
     end

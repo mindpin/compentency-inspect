@@ -58,6 +58,18 @@ module UserTestPaperFormer
         end
       }
 
+      logic :has_completed_reviews, ->(instance) {
+        tpr = instance.user.inspect_test_paper_result
+        return false if tpr.blank?
+        tpr.has_completed_reviews?
+      }
+
+      url :reviews_url, ->(instance) {
+        tpr = instance.user.inspect_test_paper_result
+        return "" if tpr.blank?
+        "/admin/test_results/#{tpr.id}/reviews"
+      }
+
       url :admin_show_url, ->(instance) {
         tpr = instance.user.inspect_test_paper_result
         return "" if tpr.blank?
