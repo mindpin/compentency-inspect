@@ -12,4 +12,14 @@ class Admin::TestResultsController < Admin::ApplicationController
       .url(:set_review_complete_url)
       .data
   end
+
+  def reviews
+    @component_name = "admin_test_result_reviews_page"
+    tpr = QuestionBank::TestPaperResult.find params[:id]
+    @component_data = tpr.completed_reviews.map do |review|
+      DataFormer.new(review)
+        .logic(:test_paper_result)
+        .data
+    end
+  end
 end

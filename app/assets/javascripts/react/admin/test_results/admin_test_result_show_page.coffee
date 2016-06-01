@@ -73,7 +73,7 @@
         if @props.data.review.comment != null
           <div className="total-review">
             <div className="review-comment">
-              你给出的总评价是：
+              审阅总评价是：
               <pre>
                 {@props.data.review.comment}
               </pre>
@@ -164,11 +164,11 @@
           <div className="user-answer">
           {
             if @props.data.test_ware.user_answer == null
-              "他没有回答这道题"
+              "答题者没有回答这道题"
             else if @props.data.test_ware.user_answer == true
-              "他选择的答案是 正确"
+              "答题者选择的答案是 正确"
             else if @props.data.test_ware.user_answer == false
-              "他选择的答案是 错误"
+              "答题者选择的答案是 错误"
           }
           </div>
         </div>
@@ -202,9 +202,9 @@
           <div className="user-answer">
           {
             if user_answer_index == null
-              "他没有回答这道题"
+              "答题者没有回答这道题"
             else
-              "他选择的答案是 #{user_answer_index}"
+              "答题者选择的答案是 #{user_answer_index}"
           }
           </div>
         </div>
@@ -239,9 +239,9 @@
           <div className="user-answer">
           {
             if user_answer_indexs.length == 0
-              "他没有回答这道题"
+              "答题者没有回答这道题"
             else
-              "他选择的答案是 #{user_answer_indexs.join(',')}"
+              "答题者选择的答案是 #{user_answer_indexs.join(',')}"
           }
           </div>
         </div>
@@ -253,7 +253,7 @@
             {@props.data.test_ware.content}
           </div>
           <div className="user-answer">
-            他的回答：
+            答题者的回答：
             <pre>
               {@props.data.test_ware.user_answer}
             </pre>
@@ -269,10 +269,10 @@
               else
                 <div className="review">
                   <div className="score">
-                    你给出的得分是：{@props.data.test_ware_review.score}
+                    审阅得分是：{@props.data.test_ware_review.score}
                   </div>
                   <div className="comment">
-                    你给出的评价是：
+                    审阅评价是：
                     <pre>
                       {@props.data.test_ware_review.comment}
                     </pre>
@@ -303,7 +303,7 @@
             {@props.data.test_ware.content}
           </div>
           <div className="user-answer">
-            他的回答：
+            答题者的回答：
             <pre>
               {@props.data.test_ware.user_answer}
             </pre>
@@ -319,10 +319,10 @@
               else
                 <div className="review">
                   <div className="score">
-                    你给出的得分是：{@props.data.test_ware_review.score}
+                    审阅得分是：{@props.data.test_ware_review.score}
                   </div>
                   <div className="comment">
-                    你给出的评价是：
+                    审阅评价是：
                     <pre>
                       {@props.data.test_ware_review.comment}
                     </pre>

@@ -61,6 +61,17 @@ QuestionBank::TestPaperResult.class_eval do
     review.question_review_status(question, reviewer)
   end
 
+  def has_completed_reviews?
+    completed_reviews.count > 0
+  end
+
+  def completed_reviews
+    QuestionBank::TestPaperResultReview.where(
+      test_paper_result_id: self.id,
+      status: "completed"
+    )
+  end
+
   def review(reviewer)
     review = QuestionBank::TestPaperResultReview.where(
       user_id: reviewer.id,
