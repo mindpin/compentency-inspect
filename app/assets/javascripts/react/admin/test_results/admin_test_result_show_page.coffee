@@ -303,10 +303,9 @@
             {@props.data.test_ware.content}
           </div>
           <div className="user-answer">
-            答题者的回答：
-            <pre>
-              {@props.data.test_ware.user_answer}
-            </pre>
+            <a href={@props.data.test_ware.user_answer}>
+              下载答题者提交的文件
+            </a>
           </div>
           {
               if @props.data.test_ware_review.score == null || @props.data.test_ware_review.comment == null

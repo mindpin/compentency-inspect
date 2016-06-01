@@ -57,10 +57,17 @@ module TestPaperResultFormer
                   user_answer: user_answer,
                   is_correct: is_correct
                 })
-              when "essay", "file_upload"
+              when "essay"
                 hash.merge!({
                   max_score: section.score,
                   user_answer: instance.question_answer_status(question)[:answer]
+                })
+              when "file_upload"
+                id = instance.question_answer_status(question)[:answer]
+                fe = FilePartUpload::FileEntity.find id
+                hash.merge!({
+                  max_score: section.score,
+                  user_answer: fe.download_url
                 })
               end
 
