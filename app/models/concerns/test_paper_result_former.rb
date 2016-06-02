@@ -42,7 +42,7 @@ module TestPaperResultFormer
                 is_correct  = status[:is_correct]
                 user_answer = status[:answer]
                 hash.merge!({
-                  choices: question.answer["choices"],
+                  choices: question.sorted_choices(instance.user),
                   correct_answer: question.answer["correct"],
                   user_answer: user_answer,
                   is_correct: is_correct
@@ -52,7 +52,7 @@ module TestPaperResultFormer
                 is_correct  = status[:is_correct]
                 user_answer = status[:answer]
                 hash.merge!({
-                  choices: question.answer["choices"],
+                  choices: question.sorted_choices(instance.user),
                   correct_answer: question.answer["corrects"],
                   user_answer: user_answer,
                   is_correct: is_correct
