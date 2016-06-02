@@ -8,8 +8,14 @@ module QuestionFormer
       field :kind
       field :content
 
-      logic :choices, ->(instance) {
-        instance.answer["choices"]
+      logic :choices, ->(instance, user) {
+        user_ord = (user.created_at.to_i % 43) + 1 
+        # 43是随便取的一个素数，
+        # 可以随意换个大于选项个数的2~3位的数字代替, 
+        # +1为使之不为0
+        instance.answer["choices"].sort {|x, y| 
+          (x['id'].to_i(36) % user_ord) <=> (y['id'].to_i(36) % user_ord)
+        }
       }
 
       logic :answer, ->(instance, user) {
