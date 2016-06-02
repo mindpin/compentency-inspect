@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       post :complete, on: :collection
     end
     resources :users
+    resources :question_points
   end
 
   get  "/test_status",       to: "test_status#index"
