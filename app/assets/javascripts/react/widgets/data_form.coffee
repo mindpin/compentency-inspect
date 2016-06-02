@@ -8,7 +8,7 @@
       Form
     } = DataForm
 
-    <Form onSubmit={@on_submit} data={@props.data} errors={@state.errors} ref='form'>
+    <Form onSubmit={@on_submit} onCancel={@props.cancel} data={@props.data} errors={@state.errors} ref='form'>
     {@props.children}
     </Form>
 
@@ -24,6 +24,8 @@
     else if @props.put
       type = 'put'
       url = @props.put
+
+    return if not url?
 
     @refs.form.set_submiting?(true)
 
@@ -99,8 +101,10 @@
 
             React.cloneElement field, props
 
-          <div className='ui small form data-form'>
-          {fields}
+          <div className='data-form'>
+            <div className='ui small form'>
+            {fields}
+            </div>
           </div>
 
         on_change: (name)->
@@ -113,7 +117,7 @@
 
       Field: React.createClass
         render: ->
-          label_style =
+          label_style = 
             width: @props.label_width || '100px'
 
           wrapper_style =
@@ -156,15 +160,15 @@
         'loading': @state.is_submiting
         'disabled': not @is_valid()
 
-      on_click =
+      on_click = 
         if @is_valid() and not @state.is_submiting
-        then @props.form.submit
+        then @props.form.submit 
         else null
 
       on_cancel_click =
         @props.form.cancel
 
-      button =
+      button = 
         <a className={klass} href='javascript:;' onClick={on_click}>
           <i className='icon check' />
           {text}
@@ -191,7 +195,13 @@
   TextInputField: React.createClass
     render: ->
       <DataForm.Form.Field {...@props}>
-        <input type='text' value={@props._value} onChange={@props._change} />
+        <input type='text' value={@props._value || ''} onChange={@props._change} />
+      </DataForm.Form.Field>
+
+  PasswordField: React.createClass
+    render: ->
+      <DataForm.Form.Field {...@props}>
+        <input type='password' value={@props._value || ''} onChange={@props._change} />
       </DataForm.Form.Field>
 
   TextAreaField: React.createClass
@@ -199,7 +209,7 @@
       rows = @props.rows || 5
 
       <DataForm.Form.Field {...@props}>
-        <textarea rows={rows} value={@props._value} onChange={@props._change} placeholder={@props.placeholder} />
+        <textarea rows={rows} value={@props._value || ''} onChange={@props._change} placeholder={@props.placeholder} />
       </DataForm.Form.Field>
 
   SelectField: React.createClass
@@ -230,21 +240,15 @@
       </DataForm.Form.Field>
 
     componentDidMount: ->
-      $dom = jQuery React.findDOMNode @refs.select
+      $dom = jQuery ReactDOM.findDOMNode @refs.select
       $dom.dropdown()
       value = @props._value || []
       $dom.dropdown('set selected', value)
 
     change: ->
-      $dom = jQuery React.findDOMNode @refs.select
+      $dom = jQuery ReactDOM.findDOMNode @refs.select
       values = $dom.dropdown('get value')
       values = values[values.length - 1]
       @props._set_value(values || [])
-
-  HiddenField: React.createClass
-    render: ->
-      <DataForm.Form.Field {...@props}>
-        <input type='hidden' value={@props._value} onChange={@props._change} />
-      </DataForm.Form.Field>
 
   OneImageUploadField: null # 在 data_form/image_upload.coffee 中定义

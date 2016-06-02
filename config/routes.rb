@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :test_paper_result_reviews do
       post :complete, on: :collection
     end
+    resources :users
   end
 
   get  "/test_status",       to: "test_status#index"
