@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     end
     resources :users
     resources :question_points
+    resources :questions
   end
 
   get  "/test_status",       to: "test_status#index"

@@ -28,6 +28,13 @@ module QuestionFormer
         return qr.answer
       }
 
+      logic :admin_answer, ->(instance) {
+        instance.answer
+      }
+
+      url :admin_edit_url, ->(instance){
+        edit_admin_question_path(instance)
+      }
 
     end
 
