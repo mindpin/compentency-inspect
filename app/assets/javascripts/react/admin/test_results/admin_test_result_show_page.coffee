@@ -99,7 +99,10 @@
         @props.page.setState {}
 
       show_modal: ->
-        jQuery.open_modal_v2 <AdminTestResultShowPage.TotalReviewForm data={@props.data} target={@} />
+        @open_modal = jQuery.open_modal <AdminTestResultShowPage.TotalReviewForm data={@props.data} target={@} />
+
+      close_modal: ->
+        @open_modal.close()
 
     ReviewCompleteSubmit: React.createClass
       render: ->
@@ -294,7 +297,10 @@
         @props.page.setState {}
 
       show_modal: ->
-        jQuery.open_modal_v2 <AdminTestResultShowPage.ReviewForm data={@props.data} target={@} />
+        @open_modal = jQuery.open_modal <AdminTestResultShowPage.ReviewForm data={@props.data} target={@} />
+
+      close_modal: ->
+        @open_modal.close()
 
     FileUpload: React.createClass
       render: ->
@@ -343,7 +349,10 @@
         @props.page.setState {}
 
       show_modal: ->
-        jQuery.open_modal_v2 <AdminTestResultShowPage.ReviewForm data={@props.data} target={@} />
+        @open_modal = jQuery.open_modal <AdminTestResultShowPage.ReviewForm data={@props.data} target={@} />
+
+      close_modal: ->
+        @open_modal.close()
 
     ReviewForm: React.createClass
       render: ->
@@ -381,7 +390,7 @@
 
       done: (data)->
         @props.target.sync_score_and_comment(data.score, data.comment)
-        @state.close()
+        @props.target.close_modal()
 
     TotalReviewForm: React.createClass
       render: ->
@@ -414,4 +423,4 @@
 
       done: (data)->
         @props.target.sync_review_comment(data.comment)
-        @state.close()
+        @props.target.close_modal()
