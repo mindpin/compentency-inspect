@@ -8,8 +8,8 @@ module QuestionFormer
       field :kind
       field :content
 
-      logic :choices, ->(instance) {
-        instance.answer["choices"]
+      logic :choices, ->(instance, user) {
+        instance.sorted_choices(user)
       }
 
       logic :answer, ->(instance, user) {

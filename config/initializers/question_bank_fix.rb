@@ -87,3 +87,15 @@ QuestionBank::TestPaperResult.class_eval do
     review
   end
 end
+
+QuestionBank::Question.class_eval do
+  def sorted_choices(user)
+    user_ord = (user.created_at.to_i % 43) + 1
+    # 43是随便取的一个素数，
+    # 可以随意换个大于选项个数的2~3位的数字代替,
+    # +1为使之不为0
+    self.answer["choices"].sort {|x, y| 
+      (x['id'].to_i(36) % user_ord) <=> (y['id'].to_i(36) % user_ord)
+    }
+  end
+end
