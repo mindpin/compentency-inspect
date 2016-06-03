@@ -7,6 +7,7 @@ module QuestionFormer
       field :id, ->(instance) {instance.id.to_s}
       field :kind
       field :content
+      field :content_format
 
       logic :choices, ->(instance, user) {
         instance.sorted_choices(user)

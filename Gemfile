@@ -82,3 +82,4 @@ source 'https://rails-assets.org'
 gem 'rails-assets-semantic'
 #http://medialize.github.io/URI.js/
 gem 'rails-assets-URIjs'
+gem 'rails-assets-marked'
