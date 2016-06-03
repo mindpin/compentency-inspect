@@ -157,7 +157,7 @@
       render: ->
         <div className="bool">
           <div className="content">
-            {@props.data.test_ware.content}
+            <QuestionContent data={@props.data.test_ware} />
           </div>
           <div className="correct-answer">
           {
@@ -187,7 +187,7 @@
 
         <div className="single_choice">
           <div className="content">
-            {@props.data.test_ware.content}
+            <QuestionContent data={@props.data.test_ware} />
           </div>
           <div className="choices">
           {
@@ -224,7 +224,7 @@
 
         <div className="multi_choice">
           <div className="content">
-            {@props.data.test_ware.content}
+            <QuestionContent data={@props.data.test_ware} />
           </div>
           <div className="choices">
           {
@@ -253,7 +253,7 @@
       render: ->
         <div className="essay">
           <div className="content">
-            {@props.data.test_ware.content}
+            <QuestionContent data={@props.data.test_ware} />
           </div>
           <div className="user-answer">
             答题者的回答：
@@ -306,7 +306,7 @@
       render: ->
         <div className="file_upload">
           <div className="content">
-            {@props.data.test_ware.content}
+            <QuestionContent data={@props.data.test_ware} />
           </div>
           <div className="user-answer">
             <a href={@props.data.test_ware.user_answer}>

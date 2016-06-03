@@ -24,7 +24,8 @@ module TestPaperResultFormer
               hash = {
                 id:   question.id.to_s,
                 kind: question.kind,
-                content: question.content
+                content: question.content,
+                content_format: question.content_format
               }
 
               case question.kind
