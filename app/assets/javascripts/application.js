@@ -2,6 +2,9 @@
 //= require jquery_ujs
 //= require turbolinks
 
+//= require ./highlight.min
+//= require marked
+
 //= require react
 //= require react_ujs
 
