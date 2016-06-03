@@ -10,7 +10,7 @@
 
     <div className='single-choice ui form' ref='form'>
       <div className='grouped fields'>
-        <label className='content'>{@props.data.content}</label>
+        <QuestionContent data={@props.data} />
         {
           @props.data.choices.map (arr, index)=>
             <div className='field' key={index}>

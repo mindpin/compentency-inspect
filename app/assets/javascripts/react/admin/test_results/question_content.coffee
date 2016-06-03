@@ -4,13 +4,17 @@ marked.setOptions {
 }
 
 @QuestionContent = React.createClass
-  componentDidMount: ->
-    $that = jQuery(ReactDOM.findDOMNode(@))
-    mark = marked($that.find(".content").text())
-    $that.find(".content").html(mark)
+  # propTypes:
+  #   content_format: React.PropTypes.string.isRequired
+  #   content:        React.PropTypes.string.isRequired
 
   render: ->
-    <div className='ui segment'>
-      <div>{@props.data.content_format}</div>
-      <div className="content">{@props.data.content}</div>
-    </div>
+    switch @props.data.content_format
+      when 'text'
+        content = @props.data.content
+        <div className="content text">{content}</div>
+      when 'md'
+        content = 
+          __html: marked(@props.data.content)
+        <div className="content markdown" dangerouslySetInnerHTML={content} />
+    
