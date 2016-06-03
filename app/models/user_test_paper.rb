@@ -57,11 +57,11 @@ class UserTestPaper
 
     def _build_test_paper
       sections = [
-        ["single_choice", 19, 1],
-        ["multi_choice", 19, 2],
-        ["bool", 19, 1],
-        ["essay", 1, 12],
-        ["file_upload", 1, 12],
+        ["single_choice", 40, 1],
+        ["multi_choice", 20, 1],
+        ["bool", 5, 1],
+        ["essay", 3, 5],
+        ["file_upload", 4, 5],
       ].map do |item|
         kind  = item[0]
         count = item[1]
