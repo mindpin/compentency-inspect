@@ -54,10 +54,16 @@
               content: x.content
               answer:
                 switch x.kind
-                  when "single_choice", "multi_choice"
+                  when "single_choice"
                     for choice, i in x.admin_answer["choices"]
                       <div>
                         <i className="icon #{if choice['id'] == x.admin_answer['correct'] then 'checkmark green' else 'remove red'}"></i>
+                        {choice["text"]}
+                      </div>
+                  when "multi_choice"
+                    for choice, i in x.admin_answer["choices"]
+                      <div>
+                        <i className="icon #{if choice['id'] in x.admin_answer['corrects'] then 'checkmark green' else 'remove red'}"></i>
                         {choice["text"]}
                       </div>
                   when "bool"
