@@ -2,12 +2,43 @@
   render: ->
     <div className='admin-questions-page'>
       <div>
-        <a className='ui button green' href={@props.data.new_question_url}>新增题目</a>
+        <AdminQuestionsPage.CreateBtn data={@props.data} />
       </div>
       <AdminQuestionsPage.Table data={@props.data} />
     </div>
 
   statics:
+    CreateBtn: React.createClass
+      render: ->
+        <div className="ui green floating dropdown button" ref="dropdown">
+          <div className="text">
+            新增题目
+          </div>
+          <i className="icon dropdown"></i>
+          <div className="menu">
+            <a className="item" href="#{@props.data.new_question_url}?kind=single_choice">
+              单选题
+            </a>
+            <a className="item" href="#{@props.data.new_question_url}?kind=multi_choice">
+              多选题
+            </a>
+            <a className="item" href="#{@props.data.new_question_url}?kind=bool">
+              判断题
+            </a>
+            <a className="item" href="#{@props.data.new_question_url}?kind=essay">
+              论述题
+            </a>
+            <a className="item" href="#{@props.data.new_question_url}?kind=file_upload">
+              编程题
+            </a>
+          </div>
+        </div>
+
+      componentDidMount: ->
+        jQuery(@refs.dropdown)
+          .dropdown
+            transition: 'drop'
+
     Table: React.createClass
       render: ->
         table_data = {

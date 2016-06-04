@@ -4,7 +4,7 @@ class Admin::QuestionsController < Admin::ApplicationController
   def index
     @component_name = "admin_questions_page"
 
-    questions = QuestionBank::Question.all.page(params[:page])
+    questions = QuestionBank::Question.all.desc(:id).page(params[:page])
     data = questions.map do |tr|
       DataFormer.new(tr)
         .logic(:admin_answer)
@@ -24,7 +24,12 @@ class Admin::QuestionsController < Admin::ApplicationController
   end
 
   def new
-    @component_name = 'admin_questions_new_page'
+    if %w[single_choice multi_choice bool essay file_upload].include? params[:kind]
+      @component_name = "admin_questions_new_#{params[:kind]}_page"
+    else
+      return redirect_to admin_questions_path
+    end
+
     @component_data = {
       submit_url: admin_questions_path,
       cancel_url: admin_questions_path,
@@ -33,6 +38,10 @@ class Admin::QuestionsController < Admin::ApplicationController
 
   def create
     question = QuestionBank::Question.new question_params
+    case question.kind.to_sym
+    when :single_choice, :multi_choice
+      question.answer["choices"] = question.answer["choices"].values
+    end
     save_model(question) do |_question|
       DataFormer.new(_question)
         .data
@@ -61,8 +70,6 @@ class Admin::QuestionsController < Admin::ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:name)
+    params.require(:question).permit(:content, :answer, :kind, :level, :answer => [:correct, :choices => [:id, :text], :corrects => []])
   end
 end
-
-
