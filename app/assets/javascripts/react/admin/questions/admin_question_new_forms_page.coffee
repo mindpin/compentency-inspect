@@ -1,6 +1,5 @@
 @AdminQuestionsNewMultiChoicePage = React.createClass
   submit: (evt)->
-    choices = ({"id": val, "text": text} for val, text of @state.choices)
     jQuery.ajax
       type: 'POST'
       url: @props.data.submit_url
@@ -10,7 +9,7 @@
           level: 1
           content: @state.content
           answer:
-            choices: choices
+            choices: @state.choices
             corrects: @state.corrects
     .done (res)=>
       @done res
@@ -20,7 +19,9 @@
   handleChoiceBlur: (val)->
     (evt)=>
       choices = @state.choices
-      choices[val] = evt.target.value
+      choices = for choice in choices
+        choice["text"] = evt.target.value if choice["id"] == val
+        choice
       @setState
         choices: choices
 
@@ -35,22 +36,40 @@
       if evt.target.checked
         corrects.push(val) if i < 0
       else
-        corrects.splice(i, 0) if i >= 0
+        corrects.splice(i, 1) if i >= 0
       @setState
         corrects: corrects
 
   addChoice: ->
     choices = @state.choices
-    choices[jQuery.randstr(8)] = ""
+    choices.push
+      id: jQuery.randstr(8)
+      text: ""
     @setState
       choices: choices
 
+  remove: (val)->
+    =>
+      choices = @state.choices
+      i = -1
+      for choice, index in choices
+        i = index if choice["id"] == val
+
+      if i >= 0
+        corrects = @state.corrects
+        corrects.splice(corrects.indexOf(val), 1) if corrects.indexOf(val) >= 0
+        choices.splice(i, 1)
+        @setState
+          choices: choices
+          corrects: corrects
+
+  componentDidMount: ->
+    @addChoice()
+    @addChoice()
+
   getInitialState: ->
-    choices = {}
-    choices[jQuery.randstr(8)] = ""
-    choices[jQuery.randstr(8)] = ""
     content: ""
-    choices: choices
+    choices: []
     corrects: []
 
   render: ->
@@ -74,10 +93,21 @@
             </label>
             <div className="wrapper" style={{flex: "1 1 0%"}}>
               {
-                for value, text of @state.choices
+                for choice, i in @state.choices
+                  value = choice["id"]
+                  text = choice["text"]
+                  checked = false
+                  for correct in @state.corrects
+                    checked = true if correct == value
                   <div key={value}>
-                    <input type="checkbox" name="corrects" checked={@state.corrects[value]} value={value} onChange={@handleCorrectsChange(value)} />
+                    <input type="checkbox" name="corrects" checked={checked} value={value} onChange={@handleCorrectsChange(value)} />
                     <input type="text" defaultValue={text} onBlur={@handleChoiceBlur(value)} />
+                    {
+                      if i + 1 > 2
+                        <a href="javascript:;" onClick={@remove(value)}>
+                          <i className="icon remove"></i>
+                        </a>
+                    }
                   </div>
               }
             </div>
@@ -115,7 +145,6 @@
 
 @AdminQuestionsNewSingleChoicePage = React.createClass
   submit: (evt)->
-    choices = ({"id": val, "text": text} for val, text of @state.choices)
     jQuery.ajax
       type: 'POST'
       url: @props.data.submit_url
@@ -125,7 +154,7 @@
           level: 1
           content: @state.content
           answer:
-            choices: choices
+            choices: @state.choices
             correct: @state.correct
     .done (res)=>
       @done res
@@ -135,7 +164,9 @@
   handleChoiceBlur: (val)->
     (evt)=>
       choices = @state.choices
-      choices[val] = evt.target.value
+      choices = for choice in choices
+        choice["text"] = evt.target.value if choice["id"] == val
+        choice
       @setState
         choices: choices
 
@@ -149,16 +180,35 @@
 
   addChoice: ->
     choices = @state.choices
-    choices[jQuery.randstr(8)] = ""
+    choices.push
+      id: jQuery.randstr(8)
+      text: ""
     @setState
       choices: choices
 
+  remove: (val)->
+    =>
+      choices = @state.choices
+      i = -1
+      for choice, index in choices
+        i = index if choice["id"] == val
+
+      if i >= 0
+        correct = @state.correct
+        correct = null if correct == val
+
+        choices.splice(i, 1)
+        @setState
+          choices: choices
+          correct: correct
+
+  componentDidMount: ->
+    @addChoice()
+    @addChoice()
+
   getInitialState: ->
-    choices = {}
-    choices[jQuery.randstr(8)] = ""
-    choices[jQuery.randstr(8)] = ""
     content: ""
-    choices: choices
+    choices: []
     correct: null
 
   render: ->
@@ -182,10 +232,19 @@
             </label>
             <div className="wrapper" style={{flex: "1 1 0%"}}>
               {
-                for value, text of @state.choices
+                for choice, i in @state.choices
+                  value = choice["id"]
+                  text = choice["text"]
+                  checked = @state.correct == value
                   <div key={value}>
-                    <input type="radio" name="correct" checked={@state.correct == value} value={value} onClick={@handleCorrectClick} />
+                    <input type="radio" name="correct" checked={checked} value={value} onClick={@handleCorrectClick} />
                     <input type="text" defaultValue={text} onBlur={@handleChoiceBlur(value)} />
+                    {
+                      if i + 1 > 2
+                        <a href="javascript:;" onClick={@remove(value)}>
+                          <i className="icon remove"></i>
+                        </a>
+                    }
                   </div>
               }
             </div>
@@ -219,7 +278,6 @@
 
   cancel: ->
     Turbolinks.visit @props.data.cancel_url
-
 
 @AdminQuestionsNewBoolPage = React.createClass
   render: ->
