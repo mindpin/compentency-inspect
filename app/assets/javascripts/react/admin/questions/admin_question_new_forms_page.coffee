@@ -284,6 +284,7 @@
     {
       TextAreaField
       SelectField
+      MultipleSelectField
       Submit
     } = DataForm
 
@@ -309,6 +310,7 @@
       >
         <TextAreaField {...layout} label='题目内容：' name='content' required />
         <SelectField {...layout} label='答案：' name='answer' required values={selects} />
+        <MultipleSelectField {...layout} label='知识点：' name='point_ids' values={@props.data.points} />
         <Submit {...layout} text='确定保存' with_cancel='取消' />
       </SimpleDataForm>
     </div>
@@ -323,6 +325,7 @@
   render: ->
     {
       TextAreaField
+      MultipleSelectField
       Submit
     } = DataForm
 
@@ -344,6 +347,7 @@
       >
         <TextAreaField {...layout} label='题目内容：' name='content' required />
         <TextAreaField {...layout} label='参考答案：' name='answer' required />
+        <MultipleSelectField {...layout} label='知识点：' name='point_ids' values={@props.data.points} />
         <Submit {...layout} text='确定保存' with_cancel='取消' />
       </SimpleDataForm>
     </div>
@@ -358,6 +362,7 @@
   render: ->
     {
       TextAreaField
+      MultipleSelectField
       Submit
     } = DataForm
 
@@ -379,6 +384,7 @@
       >
         <TextAreaField {...layout} label='题目内容：' name='content' required />
         <TextAreaField {...layout} label='参考答案：' name='answer' required />
+        <MultipleSelectField {...layout} label='知识点：' name='point_ids' values={@props.data.points} />
         <Submit {...layout} text='确定保存' with_cancel='取消' />
       </SimpleDataForm>
     </div>

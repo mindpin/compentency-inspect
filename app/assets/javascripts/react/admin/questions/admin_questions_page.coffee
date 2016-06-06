@@ -46,6 +46,7 @@
             kind: "题目类型"
             content: "题目内容"
             answer: "参考答案"
+            point_names: "知识点"
             actions: '操作'
           data_set: @props.data.questions.map (x)->
             {
@@ -74,6 +75,11 @@
                   else
                     x.admin_answer
 
+              point_names:
+                for name, i in x.point_names
+                  <div key={i}>
+                    {name}
+                  </div>
               actions:
                 <a className='ui button mini green' href={x.admin_edit_url}>
                   <i className='ui edit' /> 修改

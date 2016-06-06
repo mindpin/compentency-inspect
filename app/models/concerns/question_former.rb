@@ -7,6 +7,9 @@ module QuestionFormer
       field :id, ->(instance) {instance.id.to_s}
       field :kind
       field :content
+      field :point_ids, ->(instance){
+        instance.point_ids.map(&:to_s)
+      }
 
       logic :choices, ->(instance, user) {
         instance.sorted_choices(user)
@@ -31,6 +34,11 @@ module QuestionFormer
       logic :admin_answer, ->(instance) {
         instance.answer
       }
+
+      logic :point_names, ->(instance){
+        instance.points.map(&:name)
+      }
+
 
       url :admin_edit_url, ->(instance){
         edit_admin_question_path(instance)

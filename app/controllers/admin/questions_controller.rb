@@ -8,6 +8,7 @@ class Admin::QuestionsController < Admin::ApplicationController
     data = questions.map do |tr|
       DataFormer.new(tr)
         .logic(:admin_answer)
+        .logic(:point_names)
         .url(:admin_edit_url)
         .data
     end
@@ -33,6 +34,7 @@ class Admin::QuestionsController < Admin::ApplicationController
     @component_data = {
       submit_url: admin_questions_path,
       cancel_url: admin_questions_path,
+      points: Hash[QuestionBank::Point.all.map{|h| [h.id.to_s, h.name]}.flatten.each_slice(2).to_a]
     }
   end
 
@@ -67,6 +69,7 @@ class Admin::QuestionsController < Admin::ApplicationController
         .data,
       submit_url: admin_question_path(question),
       cancel_url: admin_questions_path,
+      points: Hash[QuestionBank::Point.all.map{|h| [h.id.to_s, h.name]}.flatten.each_slice(2).to_a]
     }
   end
 
@@ -89,10 +92,10 @@ class Admin::QuestionsController < Admin::ApplicationController
   private
 
   def choice_question_params
-    params.require(:question).permit(:content, :answer, :kind, :level, :answer => [:correct, :choices => [:id, :text], :corrects => []])
+    params.require(:question).permit(:content, :answer, :kind, :level, :answer => [:correct, :choices => [:id, :text], :corrects => []], :point_ids => [])
   end
 
   def other_question_params
-    params.require(:question).permit(:content, :answer, :kind, :level)
+    params.require(:question).permit(:content, :answer, :kind, :level, :point_ids => [])
   end
 end
