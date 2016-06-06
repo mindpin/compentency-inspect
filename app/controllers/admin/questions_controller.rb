@@ -37,11 +37,15 @@ class Admin::QuestionsController < Admin::ApplicationController
   end
 
   def create
-    question = QuestionBank::Question.new question_params
-    case question.kind.to_sym
+    case params[:question][:kind].to_sym
     when :single_choice, :multi_choice
-      question.answer["choices"] = question.answer["choices"].values
+      question_params = choice_question_params
+      choices = question_params["answer"]['choices'].values
+      question_params["answer"]['choices'] = choices
+    else
+      question_params = other_question_params
     end
+    question = QuestionBank::Question.new question_params
     save_model(question) do |_question|
       DataFormer.new(_question)
         .data
@@ -50,9 +54,16 @@ class Admin::QuestionsController < Admin::ApplicationController
 
   def edit
     question = QuestionBank::Question.find params[:id]
-    @component_name = 'admin_questions_edit_page'
+
+    if %w[single_choice multi_choice bool essay file_upload].include? question.kind
+      @component_name = "admin_questions_edit_#{question.kind}_page"
+    else
+      return redirect_to admin_questions_path
+    end
+
     @component_data = {
       question: DataFormer.new(question)
+        .logic(:admin_answer)
         .data,
       submit_url: admin_question_path(question),
       cancel_url: admin_questions_path,
@@ -61,6 +72,14 @@ class Admin::QuestionsController < Admin::ApplicationController
 
   def update
     question = QuestionBank::Question.find params[:id]
+    case question.kind.to_sym
+    when :single_choice, :multi_choice
+      question_params = choice_question_params
+      choices = question_params["answer"]['choices'].values
+      question_params["answer"]['choices'] = choices
+    else
+      question_params = other_question_params
+    end
     update_model(question, question_params) do |_question|
       DataFormer.new(_question)
         .data
@@ -69,7 +88,11 @@ class Admin::QuestionsController < Admin::ApplicationController
 
   private
 
-  def question_params
+  def choice_question_params
     params.require(:question).permit(:content, :answer, :kind, :level, :answer => [:correct, :choices => [:id, :text], :corrects => []])
+  end
+
+  def other_question_params
+    params.require(:question).permit(:content, :answer, :kind, :level)
   end
 end
