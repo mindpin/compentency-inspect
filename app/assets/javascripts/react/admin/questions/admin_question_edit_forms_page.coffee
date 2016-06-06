@@ -32,14 +32,11 @@
   handleCorrectsChange: (val)->
     (evt)=>
       corrects = @state.corrects
-      console.log corrects
       i = corrects.indexOf(val)
-      console.log i
       if evt.target.checked
         corrects.push(val) if i < 0
       else
         corrects.splice(i, 1) if i >= 0
-      console.log corrects
       @setState
         corrects: corrects
 
@@ -50,6 +47,21 @@
       text: ""
     @setState
       choices: choices
+
+  remove: (val)->
+    =>
+      choices = @state.choices
+      i = -1
+      for choice, index in choices
+        i = index if choice["id"] == val
+
+      if i >= 0
+        corrects = @state.corrects
+        corrects.splice(corrects.indexOf(val), 1) if corrects.indexOf(val) >= 0
+        choices.splice(i, 1)
+        @setState
+          choices: choices
+          corrects: corrects
 
   getInitialState: ->
     content: @props.data.question.content
@@ -77,7 +89,7 @@
             </label>
             <div className="wrapper" style={{flex: "1 1 0%"}}>
               {
-                for choice in @state.choices
+                for choice, i in @state.choices
                   value = choice["id"]
                   text = choice["text"]
                   checked = false
@@ -86,6 +98,12 @@
                   <div key={value}>
                     <input type="checkbox" name="corrects" checked={checked} value={value} onChange={@handleCorrectsChange(value)} />
                     <input type="text" defaultValue={text} onBlur={@handleChoiceBlur(value)} />
+                    {
+                      if i + 1 > 2
+                        <a href="javascript:;" onClick={@remove(value)}>
+                          <i className="icon remove"></i>
+                        </a>
+                    }
                   </div>
               }
             </div>
@@ -145,7 +163,6 @@
       choices = for choice in choices
         choice["text"] = evt.target.value if choice["id"] == val
         choice
-      console.log choices
       @setState
         choices: choices
 
@@ -164,6 +181,22 @@
       text: ""
     @setState
       choices: choices
+
+  remove: (val)->
+    =>
+      choices = @state.choices
+      i = -1
+      for choice, index in choices
+        i = index if choice["id"] == val
+
+      if i >= 0
+        correct = @state.correct
+        correct = null if correct == val
+
+        choices.splice(i, 1)
+        @setState
+          choices: choices
+          correct: correct
 
   getInitialState: ->
     content: @props.data.question.content
@@ -191,13 +224,19 @@
             </label>
             <div className="wrapper" style={{flex: "1 1 0%"}}>
               {
-                for choice in @state.choices
+                for choice, i in @state.choices
                   value = choice["id"]
                   text = choice["text"]
                   checked = @state.correct == value
                   <div key={value}>
                     <input type="radio" name="correct" checked={checked} value={value} onClick={@handleCorrectClick} />
                     <input type="text" defaultValue={text} onBlur={@handleChoiceBlur(value)} />
+                    {
+                      if i + 1 > 2
+                        <a href="javascript:;" onClick={@remove(value)}>
+                          <i className="icon remove"></i>
+                        </a>
+                    }
                   </div>
               }
             </div>
