@@ -6,3 +6,4 @@ development:
   qiniu_app_access_key: xxx
   qiniu_app_secret_key: xxx
   qiniu_callback_host:  http://xxx.xxx.xxx
+  build_all_questions: true
