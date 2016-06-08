@@ -57,11 +57,10 @@ class UserTestPaper
 
     def _build_test_paper
       sections = [
-        ["single_choice", 40, 1],
-        ["multi_choice", 20, 1],
-        ["bool", 5, 1],
-        ["essay", 3, 5],
-        ["file_upload", 4, 5],
+        ["single_choice", -1, 2],
+        ["multi_choice", -1, 2],
+        ["essay", -1, 5],
+        ["file_upload", -1, 5],
       ].map do |item|
         kind  = item[0]
         count = item[1]
@@ -72,14 +71,14 @@ class UserTestPaper
           min_level: 1,
           max_level: 2,
           score: score,
-          question_ids: _random(criteria, count)
+          question_ids: criteria.to_a.map{|q|q.id}
         }
       end
 
       test_paper = QuestionBank::TestPaper.create(
         title: self.login,
         score: 100,
-        minutes: 180,
+        minutes: 120,
         sections_attributes: sections
       )
 
@@ -89,6 +88,42 @@ class UserTestPaper
         )
       end
     end
+
+
+    # def _build_test_paper
+    #   sections = [
+    #     ["single_choice", 40, 1],
+    #     ["multi_choice", 20, 1],
+    #     ["bool", 5, 1],
+    #     ["essay", 3, 5],
+    #     ["file_upload", 4, 5],
+    #   ].map do |item|
+    #     kind  = item[0]
+    #     count = item[1]
+    #     score = item[2]
+    #     criteria = QuestionBank::Question.with_kind(kind)
+    #     {
+    #       kind: kind,
+    #       min_level: 1,
+    #       max_level: 2,
+    #       score: score,
+    #       question_ids: _random(criteria, count)
+    #     }
+    #   end
+    #
+    #   test_paper = QuestionBank::TestPaper.create(
+    #     title: self.login,
+    #     score: 100,
+    #     minutes: 180,
+    #     sections_attributes: sections
+    #   )
+    #
+    #   if self.role.normal?
+    #     self.create_user_test_paper(
+    #       test_paper: test_paper
+    #     )
+    #   end
+    # end
 
     def _random(criteria, n)
       indexes = (0..criteria.count - 1).to_a.sample(n)
