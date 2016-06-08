@@ -64,7 +64,7 @@ gem "mina", "0.3.7"
 gem "unicorn"
 
 gem 'question_bank',   github: 'mindpin/question_bank',
-                       ref: 'b108637'
+                       ref: '4ab0779'
 
 gem 'lily-components', github: 'kc-train/lily-components',
                        ref: '407d27d'

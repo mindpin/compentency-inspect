@@ -17,8 +17,8 @@ GIT
 
 GIT
   remote: git://github.com/mindpin/question_bank.git
-  revision: b108637bd6b8ea3f9646c7d71e6042cc51ff579e
-  ref: b108637
+  revision: 4ab077906245bbf6235b95029a07da2714a7f2e5
+  ref: 4ab0779
   specs:
     question_bank (0.0.1)
       enumerize
@@ -331,3 +331,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.3.0)
+
+BUNDLED WITH
+   1.11.2
