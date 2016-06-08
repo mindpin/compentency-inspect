@@ -78,7 +78,7 @@ class UserTestPaper
       test_paper = QuestionBank::TestPaper.create(
         title: self.login,
         score: 100,
-        minutes: 120
+        minutes: 120,
         sections_attributes: sections
       )
 
