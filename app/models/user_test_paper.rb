@@ -10,7 +10,7 @@ class UserTestPaper
 
     included do
       has_one :user_test_paper
-      after_create :_build_test_paper
+      after_create :_build_test_paper_for_role_normal_user
     end
 
     def inspect_test_paper_result
@@ -53,6 +53,11 @@ class UserTestPaper
       end
 
       qr.save
+    end
+
+    def _build_test_paper_for_role_normal_user
+      return true if !self.role.normal?
+      _build_test_paper
     end
 
     def _build_test_paper
