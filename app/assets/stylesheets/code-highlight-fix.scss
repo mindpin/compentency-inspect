@@ -1,0 +1,57 @@
+.test-dispatcher-select-wares-modal .section .ware {
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.test-ware {
+  .number {
+    font-family: "Menlo", "Monaco", "Consolas", "Courier New", "monospace", "微软雅黑";
+  }
+
+  .ware-component {
+    font-family: "Menlo", "Monaco", "Consolas", "Courier New", "monospace", "微软雅黑";
+
+    .content.text {
+      font-weight: bold;
+    }
+
+    .content.markdown {
+      font-weight: bold;
+
+      pre {
+        font-weight: normal;
+        background-color: #111;
+        color: whitesmoke;
+        word-break: break-all;
+        word-wrap: break-word;
+        padding: 1rem;
+        font-size: 16px;
+        code {
+          font-family: "Menlo", "Monaco", "Consolas", "Courier New", "monospace", "微软雅黑" !important;
+        }
+      }
+
+      p > code {
+        // background-color: #f2f7f9;
+        // color: darken(#3f7faf, 20%);
+        background-color: #111111;
+        color: whitesmoke;
+        padding: 0 0.5rem;
+        border-radius: 2px;
+        font-family: "Menlo", "Monaco", "Consolas", "Courier New", "monospace", "微软雅黑" !important;
+        margin: 0 0.5rem;
+      }
+    }
+  }
+}
+
+.ware-component {
+  .ui.form.essay {
+    .field {
+      margin-top: 1rem;
+      textarea {
+        background-color: #fffff6;
+      }
+    }
+  }
+}

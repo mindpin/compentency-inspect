@@ -1,9 +1,7 @@
 @FileUploadTestWare = React.createClass
   render: ->
     <div className='file-upload-ware'>
-      <div>
-        <strong>{@props.data.content}</strong>
-      </div>
+      <QuestionContent data={@props.data} />
       <div className="ui segment">
         <FileUploadTestWare.Upload 
           question_id={@props.data.id} 
@@ -26,10 +24,10 @@
         <div className='one-upload'>
           <div className='browse'>
             {
-              title = @props.title || '把编写好的代码文件打包成压缩包上传'
+              title = @props.title || '请使用 visio 或其他画图工具进行作图'
               desc = @props.desc ||
                 <div>
-                  支持 ZIP / RAR / TAR / GZ / BZ2 / 7Z / XZ 压缩格式，最大 3MB
+                  并将文件导出成图片格式（JPG/PNG）再进行上传
                 </div>
               <div className='desc ui message warning'>
                 {title}<br/>
@@ -56,8 +54,8 @@
           browse_button:        $browse_button
           dragdrop_area:        null
           file_progress_class:  UploadUtils.GenerateOneFileUploadProgress(@)
-          max_file_size:        '3MB'
-          mime_types :          [{ title: 'Archive files', extensions: 'zip,rar,tar,gz,bz2,7z,xz' }]
+          max_file_size:        '5MB'
+          mime_types :          [{ title: 'Archive files', extensions: '*' }]
 
       on_upload_event: (evt, params...)->
         switch evt
@@ -115,11 +113,11 @@
 
     DownloadBar: React.createClass
       render: ->
-        <div className='download' style={marginTop: '1rem'}>
-        {
-          if @props.download_url
+        if @props.download_url
+          <div className='download' style={marginTop: '1rem'}>
             <a className='download' href={@props.download_url}>
               <i className='icon attach' /> 下载已经上传的压缩包
             </a>
-        }
-        </div>
+          </div>
+        else
+          <div />
