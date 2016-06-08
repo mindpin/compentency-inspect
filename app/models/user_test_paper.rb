@@ -10,7 +10,6 @@ class UserTestPaper
 
     included do
       has_one :user_test_paper
-      after_create :_build_test_paper_for_role_normal_user
     end
 
     def inspect_test_paper_result
@@ -18,6 +17,10 @@ class UserTestPaper
     end
 
     def start_test!
+      if self.user_test_paper.blank?
+        self._build_test_paper_for_role_normal_user
+      end
+
       return if !self.inspect_test_paper_result.blank?
 
       QuestionBank::TestPaperResult.create(
