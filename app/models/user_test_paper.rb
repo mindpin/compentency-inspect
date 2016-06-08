@@ -57,10 +57,10 @@ class UserTestPaper
 
     def _build_test_paper_for_role_normal_user
       return true if !self.role.normal?
-      _build_test_paper
+      _build_test_paper_all_question
     end
 
-    def _build_test_paper
+    def _build_test_paper_all_question
       sections = [
         ["single_choice", -1, 2],
         ["multi_choice", -1, 2],
@@ -95,40 +95,85 @@ class UserTestPaper
     end
 
 
-    # def _build_test_paper
-    #   sections = [
-    #     ["single_choice", 40, 1],
-    #     ["multi_choice", 20, 1],
-    #     ["bool", 5, 1],
-    #     ["essay", 3, 5],
-    #     ["file_upload", 4, 5],
-    #   ].map do |item|
-    #     kind  = item[0]
-    #     count = item[1]
-    #     score = item[2]
-    #     criteria = QuestionBank::Question.with_kind(kind)
-    #     {
-    #       kind: kind,
-    #       min_level: 1,
-    #       max_level: 2,
-    #       score: score,
-    #       question_ids: _random(criteria, count)
-    #     }
-    #   end
-    #
-    #   test_paper = QuestionBank::TestPaper.create(
-    #     title: self.login,
-    #     score: 100,
-    #     minutes: 180,
-    #     sections_attributes: sections
-    #   )
-    #
-    #   if self.role.normal?
-    #     self.create_user_test_paper(
-    #       test_paper: test_paper
-    #     )
-    #   end
-    # end
+    def _build_test_paper
+      choice_point_params = {
+        "single_choice" => [
+          ["语法基础",          3],
+          ["常见数据类型",      3],
+          ["常用基础类库",      3],
+          ["抽象类，接口，继承", 5],
+          ["linux命令",        2],
+          ["shell脚本",        1],
+          ["IP，端口，网络环境基础概念", 1],
+          ["spring",       4],
+          ["hibernate",    3],
+          ["servlet, jsp", 1],
+          ["jQuery",       4],
+        ],
+        "multi_choice" => [
+          ["语法基础", 4],
+          ["常见数据类型", 1],
+          ["常用基础类库", 1],
+          ["抽象类，接口，继承", 2],
+          ["hibernate", 1],
+          ["spring", 1],
+        ]
+      }
+
+      choice_score_params = {
+        "single_choice" => 2,
+        "multi_choice"  => 2
+      }
+
+      sections_attributes = []
+
+      ["single_choice", "multi_choice"].each do |kind|
+        question_ids = []
+        choice_point_params[kind].each do |point_params|
+          point_name = point_params[0]
+          count      = point_params[1]
+          criteria   = QuestionBank::Question.with_kind(kind).with_point(point_name)
+          question_ids += _random(criteria, count)
+        end
+        question_ids = question_ids.sort_by{rand(0)}
+
+        sections_attributes.push({
+          kind: kind,
+          min_level: 1,
+          max_level: 2,
+          score: choice_score_params[kind],
+          question_ids: question_ids
+        })
+      end
+
+      # essay
+      sections_attributes.push({
+        kind: "essay",
+        min_level: 1,
+        max_level: 2,
+        score: 5,
+        question_ids: _random(QuestionBank::Question.with_kind("essay"), 2)
+      })
+
+      sections_attributes.push({
+        kind: "file_upload",
+        min_level: 1,
+        max_level: 2,
+        score: 5,
+        question_ids: _random(QuestionBank::Question.with_kind("file_upload"), 2)
+      })
+
+      test_paper = QuestionBank::TestPaper.create(
+        title: self.login,
+        score: 100,
+        minutes: 120,
+        sections_attributes: sections_attributes
+      )
+
+      self.create_user_test_paper(
+        test_paper: test_paper
+      )
+    end
 
     def _random(criteria, n)
       indexes = (0..criteria.count - 1).to_a.sample(n)
