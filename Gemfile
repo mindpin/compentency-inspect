@@ -67,7 +67,7 @@ gem 'question_bank',   github: 'mindpin/question_bank',
                        ref: 'b108637'
 
 gem 'lily-components', github: 'kc-train/lily-components',
-                       ref: '407d27d'
+                       ref: '7d4780d'
 
 # gem 'lily-components', path: '/web/ben7th/lily-components'
 

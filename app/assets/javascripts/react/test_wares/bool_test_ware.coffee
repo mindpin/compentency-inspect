@@ -13,7 +13,7 @@
 
     <div className='bool ui form' ref='form'>
       <div className='grouped fields'>
-        <label className='content'>{@props.data.content}</label>
+        <QuestionContent data={@props.data} />
 
         <div className="field">
           <div className="ui radio checkbox">

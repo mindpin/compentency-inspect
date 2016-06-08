@@ -1,5 +1,7 @@
 .ui.middle.aligned.center.aligned.grid{style: "height:100%;"}
   .column{style: "max-width:450px;"}
+    %h2.ui.header{style: 'margin-bottom: 2rem;'} JAVA 能力测验
+
     = form_for(resource, as: resource_name, url: sign_in_path, html: {class: "ui large form"}) do |f|
       .field
         = f.text_field :login, required: false, autofocus: true, placeholder: "账号"

@@ -4,9 +4,14 @@
 
   render: ->
     <div className="ui form essay">
-      <label className='content'>{@props.data.content}</label>
+      <QuestionContent data={@props.data} />
       <div className="field">
-        <textarea rows=10 onBlur={@handleAnswer} defaultValue={@state.answer}></textarea>
+        <textarea 
+          rows=10 
+          onBlur={@handleAnswer} 
+          defaultValue={@state.answer}
+          placeholder='在这里填写论述内容'
+        />
       </div>
     </div>
 
