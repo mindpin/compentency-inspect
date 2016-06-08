@@ -57,10 +57,15 @@ class UserTestPaper
 
     def _build_test_paper_for_role_normal_user
       return true if !self.role.normal?
-      _build_test_paper_all_question
+
+      if ENV["build_all_questions"] == "true"
+        _build_test_paper_all_questions
+      else
+        _build_test_paper
+      end
     end
 
-    def _build_test_paper_all_question
+    def _build_test_paper_all_questions
       sections = [
         ["single_choice", -1, 2],
         ["multi_choice", -1, 2],
