@@ -11,10 +11,17 @@
           answer:
             choices: @state.choices
             corrects: @state.corrects
+          point_ids: @point_ids
     .done (res)=>
       @done res
     .fail (res)=>
       alert res
+
+  change: ->
+    $dom = jQuery ReactDOM.findDOMNode @refs.select
+    values = $dom.dropdown('get value')
+    values = values[values.length - 1]
+    @point_ids = values || []
 
   handleChoiceBlur: (val)->
     (evt)=>
@@ -63,7 +70,14 @@
           choices: choices
           corrects: corrects
 
+  componentDidMount: ->
+    $dom = jQuery ReactDOM.findDOMNode @refs.select
+    $dom.dropdown()
+    value = @props.data?.question?.point_ids || []
+    $dom.dropdown('set selected', value)
+
   getInitialState: ->
+    @point_ids = []
     content: @props.data.question.content
     choices: @props.data.question.admin_answer["choices"]
     corrects: @props.data.question.admin_answer["corrects"]
@@ -114,6 +128,21 @@
               添加一个选项
             </div>
           </div>
+
+          <div className="field">
+            <label style={{width: "6rem"}}>
+              <span>知识点：</span>
+            </label>
+            <div className="wrapper" style={{flex: "1 1 0%"}}>
+              <select className='ui dropdown' onChange={@change} ref='select' multiple>
+                {
+                  for value, text of @props.data.points
+                    <option key={value} value={value}>{text}</option>
+                }
+              </select>
+            </div>
+          </div>
+
           <div className="field">
             <label style={{width: "6rem"}}>
               <span>
@@ -152,6 +181,7 @@
           answer:
             choices: @state.choices
             correct: @state.correct
+          point_ids: @point_ids
     .done (res)=>
       @done res
     .fail (res)=>
@@ -198,7 +228,20 @@
           choices: choices
           correct: correct
 
+  change: ->
+    $dom = jQuery ReactDOM.findDOMNode @refs.select
+    values = $dom.dropdown('get value')
+    values = values[values.length - 1]
+    @point_ids = values || []
+
+  componentDidMount: ->
+    $dom = jQuery ReactDOM.findDOMNode @refs.select
+    $dom.dropdown()
+    value = @props.data?.question?.point_ids || []
+    $dom.dropdown('set selected', value)
+
   getInitialState: ->
+    @point_ids = []
     content: @props.data.question.content
     choices: @props.data.question.admin_answer["choices"]
     correct: @props.data.question.admin_answer["correct"]
@@ -247,6 +290,21 @@
               添加一个选项
             </div>
           </div>
+
+          <div className="field">
+            <label style={{width: "6rem"}}>
+              <span>知识点：</span>
+            </label>
+            <div className="wrapper" style={{flex: "1 1 0%"}}>
+              <select className='ui dropdown' onChange={@change} ref='select' multiple>
+                {
+                  for value, text of @props.data.points
+                    <option key={value} value={value}>{text}</option>
+                }
+              </select>
+            </div>
+          </div>
+
           <div className="field">
             <label style={{width: "6rem"}}>
               <span>
