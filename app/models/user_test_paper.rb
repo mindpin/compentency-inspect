@@ -44,6 +44,8 @@ class UserTestPaper
       end.flatten
       return false if !question_ids.include?(question.id.to_s)
 
+      return false if Time.now > tpr.created_at + tpr.test_paper.minutes.minutes
+
       qr = tpr.question_records.where(user_id: self.id, question_id: question.id).first
       if qr.blank?
         qr = tpr.question_records.build(
