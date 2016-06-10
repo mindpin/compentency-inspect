@@ -38,7 +38,7 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
-  validates :login, presence: true, uniqueness: true, length: 4..20
+  validates :login, presence: true, uniqueness: true, length: 3..20
 
   def email_required?
     false
