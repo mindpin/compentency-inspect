@@ -256,7 +256,7 @@
             <QuestionContent data={@props.data.test_ware} />
           </div>
           {
-            if @props.data.test_ware.user_answer == null || !props.data.test_ware.user_answer == ""
+            if @props.data.test_ware.user_answer == null || @props.data.test_ware.user_answer == ""
               <div className="user-answer">
                 答题者没有回答
               </div>
