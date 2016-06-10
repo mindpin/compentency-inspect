@@ -255,12 +255,19 @@
           <div className="content">
             <QuestionContent data={@props.data.test_ware} />
           </div>
-          <div className="user-answer">
-            答题者的回答：
-            <pre>
-              {@props.data.test_ware.user_answer}
-            </pre>
-          </div>
+          {
+            if @props.data.test_ware.user_answer == null || @props.data.test_ware.user_answer == ""
+              <div className="user-answer">
+                答题者没有回答
+              </div>
+            else
+              <div className="user-answer">
+                答题者的回答：
+                <pre>
+                  {@props.data.test_ware.user_answer}
+                </pre>
+              </div>
+          }
           {
               if @props.data.test_ware_review.score == null || @props.data.test_ware_review.comment == null
                 if @props.data.review.status != "completed"
@@ -309,9 +316,14 @@
             <QuestionContent data={@props.data.test_ware} />
           </div>
           <div className="user-answer">
-            <a href={@props.data.test_ware.user_answer}>
-              下载答题者提交的文件
-            </a>
+          {
+            if @props.data.test_ware.user_answer == null
+              <div>答题者没有提交文件</div>
+            else
+              <a href={@props.data.test_ware.user_answer}>
+                下载答题者提交的文件
+              </a>  
+          }
           </div>
           {
               if @props.data.test_ware_review.score == null || @props.data.test_ware_review.comment == null

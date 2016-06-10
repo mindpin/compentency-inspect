@@ -65,10 +65,10 @@ module TestPaperResultFormer
                 })
               when "file_upload"
                 id = instance.question_answer_status(question)[:answer]
-                fe = FilePartUpload::FileEntity.find id
+                fe = FilePartUpload::FileEntity.where(id: id).first
                 hash.merge!({
                   max_score: section.score,
-                  user_answer: fe.download_url
+                  user_answer: fe.blank? ? nil : fe.download_url
                 })
               end
 
