@@ -33,7 +33,7 @@ module UserTestPaperFormer
         time.to_i
       }
 
-      field :test_wares_index, ->(instance) {
+      logic :test_wares_index, ->(instance) {
         instance.test_paper.sections.map do |section|
           {
             kind: section.kind,
