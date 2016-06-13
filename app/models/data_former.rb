@@ -4,6 +4,7 @@ class DataFormer
   include UserFormer
   include UserTestPaperFormer
   include QuestionFormer
+  include QuestionPointFormer
   include TestPaperResultFormer
   include TestPaperResultReviewFormer
 
