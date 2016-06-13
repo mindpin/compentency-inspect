@@ -26,13 +26,24 @@
       <div className="ui segments reviewer-reviews">
       {
         for review, i in @props.data
+          tpr = review.test_paper_result
+          data =
+            id:         tpr.id
+            user:       tpr.user
+            status:     tpr.status
+            test_paper: tpr.test_paper
+            review_status:     tpr.review.status
+            review_comment:    tpr.review.comment
+            test_ware_reviews: tpr.review.test_ware_reviews
+
+          console.log data
           <div className="ui segment reviewer-review"  key={review.id} >
             <AdminTestResultShowPage.Header />
             <div className="ui segment">
               总得分：{review.total_score}
             </div>
-            <AdminTestResultShowPage.TestPaper data={review.test_paper_result} />
-            <AdminTestResultShowPage.TotalReview data={review.test_paper_result} />
+            <AdminTestResultShowPage.TestPaper data={data} />
+            <AdminTestResultShowPage.TotalReview data={data} />
           </div>
       }
       </div>
