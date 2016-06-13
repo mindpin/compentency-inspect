@@ -8,6 +8,9 @@ module QuestionFormer
       field :kind
       field :content
       field :content_format
+      field :point_ids, ->(instance){
+        instance.point_ids.map(&:to_s)
+      }
 
       logic :choices, ->(instance, user) {
         instance.sorted_choices(user)
@@ -29,6 +32,18 @@ module QuestionFormer
         return qr.answer
       }
 
+      logic :admin_answer, ->(instance) {
+        instance.answer
+      }
+
+      logic :point_names, ->(instance){
+        instance.points.map(&:name)
+      }
+
+
+      url :admin_edit_url, ->(instance){
+        edit_admin_question_path(instance)
+      }
 
     end
 
