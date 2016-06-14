@@ -61,155 +61,57 @@
               create_question_review_url: @props.data.create_question_review_url
               change_test_ware_review:    @props.data.change_test_ware_review
 
-            <AdminTestResultShowPage.Section data={data} key={i}/>
+            <AdminTestResultShowPage.TestPaper.Section data={data} key={i}/>
         }
         </div>
 
-    Section: React.createClass
-      render: ->
-        <div className="section ui segments" key={@props.data.section.kind}>
-          <div className="desc ui segment">
-            {@props.data.section.kind}
-          </div>
-          <div className="test-wares ui segments">
-            {
-              for test_ware in @props.data.section.test_wares
-                switch test_ware.kind
-                  when "bool", "single_choice", "multi_choice"
-                    data =
-                      test_ware: test_ware
-                  else
-                    current_review = null
-                    for r in @props.data.test_ware_reviews
-                      if r.question_id == test_ware.id
-                        current_review = r
-                        break
-
-                    data =
-                      test_ware:            test_ware
-                      test_ware_review:     current_review
-                      review_status:        @props.data.review_status
-                      test_paper_result_id: @props.data.id
-                      create_question_review_url: @props.data.create_question_review_url
-                      change_test_ware_review:    @props.data.change_test_ware_review
-
-                <div className="test-ware ui segment" key={test_ware.id}>
-                  {
+      statics:
+        Section: React.createClass
+          render: ->
+            <div className="section ui segments" key={@props.data.section.kind}>
+              <div className="desc ui segment">
+                {@props.data.section.kind}
+              </div>
+              <div className="test-wares ui segments">
+                {
+                  for test_ware in @props.data.section.test_wares
                     switch test_ware.kind
-                      when "bool"
-                        <AdminTestResultShowPage.Bool data={data} />
-                      when "single_choice"
-                        <AdminTestResultShowPage.SingleChoice data={data} />
-                      when "multi_choice"
-                        <AdminTestResultShowPage.MultiChoice data={data} />
-                      when "essay"
-                        <AdminTestResultShowPage.Essay data={data} />
-                      when "file_upload"
-                        <AdminTestResultShowPage.FileUpload data={data} />
-                  }
-                </div>
-            }
-          </div>
-        </div>
+                      when "bool", "single_choice", "multi_choice"
+                        data =
+                          test_ware: test_ware
+                      else
+                        current_review = null
+                        for r in @props.data.test_ware_reviews
+                          if r.question_id == test_ware.id
+                            current_review = r
+                            break
 
-    TotalReview: React.createClass
-      render: ->
-        if @props.data.review_comment != null
-          <div className="total-review">
-            <div className="review-comment">
-              审阅总评价是：
-              <pre>
-                {@props.data.review_comment}
-              </pre>
+                        data =
+                          test_ware:            test_ware
+                          test_ware_review:     current_review
+                          review_status:        @props.data.review_status
+                          test_paper_result_id: @props.data.id
+                          create_question_review_url: @props.data.create_question_review_url
+                          change_test_ware_review:    @props.data.change_test_ware_review
+
+                    <div className="test-ware ui segment" key={test_ware.id}>
+                      {
+                        switch test_ware.kind
+                          when "bool"
+                            <AdminTestResultShowPage.Bool data={data} />
+                          when "single_choice"
+                            <AdminTestResultShowPage.SingleChoice data={data} />
+                          when "multi_choice"
+                            <AdminTestResultShowPage.MultiChoice data={data} />
+                          when "essay"
+                            <AdminTestResultShowPage.Essay data={data} />
+                          when "file_upload"
+                            <AdminTestResultShowPage.FileUpload data={data} />
+                      }
+                    </div>
+                }
+              </div>
             </div>
-            {
-              if @props.data.review_status != "completed"
-                <button className="ui teal button" onClick={@show_modal}>
-                  修改总评价
-                </button>
-            }
-          </div>
-        else
-          if @props.data.review_status != "completed"
-            <div className="total-review">
-              <button className="ui teal button" onClick={@show_modal}>
-                增加总评价
-              </button>
-            </div>
-
-      show_modal: ->
-        data =
-          id:                @props.data.id
-          review_comment:    @props.data.review_comment
-          create_review_url: @props.data.create_review_url
-          close_modal:       @close_modal
-          change_review_comment: @props.data.change_review_comment
-
-        @open_modal = jQuery.open_modal <AdminTestResultShowPage.TotalReviewForm data={data} />
-
-      close_modal: ->
-        @open_modal.close()
-
-    ReviewCompleteSubmit: React.createClass
-      render: ->
-        if @is_completed()
-          <div className="review-complete-submit">
-            审阅已经完成
-          </div>
-        else if @valid()
-          <div className="review-complete-submit">
-            <button className="ui teal button" onClick={@show_modal}>
-              确定完成审阅
-            </button>
-          </div>
-        else
-          <div className="review-complete-submit">
-            <button className="ui teal button disabled">
-              确定完成审阅
-            </button>
-          </div>
-
-      valid: ->
-        valid = true
-        valid = false if @props.data.review_comment == null
-        for r in @props.data.test_ware_reviews
-          valid = false if r.score == null || r.comment == null
-          break if valid == false
-        valid
-
-      is_completed: ->
-        @props.data.review_status == "completed"
-
-      show_modal: ->
-        jQuery.modal_confirm
-          text: """
-            <div>
-              <div>确定完成审阅吗？</div>
-            </div>
-          """
-          yes: =>
-            jQuery.ajax
-              url: @props.data.set_review_complete_url
-              data:
-                test_paper_result_id: @props.data.id
-              type: 'POST'
-            .done (res)=>
-              @props.data.change_review_status(res.status)
-
-    SubjectiveQuestionAnswer: React.createClass
-      render: ->
-        if @props.data.is_correct
-          user_answer_icon_style = "icon checkmark green"
-        else
-          user_answer_icon_style = "icon remove red"
-
-        <div>
-          <div className="user-answer">
-            {"填写的答案：#{@props.data.user_answer}"}
-            <i className={user_answer_icon_style}></i>
-          </div>
-          <div className="correct-answer">{"正确的答案：#{@props.data.correct_answer}"}</div>
-        </div>
 
     Bool: React.createClass
       render: ->
@@ -299,6 +201,141 @@
           <AdminTestResultShowPage.SubjectiveQuestionAnswer data={subjective_question_answer_data} />
         </div>
 
+    Essay: React.createClass
+      render: ->
+        <div className="essay">
+          <QuestionContent data={@props.data.test_ware} />
+          <AdminTestResultShowPage.Essay.UserAnswer data={user_answer: @props.data.test_ware.user_answer} />
+          <AdminTestResultShowPage.TestWareReview data={@props.data} />
+        </div>
+
+      statics:
+        UserAnswer: React.createClass
+          render: ->
+            <div className="user-answer">
+              <span>填写的答案：</span>
+              {
+                if @props.data.user_answer == null || @props.data.user_answer == ""
+                  <span>未填写</span>
+                else
+                  <div>
+                    <pre>
+                      {@props.data.user_answer}
+                    </pre>
+                  </div>
+              }
+            </div>
+
+    FileUpload: React.createClass
+      render: ->
+        <div className="file_upload">
+          <QuestionContent data={@props.data.test_ware} />
+          <AdminTestResultShowPage.FileUpload.UserAnswer data={user_answer: @props.data.test_ware.user_answer} />
+          <AdminTestResultShowPage.TestWareReview data={@props.data} />
+        </div>
+
+      statics:
+        UserAnswer: React.createClass
+          render: ->
+            <div className="user-answer">
+              <span>提交的文件：</span>
+              {
+                if @props.data.user_answer == null
+                  <span>未提交</span>
+                else
+                  <a href={@props.data.user_answer}>
+                    下载提交的文件
+                  </a>
+              }
+            </div>
+
+    SubjectiveQuestionAnswer: React.createClass
+      render: ->
+        if @props.data.is_correct
+          user_answer_icon_style = "icon checkmark green"
+        else
+          user_answer_icon_style = "icon remove red"
+
+        <div>
+          <div className="user-answer">
+            {"填写的答案：#{@props.data.user_answer}"}
+            <i className={user_answer_icon_style}></i>
+          </div>
+          <div className="correct-answer">{"正确的答案：#{@props.data.correct_answer}"}</div>
+        </div>
+
+    TotalReview: React.createClass
+      render: ->
+        if @props.data.review_comment != null
+          <div className="total-review">
+            <div className="review-comment">
+              审阅总评价是：
+              <pre>
+                {@props.data.review_comment}
+              </pre>
+            </div>
+            {
+              if @props.data.review_status != "completed"
+                <button className="ui teal button" onClick={@show_modal}>
+                  修改总评价
+                </button>
+            }
+          </div>
+        else
+          if @props.data.review_status != "completed"
+            <div className="total-review">
+              <button className="ui teal button" onClick={@show_modal}>
+                增加总评价
+              </button>
+            </div>
+
+      show_modal: ->
+        data =
+          id:                @props.data.id
+          review_comment:    @props.data.review_comment
+          create_review_url: @props.data.create_review_url
+          close_modal:       @close_modal
+          change_review_comment: @props.data.change_review_comment
+
+        @open_modal = jQuery.open_modal <AdminTestResultShowPage.TotalReview.TotalReviewForm data={data} />
+
+      close_modal: ->
+        @open_modal.close()
+
+      statics:
+        TotalReviewForm: React.createClass
+          render: ->
+            {
+              TextAreaField
+              HiddenField
+              Submit
+            } = DataForm
+
+            layout =
+              label_width: '100px'
+
+            data =
+              test_paper_result_id: @props.data.id
+              comment: @props.data.review_comment
+
+            <div>
+              <h3 className='ui header'>总评价</h3>
+              <SimpleDataForm
+                model='test_paper_result_review'
+                post={@props.data.create_review_url}
+                data={data}
+                done={@done}
+              >
+                <TextAreaField  {...layout} label='评语：' name='comment' required />
+                <HiddenField  {...layout}  name='test_paper_result_id' />
+                <Submit {...layout} text='确定保存' />
+              </SimpleDataForm>
+            </div>
+
+          done: (data)->
+            @props.data.change_review_comment(data.comment)
+            @props.data.close_modal()
+
     TestWareReview: React.createClass
       render: ->
         if @props.data.test_ware_review.score == null || @props.data.test_ware_review.comment == null
@@ -336,120 +373,92 @@
           create_question_review_url: @props.data.create_question_review_url
           close_modal: @close_modal
 
-        @open_modal = jQuery.open_modal <AdminTestResultShowPage.ReviewForm data={data} />
+        @open_modal = jQuery.open_modal <AdminTestResultShowPage.TestWareReview.ReviewForm data={data} />
 
       close_modal: ->
         @open_modal.close()
 
-    Essay: React.createClass
-      render: ->
-        <div className="essay">
-          <div className="content">
-            <QuestionContent data={@props.data.test_ware} />
-          </div>
-          <div className="user-answer">
-            <span>填写的答案：</span>
+      statics:
+        ReviewForm: React.createClass
+          render: ->
             {
-              if @props.data.test_ware.user_answer == null || @props.data.test_ware.user_answer == ""
-                <span>未填写</span>
-              else
-                <div>
-                  <pre>
-                    {@props.data.test_ware.user_answer}
-                  </pre>
-                </div>
-            }
-          </div>
-          <AdminTestResultShowPage.TestWareReview data={@props.data} />
-        </div>
+              SelectField
+              TextAreaField
+              HiddenField
+              Submit
+            } = DataForm
 
-    FileUpload: React.createClass
+            layout =
+              label_width: '100px'
+
+            data =
+              question_id: @props.data.test_ware.id
+              test_paper_result_id: @props.data.test_paper_result_id
+              score: @props.data.test_ware_review.score
+              comment: @props.data.test_ware_review.comment
+
+            <div>
+              <h3 className='ui header'>评价</h3>
+              <SimpleDataForm
+                model='test_paper_result_question_review'
+                post={@props.data.create_question_review_url}
+                data={data}
+                done={@done}
+              >
+                <SelectField {...layout} label='得分：' name='score' values={[0..@props.data.test_ware.max_score]} />
+                <TextAreaField  {...layout} label='评语：' name='comment' required />
+                <HiddenField  {...layout}  name='question_id' />
+                <HiddenField  {...layout}  name='test_paper_result_id' />
+                <Submit {...layout} text='确定保存' />
+              </SimpleDataForm>
+            </div>
+
+          done: (data)->
+            @props.data.change_test_ware_review(@props.data.test_ware.id, data.score, data.comment)
+            @props.data.close_modal()
+
+    ReviewCompleteSubmit: React.createClass
       render: ->
-        <div className="file_upload">
-          <div className="content">
-            <QuestionContent data={@props.data.test_ware} />
+        if @is_completed()
+          <div className="review-complete-submit">
+            审阅已经完成
           </div>
-          <div className="user-answer">
-            <span>提交的文件：</span>
-            {
-              if @props.data.test_ware.user_answer == null
-                <span>未提交</span>
-              else
-                <a href={@props.data.test_ware.user_answer}>
-                  下载提交的文件
-                </a>
-            }
+        else if @valid()
+          <div className="review-complete-submit">
+            <button className="ui teal button" onClick={@show_modal}>
+              确定完成审阅
+            </button>
           </div>
-          <AdminTestResultShowPage.TestWareReview data={@props.data} />
-        </div>
+        else
+          <div className="review-complete-submit">
+            <button className="ui teal button disabled">
+              确定完成审阅
+            </button>
+          </div>
 
-    ReviewForm: React.createClass
-      render: ->
-        {
-          SelectField
-          TextAreaField
-          HiddenField
-          Submit
-        } = DataForm
+      valid: ->
+        valid = true
+        valid = false if @props.data.review_comment == null
+        for r in @props.data.test_ware_reviews
+          valid = false if r.score == null || r.comment == null
+          break if valid == false
+        valid
 
-        layout =
-          label_width: '100px'
+      is_completed: ->
+        @props.data.review_status == "completed"
 
-        data =
-          question_id: @props.data.test_ware.id
-          test_paper_result_id: @props.data.test_paper_result_id
-          score: @props.data.test_ware_review.score
-          comment: @props.data.test_ware_review.comment
-
-        <div>
-          <h3 className='ui header'>评价</h3>
-          <SimpleDataForm
-            model='test_paper_result_question_review'
-            post={@props.data.create_question_review_url}
-            data={data}
-            done={@done}
-          >
-            <SelectField {...layout} label='得分：' name='score' values={[0..@props.data.test_ware.max_score]} />
-            <TextAreaField  {...layout} label='评语：' name='comment' required />
-            <HiddenField  {...layout}  name='question_id' />
-            <HiddenField  {...layout}  name='test_paper_result_id' />
-            <Submit {...layout} text='确定保存' />
-          </SimpleDataForm>
-        </div>
-
-      done: (data)->
-        @props.data.change_test_ware_review(@props.data.test_ware.id, data.score, data.comment)
-        @props.data.close_modal()
-
-    TotalReviewForm: React.createClass
-      render: ->
-        {
-          TextAreaField
-          HiddenField
-          Submit
-        } = DataForm
-
-        layout =
-          label_width: '100px'
-
-        data =
-          test_paper_result_id: @props.data.id
-          comment: @props.data.review_comment
-
-        <div>
-          <h3 className='ui header'>总评价</h3>
-          <SimpleDataForm
-            model='test_paper_result_review'
-            post={@props.data.create_review_url}
-            data={data}
-            done={@done}
-          >
-            <TextAreaField  {...layout} label='评语：' name='comment' required />
-            <HiddenField  {...layout}  name='test_paper_result_id' />
-            <Submit {...layout} text='确定保存' />
-          </SimpleDataForm>
-        </div>
-
-      done: (data)->
-        @props.data.change_review_comment(data.comment)
-        @props.data.close_modal()
+      show_modal: ->
+        jQuery.modal_confirm
+          text: """
+            <div>
+              <div>确定完成审阅吗？</div>
+            </div>
+          """
+          yes: =>
+            jQuery.ajax
+              url: @props.data.set_review_complete_url
+              data:
+                test_paper_result_id: @props.data.id
+              type: 'POST'
+            .done (res)=>
+              @props.data.change_review_status(res.status)
