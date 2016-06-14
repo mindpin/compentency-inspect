@@ -38,7 +38,6 @@
 
           console.log data
           <div className="ui segment reviewer-review"  key={review.id} >
-            <AdminTestResultShowPage.Header />
             <div className="ui segment">
               总得分：{review.total_score}
             </div>

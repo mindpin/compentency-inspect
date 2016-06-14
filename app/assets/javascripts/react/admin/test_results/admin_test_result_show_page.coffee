@@ -21,7 +21,6 @@
       change_test_ware_review: @change_test_ware_review
 
     <div className="admin-test-paper-results-page">
-      <AdminTestResultShowPage.Header />
       <AdminTestResultShowPage.TestPaper data={data} />
       <AdminTestResultShowPage.TotalReview data={data} />
       <AdminTestResultShowPage.ReviewCompleteSubmit data={data} />
@@ -49,18 +48,6 @@
       test_ware_reviews: test_ware_reviews
 
   statics:
-    Header: React.createClass
-      render: ->
-        <div className="header">
-          <div className="tuli">
-            <span>图例:</span>
-            <span className="correct-true"></span>
-            <span>回答正确</span>
-            <span className="correct-false"></span>
-            <span>回答错误</span>
-          </div>
-        </div>
-
     TestPaper: React.createClass
       render: ->
         <div className="test-paper ui segment">
@@ -89,7 +76,6 @@
               for test_ware in @props.data.section.test_wares
                 switch test_ware.kind
                   when "bool", "single_choice", "multi_choice"
-                    bg_css_name = "correct-#{test_ware.is_correct}"
                     data =
                       test_ware: test_ware
                   else
@@ -99,7 +85,6 @@
                         current_review = r
                         break
 
-                    bg_css_name = ""
                     data =
                       test_ware:            test_ware
                       test_ware_review:     current_review
@@ -108,7 +93,7 @@
                       create_question_review_url: @props.data.create_question_review_url
                       change_test_ware_review:    @props.data.change_test_ware_review
 
-                <div className="test-ware ui segment #{bg_css_name}" key={test_ware.id}>
+                <div className="test-ware ui segment" key={test_ware.id}>
                   {
                     switch test_ware.kind
                       when "bool"
@@ -211,37 +196,57 @@
             .done (res)=>
               @props.data.change_review_status(res.status)
 
+    SubjectiveQuestionAnswer: React.createClass
+      render: ->
+        if @props.data.is_correct
+          user_answer_icon_style = "icon checkmark green"
+        else
+          user_answer_icon_style = "icon remove red"
+
+        <div>
+          <div className="user-answer">
+            {"填写的答案：#{@props.data.user_answer}"}
+            <i className={user_answer_icon_style}></i>
+          </div>
+          <div className="correct-answer">{"正确的答案：#{@props.data.correct_answer}"}</div>
+        </div>
+
     Bool: React.createClass
       render: ->
+        if @props.data.test_ware.user_answer == null
+          user_answer = "未填写"
+        else if @props.data.test_ware.user_answer == true
+          user_answer = "正确"
+        else if @props.data.test_ware.user_answer == false
+          user_answer = "错误"
+
+        correct_answer = if @props.data.test_ware.correct_answer then '正确' else '错误'
+
+        subjective_question_answer_data =
+          user_answer:    user_answer
+          correct_answer: correct_answer
+          is_correct:     @props.data.test_ware.is_correct
+
         <div className="bool">
           <div className="content">
             <QuestionContent data={@props.data.test_ware} />
           </div>
-          <div className="correct-answer">
-          {
-            "正确答案是 #{if @props.data.test_ware.correct_answer then '正确' else '错误'}"
-          }
-          </div>
-          <div className="user-answer">
-          {
-            if @props.data.test_ware.user_answer == null
-              "答题者没有回答这道题"
-            else if @props.data.test_ware.user_answer == true
-              "答题者选择的答案是 正确"
-            else if @props.data.test_ware.user_answer == false
-              "答题者选择的答案是 错误"
-          }
-          </div>
+          <AdminTestResultShowPage.SubjectiveQuestionAnswer data={subjective_question_answer_data} />
         </div>
 
     SingleChoice: React.createClass
       render: ->
-        user_answer_index = null
+        user_answer = "未填写"
         for choice, index in @props.data.test_ware.choices
           if @props.data.test_ware.correct_answer == choice.id
-            correct_answer_index = index + 1
+            correct_answer = index + 1
           if @props.data.test_ware.user_answer == choice.id
-            user_answer_index = index + 1
+            user_answer = index + 1
+
+        subjective_question_answer_data =
+          user_answer:    user_answer
+          correct_answer: correct_answer
+          is_correct:     @props.data.test_ware.is_correct
 
         <div className="single_choice">
           <div className="content">
@@ -255,19 +260,7 @@
               </div>
           }
           </div>
-          <div className="correct-answer">
-          {
-            "正确答案是 #{correct_answer_index}"
-          }
-          </div>
-          <div className="user-answer">
-          {
-            if user_answer_index == null
-              "答题者没有回答这道题"
-            else
-              "答题者选择的答案是 #{user_answer_index}"
-          }
-          </div>
+          <AdminTestResultShowPage.SubjectiveQuestionAnswer data={subjective_question_answer_data} />
         </div>
 
     MultiChoice: React.createClass
@@ -279,6 +272,17 @@
             correct_answer_indexs.push(index + 1)
           if @props.data.test_ware.user_answer && @props.data.test_ware.user_answer.indexOf(choice.id) != -1
             user_answer_indexs.push(index + 1)
+
+        correct_answer = correct_answer_indexs.join(',')
+        if user_answer_indexs.length == 0
+          user_answer = "未填写"
+        else
+          user_answer = user_answer_indexs.join(',')
+
+        subjective_question_answer_data =
+          user_answer:    user_answer
+          correct_answer: correct_answer
+          is_correct:     @props.data.test_ware.is_correct
 
         <div className="multi_choice">
           <div className="content">
@@ -292,19 +296,7 @@
               </div>
           }
           </div>
-          <div className="correct-answer">
-          {
-            "正确答案是 #{correct_answer_indexs.join(',')}"
-          }
-          </div>
-          <div className="user-answer">
-          {
-            if user_answer_indexs.length == 0
-              "答题者没有回答这道题"
-            else
-              "答题者选择的答案是 #{user_answer_indexs.join(',')}"
-          }
-          </div>
+          <AdminTestResultShowPage.SubjectiveQuestionAnswer data={subjective_question_answer_data} />
         </div>
 
     TestWareReview: React.createClass
@@ -356,12 +348,12 @@
             <QuestionContent data={@props.data.test_ware} />
           </div>
           <div className="user-answer">
+            <span>填写的答案：</span>
             {
               if @props.data.test_ware.user_answer == null || @props.data.test_ware.user_answer == ""
-                <div>答题者没有回答</div>
+                <span>未填写</span>
               else
                 <div>
-                  答题者的回答：
                   <pre>
                     {@props.data.test_ware.user_answer}
                   </pre>
@@ -378,12 +370,13 @@
             <QuestionContent data={@props.data.test_ware} />
           </div>
           <div className="user-answer">
+            <span>提交的文件：</span>
             {
               if @props.data.test_ware.user_answer == null
-                <div>答题者没有提交文件</div>
+                <span>未提交</span>
               else
                 <a href={@props.data.test_ware.user_answer}>
-                  下载答题者提交的文件
+                  下载提交的文件
                 </a>
             }
           </div>
