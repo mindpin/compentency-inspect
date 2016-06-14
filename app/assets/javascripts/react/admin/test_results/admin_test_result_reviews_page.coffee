@@ -36,7 +36,6 @@
             review_comment:    tpr.review.comment
             test_ware_reviews: tpr.review.test_ware_reviews
 
-          console.log data
           <div className="ui segment reviewer-review"  key={review.id} >
             <div className="ui segment">
               总得分：{review.total_score}

@@ -50,7 +50,7 @@
   statics:
     TestPaper: React.createClass
       render: ->
-        <div className="test-paper ui segment">
+        <div className="test-paper">
         {
           for section, i in @props.data.test_paper.sections
             data =
@@ -67,12 +67,29 @@
 
       statics:
         Section: React.createClass
+          getInitialState: ->
+            section_style: "close"
+
           render: ->
-            <div className="section ui segments" key={@props.data.section.kind}>
-              <div className="desc ui segment">
-                {@props.data.section.kind}
+            kind_str = switch @props.data.section.kind
+              when "bool"          then "判断题"
+              when "single_choice" then "单选题"
+              when "multi_choice"  then "多选题"
+              when "essay"         then "简答题"
+              when "file_upload"   then "画图题"
+
+            content_taggle_open_close = (evt)=>
+              $div = jQuery(ReactDOM.findDOMNode(@))
+              $div.toggleClass("close")
+              $div.toggleClass("open")
+
+            <div className="section #{@state.section_style}" key={@props.data.section.kind} onClick={content_taggle_open_close} >
+              <div className="section-desc">
+                <i className="angle right icon"></i>
+                <i className="angle down icon"></i>
+                <span>{kind_str}</span>
               </div>
-              <div className="test-wares ui segments">
+              <div className="section-content">
                 {
                   for test_ware in @props.data.section.test_wares
                     switch test_ware.kind
@@ -94,7 +111,7 @@
                           create_question_review_url: @props.data.create_question_review_url
                           change_test_ware_review:    @props.data.change_test_ware_review
 
-                    <div className="test-ware ui segment" key={test_ware.id}>
+                    <div className="test-ware" key={test_ware.id}>
                       {
                         switch test_ware.kind
                           when "bool"

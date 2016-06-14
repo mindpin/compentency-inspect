@@ -70,10 +70,44 @@ body.admin {
 
     .admin-test-paper-results-page, .admin-test-result-reviews-page{
       background-color: white;
-      .test-ware{
-        .content{
-          font-size: 15px;
+      padding: 15px;
+      .section{
+        border: 1px solid #e3e3e3;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        .test-ware{
+          padding: 1rem;
         }
+
+        .angle.icon{
+          font-size: 1.5rem;
+        }
+
+        &.open{
+          .section-desc{
+            padding-bottom: 1rem;
+          }
+          .angle.right.icon{
+            display: none;
+          }
+        }
+
+        &.close{
+          .section-desc{
+            padding-bottom: 0;
+          }
+          .section-content{
+            display: none;
+          }
+          .angle.down.icon{
+            display: none;
+          }
+        }
+      }
+
+
+      .test-ware{
         .choices{
           padding: 5px 0 0 10px;
         }
@@ -91,7 +125,7 @@ body.admin {
       }
 
       .total-review{
-        padding: 1rem 2rem;
+        padding: 2rem 0;
       }
     }
   }
