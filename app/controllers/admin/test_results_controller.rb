@@ -5,7 +5,7 @@ class Admin::TestResultsController < Admin::ApplicationController
     @component_name = "admin_test_result_show_page"
     tpr = QuestionBank::TestPaperResult.find params[:id]
     @component_data = DataFormer.new(tpr)
-      .logic(:test_paper, current_user)
+      .logic(:test_paper)
       .logic(:review, current_user)
       .url(:create_question_review_url)
       .url(:create_review_url)
@@ -16,10 +16,9 @@ class Admin::TestResultsController < Admin::ApplicationController
   def reviews
     @component_name = "admin_test_result_reviews_page"
     tpr = QuestionBank::TestPaperResult.find params[:id]
-    @component_data = tpr.completed_reviews.map do |review|
-      DataFormer.new(review)
-        .logic(:test_paper_result)
-        .data
-    end
+    @component_data = DataFormer.new(tpr)
+      .logic(:test_paper)
+      .logic(:review_result)
+      .data
   end
 end

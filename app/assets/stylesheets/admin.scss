@@ -71,11 +71,16 @@ body.admin {
     .admin-test-paper-results-page, .admin-test-result-reviews-page{
       background-color: white;
       padding: 15px;
+      .taggle-tabs{
+        padding: 1rem 0;
+      }
       .section{
+        .section-desc{
+          cursor: pointer;
+        }
         border: 1px solid #e3e3e3;
         padding: 1rem;
         margin-bottom: 1rem;
-        cursor: pointer;
         .test-ware{
           padding: 1rem;
         }

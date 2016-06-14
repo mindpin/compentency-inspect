@@ -79,12 +79,12 @@
               when "file_upload"   then "画图题"
 
             content_taggle_open_close = (evt)=>
-              $div = jQuery(ReactDOM.findDOMNode(@))
+              $div = jQuery(ReactDOM.findDOMNode(@)).closest(".section")
               $div.toggleClass("close")
               $div.toggleClass("open")
 
-            <div className="section #{@state.section_style}" key={@props.data.section.kind} onClick={content_taggle_open_close} >
-              <div className="section-desc">
+            <div className="section #{@state.section_style}" key={@props.data.section.kind} >
+              <div className="section-desc" onClick={content_taggle_open_close}>
                 <i className="angle right icon"></i>
                 <i className="angle down icon"></i>
                 <span>{kind_str}</span>

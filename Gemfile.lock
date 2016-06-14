@@ -17,8 +17,8 @@ GIT
 
 GIT
   remote: git://github.com/mindpin/question_bank.git
-  revision: 4ab077906245bbf6235b95029a07da2714a7f2e5
-  ref: 4ab0779
+  revision: 7422f9e45ef842ba582929f3bc6358b441414d53
+  ref: 7422f9e
   specs:
     question_bank (0.0.1)
       enumerize

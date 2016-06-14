@@ -14,10 +14,11 @@ module TestPaperResultFormer
         return "FINISHED"
       }
 
-      logic :test_paper, ->(instance, reviewer) {
+      logic :test_paper, ->(instance) {
         tp = instance.test_paper
         sections = tp.sections.map do |section|
           {
+            id:    section.id.to_s,
             kind:  section.kind,
             score: section.score,
             test_wares: section.questions.map do |question|
@@ -100,6 +101,24 @@ module TestPaperResultFormer
           status: review_status[:status],
           comment: review_status[:comment],
           test_ware_reviews: question_reviews
+        }
+      }
+
+      logic :review_result, ->(instance) {
+        reviews = instance.completed_reviews.map do |review|
+          df = DataFormer.new(review)
+            .logic(:review)
+            .data
+
+          {
+            review: df[:review],
+            user:   df[:user]
+          }
+        end
+
+        {
+          reviews: reviews,
+          score_data: instance.score_data
         }
       }
 
