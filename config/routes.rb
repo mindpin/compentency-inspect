@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     resources :test_results do
       get :reviews, on: :member
     end
-    resources :user_test_papers
+    resources :user_test_papers do
+      put :review_complete, on: :member
+    end
     resources :test_paper_result_question_reviews
     resources :test_paper_result_reviews do
       post :complete, on: :collection
@@ -37,5 +39,6 @@ Rails.application.routes.draw do
   get  "/test_wares",   to: "test_wares#index"
 
   get '/test', to: 'test#show'
+  get '/test/result', to: 'test#result'
   get "/", to: "index#index"
 end

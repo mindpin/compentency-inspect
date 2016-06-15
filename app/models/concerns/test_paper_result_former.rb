@@ -10,8 +10,7 @@ module TestPaperResultFormer
       }
 
       field :status, ->(instance) {
-        return "RUNNING"   if Time.now < instance.created_at + instance.test_paper.minutes.minutes
-        return "FINISHED"
+        return instance.status
       }
 
       logic :test_paper, ->(instance) {

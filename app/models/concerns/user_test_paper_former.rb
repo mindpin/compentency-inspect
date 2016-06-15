@@ -15,8 +15,7 @@ module UserTestPaperFormer
       field :status, ->(instance) {
         tpr = instance.user.inspect_test_paper_result
         return "NOT_START" if tpr.blank?
-        return "RUNNING"   if Time.now < tpr.created_at + instance.test_paper.minutes.minutes
-        return "FINISHED"
+        return tpr.status
       }
 
       field :deadline_time, ->(instance) {
@@ -74,6 +73,10 @@ module UserTestPaperFormer
         tpr = instance.user.inspect_test_paper_result
         return "" if tpr.blank?
         "/admin/test_results/#{tpr.id}"
+      }
+
+      url :review_complete_url, ->(instance) {
+        "/admin/user_test_papers/#{instance.id}/review_complete"
       }
     end
 
