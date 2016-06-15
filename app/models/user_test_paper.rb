@@ -5,6 +5,10 @@ class UserTestPaper
   belongs_to :user
   belongs_to :test_paper, class_name: "QuestionBank::TestPaper"
 
+  def inspect_test_paper_result
+    QuestionBank::TestPaperResult.where(user_id: self.user_id, test_paper_id: self.test_paper_id).first
+  end
+
   module UserMethods
     extend ActiveSupport::Concern
 
