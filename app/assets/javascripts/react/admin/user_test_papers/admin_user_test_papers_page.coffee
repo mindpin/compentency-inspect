@@ -75,7 +75,7 @@
                   </a>
                   <a className="ui button mini blue basic #{actions_review_complete_disabled}" href="javascript:;" onClick={_click_review_complete(x)}>
                     <i className='send outline icon' />
-                    公布答案
+                    公布成绩
                   </a>
                 </div>
             }
