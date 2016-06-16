@@ -1,0 +1,13 @@
+安装 capybara-webkit 依赖
+sudo apt-get install qt5-default libqt5webkit5-dev qtdeclarative5-dev g++
+sudo apt-get install xvfb
+
+xvfb-run -a bundle exec rspec
+
+https://www.stefanwienert.de/blog/2015/07/24/how-to-install-capybara-webkit-for-ubuntu-12-dot-04/
+
+这个 gem 也不错
+https://github.com/mattheworiordan/capybara-screenshot
+
+cucumber 脚本友好呈现
+http://www.relishapp.com/

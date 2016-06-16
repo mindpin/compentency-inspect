@@ -51,7 +51,11 @@ group :test do
   gem 'database_cleaner', '~> 1.5.1'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'capybara-webkit'
+  # gem 'capybara-screenshot'
+  gem 'headless'
   gem 'mongoid-rspec', '~> 2.1.0'
+  gem 'selenium-webdriver'
 end
 
 gem 'mongoid',  '4.0.2'
