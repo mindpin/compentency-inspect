@@ -1,5 +1,14 @@
 require 'rails_helper'
 
+def sleep_m(period)
+  time0 = Time.now
+  loop do
+    time1 = Time.now
+    p = (time1 - time0) * 1000
+    break if p >= period
+  end
+end
+
 describe 'sample' do
   # around do |example|
   #   Headless.ly do
@@ -11,13 +20,13 @@ describe 'sample' do
     user = User.create role: 'admin', name: 'admin', login: 'admin', password: '123456'
   }
 
-  # it 'sample' do
-  #   expect(1).to eq(1)
-  # end
+  it 'sample' do
+    expect(1).to eq(1)
+  end
 
-  # it 'user' do
-  #   expect(User.count).to eq(1)
-  # end
+  it 'user' do
+    expect(User.count).to eq(1)
+  end
 
   # it 'webkit sample' do
   #   headless = Headless.new
@@ -54,10 +63,13 @@ describe 'sample' do
   # end
 
   it 'baidu' do
-    headless = Headless.new video: { frame_rate: 12, codec: 'libx264' }
+    headless = Headless.new dimensions: '1680x1050x24', video: { frame_rate: 12, codec: 'libx264' }
     headless.start
 
-    page.driver.browser.manage.window.resize_to(1280, 1024)
+    page.driver.browser.manage.window.resize_to(1680, 1050)
+    # page.driver.browser.manage.window.maximize
+    # page.driver.browser.manage.window.resize_to(1280, 1024)
+    # p page.driver.browser.manage.window.methods
 
     headless.video.start_capture
 
@@ -74,22 +86,23 @@ describe 'sample' do
     click_link '创建账号'
     sleep 1
     find('.data-form .field:nth-child(1) input').set('测试用户')
-    sleep 1
+    sleep_m 500
     find('.data-form .field:nth-child(2) input').set('test1')
-    sleep 1
+    sleep_m 500
     find('.data-form .field:nth-child(3) input').set('123456')
-    sleep 1
+    sleep_m 500
     find('.ui.dropdown.selection').click
     sleep 1
-    find('.ui.dropdown.selection .item:nth-child(2)').click
+    elm = find('.ui.dropdown.selection .item:nth-child(2)')
+    page.driver.browser.action.move_to(elm.native).perform
+    sleep 3
+    elm.click
     sleep 1
     click_link '确定保存'
     sleep 1
 
     headless.video.stop_and_save 'headless.mp4'
     headless.take_screenshot 'headless.png'
-
-    # headless.destroy
   end
 
   # it 'baidu' do

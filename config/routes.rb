@@ -38,4 +38,6 @@ Rails.application.routes.draw do
 
   get '/test', to: 'test#show'
   get "/", to: "index#index"
+
+  get '/sample', to: 'index#sample'
 end

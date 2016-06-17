@@ -10,6 +10,13 @@ require 'capybara/rspec'
 # require 'capybara/rails'
 
 # Capybara.default_driver = :webkit
+
+Capybara.register_driver :selenium do |app|
+  profile = Selenium::WebDriver::Firefox::Profile.new
+  profile.native_events = true
+  Capybara::Selenium::Driver.new(app, :browser => :firefox, profile: profile)
+end
+
 Capybara.default_driver = :selenium
 
 # Capybara::Webkit.configure do |config|
@@ -33,7 +40,7 @@ Capybara.default_driver = :selenium
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   # RSpec Rails can automatically mix in different behaviours to your tests

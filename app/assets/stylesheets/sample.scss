@@ -1,0 +1,11 @@
+.list-sample-page {
+  .item {
+    border: solid 1px #ececec;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    .ui.button {
+      float: right;
+    }
+  }
+}
