@@ -10,15 +10,12 @@ class IndexController < ApplicationController
   end
 
   def sample
-    @component_name = 'list_sample_page'
+    json = File.read File.join(Rails.root, 'csm', '理财经理培训.yaml.json')
+    data = JSON.parse json
+
+    @component_name = 'csm_sample_page'
     @component_data = {
-      items: [
-        {id: 'id1', published: false},
-        {id: 'id2', published: false},
-        {id: 'id3', published: true},
-        {id: 'id4', published: true},
-        {id: 'id5', published: false},
-      ]
+      data: data
     }
   end
 end
