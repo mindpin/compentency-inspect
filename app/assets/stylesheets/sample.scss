@@ -19,6 +19,7 @@
   padding: 1rem;
   border: dashed 1px #ddd;
   color: #999;
+  margin-bottom: 1rem;
   // background-color: lighten(#FFFAF3, 0%);
 }
 
@@ -68,6 +69,24 @@ $header-color: #CA6445;
   border: solid 1px #ececec;
   padding: 1rem;
 
+  .navbar {
+    border-bottom: solid 1px #ececec;
+    padding: 1rem 0;
+    margin: -1rem 0;
+    margin-bottom: 3rem;
+
+    .bread {
+      &:after {
+        content: ">";
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+      &:last-child:after {
+        display: none;
+      }
+    }
+  }
+
   .node-title {
     border-bottom: solid 1px #ececec;
     padding-bottom: 1rem;
@@ -79,16 +98,68 @@ $header-color: #CA6445;
     margin-top: 3rem;
 
     .path-nodes-content {
-      background-color: #FAFAFB;
-      border: solid 1px #ececec;
+      position: relative;
+      // background-color: #FAFAFB;
+      // border: solid 1px #ececec;
       margin-bottom: 1rem;
-      .path-node {
-        padding: 1rem;
-        .node-title-link {
+
+      .headicon {
+        position: absolute;
+        top: 0rem;left: 0rem;
+        width: 1.5rem; height: 2.5rem; line-height: 2.5rem;
+        text-align: center;
+        color: #888;
+        border: solid 1px transparent;
+      }
+
+      .nodes {
+        margin-left: 2rem;
+        background-color: #FAFAFB;
+        border: solid 1px #ececec;
+        border-radius: 3px;
+        .path-node {
+          line-height: 1.5rem;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+          border-bottom: solid 1px #ececec;
+          padding-left: 0.5rem;
+          display: block;
+          position: relative;
+          padding-left: 2rem;
+
           color: #333;
-          &:hover {
-            color: #4183C4;
+          &:active {
+            // color: #4183C4;
           }
+
+          &:last-child {
+            border-bottom: 0 none;
+          }
+
+          .icon.circle {
+            color: #ABE2FB;
+            font-size: 11px;
+          }
+
+          &:after {
+            content: "";
+            position: absolute;
+            width:10px;
+            height:10px;
+            border-radius:100px;
+            background-color: #ABE2FB;
+            top:50%;left:9px;
+            margin-top: -5px;
+          }
+          &:before {
+            position: absolute;
+            content: "";
+            width: 2px;
+            top:-1px;bottom:-1px;left:13px;
+            background-color: #ABE2FB;
+          }
+          &:first-child:before {top:50%;}
+          &:last-child:before {bottom:50%;}
         }
       }
     }

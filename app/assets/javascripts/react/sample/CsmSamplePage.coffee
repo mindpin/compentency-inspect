@@ -50,27 +50,57 @@ CSMReader = React.createClass
     # 根据 dash_param 获取 current_node
     current_node = @props.root
     nav_params = @state.nav_params
+    bread_arr = [current_node]
+
     for x in nav_params
       nav_param = x.split(':')
       path_idx = nav_param[0]
       node_idx = nav_param[1]
       path = current_node.paths[path_idx]
       current_node = path.nodes[node_idx]
+      bread_arr.push current_node
 
     <div className='csm-reader'>
+      <NodeContentNavbar bread_arr={bread_arr} nav_params={@state.nav_params} reader={@} />
       <NodeContent node={current_node} reader={@} />
     </div>
 
   nav_into: (nav_param)->
-    console.log nav_param
     nav_params = @state.nav_params
     nav_params.push nav_param
+
     @setState {
       nav_params: nav_params
     }, ->
       location.href = "/sample##{nav_params.join(',')}"
 
-    # location.href = "/sample#{@state.dash_param}"
+  nav_to: (nav_params)->
+    @setState {
+      nav_params: nav_params
+    }, ->
+      location.href = "/sample##{nav_params.join(',')}"
+
+NodeContentNavbar = React.createClass
+  render: ->
+    <div className='navbar'>
+    {
+      for bread, idx in @props.bread_arr
+        text = bread.text || bread.from
+        nav_params = @props.nav_params[0...idx]
+        <span className='bread' key={idx}>
+        {
+          if idx == @props.bread_arr.length - 1
+            <span>{text}</span>
+          else
+            <a href='javascript:;' onClick={@nav_to(nav_params)}>{text}</a>
+        }
+        </span>
+    }
+    </div>
+
+  nav_to: (nav_params)->
+    =>
+      @props.reader.nav_to(nav_params)
 
 NodeContent = React.createClass
   render: ->
@@ -79,15 +109,21 @@ NodeContent = React.createClass
     <div>
     {
       title = current_node.text || current_node.from
-      <h2 className='ui header node-title'>{title}</h2>
+      <div className='title-content'>
+        <h2 className='ui header node-title'>{title}</h2>
+        <Placeholder desc='所有政策，规范，岗位职责定义的资料放这里' />
+      </div>
     }
     {
       if current_node.target?
         <div className='target-content'>
           <h3 className='ui header'>认知目标：{current_node.target}</h3>
-          <Placeholder desc='对认知目标的概述是？' />
+          <Placeholder desc='所有政策，规范，岗位职责定义的资料放这里' />
         </div>
     }
+    <Placeholder desc='所有课件，学习资源放这里' />
+    <Placeholder desc='所有测验，评价，统计的方法和工具放这里' />
+    <Placeholder desc='所有实践问题和经验汇总放这里' />
     {
       if current_node.paths?
         <div className='paths-content'>
@@ -105,17 +141,18 @@ NodeContent = React.createClass
 PathNodesContent = React.createClass
   render: ->
     <div className='path-nodes-content'>
-    {
-      for node, idx in @props.path.nodes
-        title = node.text || node.from
-        nav_param = "#{@props.path_idx}:#{idx}"
+      <i className='headicon icon arrow right' />
+      <div className='nodes'>
+      {
+        for node, idx in @props.path.nodes
+          title = node.text || node.from
+          nav_param = "#{@props.path_idx}:#{idx}"
 
-        <div key={idx} className='path-node'>
-          <a className='node-title-link' href='javascript:;' onClick={@reader_nav_into(nav_param)}>
-            <i className='icon arrow right' /> {title}
+          <a key={idx} className='path-node' href='javascript:;' onClick={@reader_nav_into(nav_param)}>
+            {title}
           </a>
-        </div>
-    }
+      }
+      </div>
     </div>
 
   reader_nav_into: (nav_param)->
