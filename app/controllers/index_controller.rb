@@ -1,4 +1,6 @@
 class IndexController < ApplicationController
+  layout 'csm'
+
   def index
     if current_user.blank?
       redirect_to "/sign_in"
