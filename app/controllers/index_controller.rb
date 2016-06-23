@@ -12,12 +12,23 @@ class IndexController < ApplicationController
   end
 
   def sample
-    json = File.read File.join(Rails.root, 'csm', '理财经理培训.yaml.json')
-    data = JSON.parse json
+    data = YAML.load_file File.join(Rails.root, 'csm', 'yaml', '理财经理培训.yaml')
 
     @component_name = 'csm_sample_page'
     @component_data = {
       data: data
     }
+  end
+
+  def getmd
+    file = params[:file]
+    text = File.read File.join(Rails.root, 'csm', 'yaml', 'markdowns', file)
+    render text: text
+  end
+
+  def getimgs
+    file = params[:file]
+    text = File.read File.join(Rails.root, 'csm', 'yaml', 'images', file)
+    render json: text.lines
   end
 end
