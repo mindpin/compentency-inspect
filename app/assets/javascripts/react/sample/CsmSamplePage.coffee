@@ -4,7 +4,7 @@
     tab: 1
 
   render: ->
-    klasses = [1, 2, 3].map (idx)=>
+    klasses = [1, 2, 3, 4, 5].map (idx)=>
       new ClassName
         'item': true
         'active': @state.tab == idx
@@ -18,6 +18,8 @@
         <a className={klasses[0]} onClick={@tab(1)}>阅读视图</a>
         <a className={klasses[1]} onClick={@tab(2)}>大纲视图</a>
         <a className={klasses[2]} onClick={@tab(3)}>图形视图</a>
+        <a className={klasses[3]} onClick={@tab(4)}>视图 A</a>
+        <a className={klasses[4]} onClick={@tab(5)}>案例视图</a>
       </div>
 
       {
@@ -30,6 +32,10 @@
             <div>
             <img src='http://i.teamkn.com/i/mAzYspqn.png' style={width: '100%'}/>
             </div>
+          when 4
+            <div />
+          when 5
+            <div />
       }
 
     </div>
