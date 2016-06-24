@@ -59,7 +59,8 @@ end
 
 gem 'mongoid',  '4.0.2'
 gem 'haml',     '4.0.7'
-gem 'devise',   '4.1.1'
+# gem 'devise',   '4.1.1'
+gem 'devise',   '3.5.2'
 gem 'kaminari', '0.16.3'
 gem 'enumerize', '~> 1.1', '>= 1.1.1'
 gem "figaro", "~> 1.1.1"
@@ -84,6 +85,7 @@ gem 'sprockets-coffee-react', '4.0.0'
 gem 'non-stupid-digest-assets'
 
 source 'https://rails-assets.org'
+
 gem 'rails-assets-semantic'
 #http://medialize.github.io/URI.js/
 gem 'rails-assets-URIjs'
