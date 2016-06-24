@@ -11,7 +11,7 @@
 
     <div className='csm sample page'>
       <div className='ui message warning'>
-        Knowledge Camp 知识库产品概念演示
+        Knowledge Camp 知识库产品概念静态演示
       </div>
 
       <div className='ui tabular menu'>
