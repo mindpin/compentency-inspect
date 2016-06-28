@@ -26,19 +26,6 @@ class IndexController < ApplicationController
     render json: text.lines
   end
 
-  def search_box
-    @component_name = 'search_box'
-    @component_data = {
-      search_url: "/search_box_post_search",
-      current_words: ["橘子", "苹果"],
-      recommend_words: %w{苹果 香蕉 橘子 栗子 火龙果},
-      results: [
-        {title: "title1111", desc: "desc111"},
-        {title: "title222", desc: "desc222"},
-      ]
-    }
-  end
-
   def search_box_post_search
     render json: {
       recommend_words: %w{盖饭 拉条子 凉皮},
