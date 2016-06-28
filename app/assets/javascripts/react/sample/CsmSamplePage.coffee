@@ -18,7 +18,7 @@
         <a className={klasses[0]} onClick={@tab(1)}>阅读视图</a>
         <a className={klasses[1]} onClick={@tab(2)}>大纲视图</a>
         <a className={klasses[2]} onClick={@tab(3)}>图形视图</a>
-        <a className={klasses[3]} onClick={@tab(4)}>视图 A</a>
+        <a className={klasses[3]} onClick={@tab(4)}>目标视图</a>
         <a className={klasses[4]} onClick={@tab(5)}>案例视图</a>
       </div>
 
