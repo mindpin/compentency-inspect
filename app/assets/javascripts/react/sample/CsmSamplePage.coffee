@@ -206,7 +206,7 @@ Resource = React.createClass
         when 'inline'
           <Resource.Inline resource={resource} />
         when 'images'
-          <Resource.Images resource={resource} />
+          <ImagesSlide resource={resource} />
     }
     </div>
 
@@ -232,32 +232,33 @@ Resource = React.createClass
           content = marked(res)
           @setState content: __html: content
 
-    Images: React.createClass
-      getInitialState: ->
-        image_urls: ('http://i.teamkn.com/i/um1dRn8J.png' for i in [1..40])
-      render: ->
-        resource = @props.resource
+    # Images: React.createClass
+    #   getInitialState: ->
+    #     image_urls: ('http://i.teamkn.com/i/um1dRn8J.png' for i in [1..40])
+    #   render: ->
+    #     resource = @props.resource
 
-        <div className='images'>
-          <h4 className='ui header'>{resource.name}</h4>
-          <div className='imgs'>
-          {
-            for url, idx in @state.image_urls
-              _url = "#{url}?imageMogr2/thumbnail/!100x100r/gravity/Center/crop/100x100"
-              <a className='img' target='_blank' href={url}>
-                <img key={idx} src={_url} />
-              </a>
-          }
-          </div>
-        </div>
+    #     <div className='images'>
+    #       <h4 className='ui header'>{resource.name}</h4>
+    #       <div className='imgs'>
+    #       {
+    #         for url, idx in @state.image_urls
+    #           _url = "#{url}?imageMogr2/thumbnail/!100x100r/gravity/Center/crop/100x100"
+    #           <a className='img' target='_blank' href={url}>
+    #             <img key={idx} src={_url} />
+    #           </a>
+    #       }
+    #       </div>
+    #     </div>
 
-      componentDidMount: ->
-        jQuery.ajax
-          url: "/getimgs"
-          data:
-            file: @props.resource.file
-        .done (res)=>
-          @setState image_urls: res
+    #   componentDidMount: ->
+    #     jQuery.ajax
+    #       url: "/getimgs"
+    #       data:
+    #         file: @props.resource.file
+    #     .done (res)=>
+    #       @setState image_urls: res
+
 
 PathNodesContent = React.createClass
   render: ->
