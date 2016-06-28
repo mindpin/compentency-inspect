@@ -23,6 +23,9 @@
           <div>
             {"得分：#{@props.data.total_score}"}
           </div>
+          <div>
+            特别说明：简答题和画图题的得分是由多个阅卷人的评分取平均数得来的
+          </div>
         </div>
 
     ToggleTabs: React.createClass
