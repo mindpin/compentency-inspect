@@ -10,6 +10,9 @@
 
       else
         <div>
+          <div>
+            <a className='ui button green' href={@props.data.test_paper_result_completed_index_url}>查看公布成绩汇总页</a>
+          </div>
           <AdminUserTestPapersPage.Table data={@props.data} />
         </div>
     }

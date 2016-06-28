@@ -8,28 +8,23 @@
       review_result:  @props.data.review_result
 
     <div className="admin-test-result-reviews-page">
-      <div className="header">
-        <div>
-          <div>简答题和画图题的得分规则如下：</div>
-          <div>
-            多个阅卷人对每个简答题和画图题进行主观评分，评分范围是 0 ~ 每题的满分值
-          </div>
-          <div>
-            然后取所有阅卷人评分的平均值作为该题的最终得分
-          </div>
-        </div>
-        <div>
-          {"满分：#{@props.data.review_result.score_data.max_score}"}
-        </div>
-        <div>
-          {"得分：#{@props.data.review_result.score_data.total_score}"}
-        </div>
-      </div>
+      <AdminTestResultReviewsPage.Header data={@props.data.review_result.score_data} />
       <AdminTestResultReviewsPage.TestPaper data={data} />
       <AdminTestResultReviewsPage.TotalReviewTabs data={data} />
     </div>
 
   statics:
+    Header: React.createClass
+      render: ->
+        <div className="header">
+          <div>
+            {"满分：#{@props.data.max_score}"}
+          </div>
+          <div>
+            {"得分：#{@props.data.total_score}"}
+          </div>
+        </div>
+
     ToggleTabs: React.createClass
       componentDidMount: ->
         @show(0)
@@ -141,6 +136,12 @@
               if s.id == @props.data.section.id
                 return s.section_total_score
 
+          get_section_question_count: ->
+            @props.data.section.test_wares.length
+
+          get_section_total_max_score: ->
+            @get_section_question_count() * @get_per_test_ware_max_score()
+
           render: ->
             kind_str = switch @props.data.section.kind
               when "bool"          then "判断题"
@@ -150,7 +151,7 @@
               when "file_upload"   then "画图题"
 
             content_taggle_open_close = (evt)=>
-              $div = jQuery(ReactDOM.findDOMNode(@)).closest(".section")
+              $div = jQuery(ReactDOM.findDOMNode(@))
               $div.toggleClass("close")
               $div.toggleClass("open")
 
@@ -159,7 +160,13 @@
                 <i className="angle right icon"></i>
                 <i className="angle down icon"></i>
                 <span>{kind_str}</span>
-                <span>{"（每题#{@get_per_test_ware_max_score()}分，得分 #{@get_section_total_score()}）"}</span>
+                <span>
+                  <span>（本大题共 {@get_section_question_count()} 小题，</span>
+                  <span>每题 {@get_per_test_ware_max_score()} 分，</span>
+                  <strong>总分 {@get_section_total_max_score()}，</strong>
+                  <strong>得分 {@get_section_total_score()} </strong>
+                  <span>）</span>
+                </span>
               </div>
               <div className="section-content">
                 {

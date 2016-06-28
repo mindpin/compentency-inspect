@@ -64,7 +64,7 @@ gem "mina", "0.3.7"
 gem "unicorn"
 
 gem 'question_bank',   github: 'mindpin/question_bank',
-                       ref: '5d97e58'
+                       ref: '956db94'
 
 # gem 'question_bank',   path: '/home/fushang318/question_bank'
 

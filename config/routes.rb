@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get "/dashboard", to: "dashboard#index"
     resources :test_results do
       get :reviews, on: :member
+      get :completed_index, on: :collection
     end
     resources :user_test_papers do
       put :review_complete, on: :member

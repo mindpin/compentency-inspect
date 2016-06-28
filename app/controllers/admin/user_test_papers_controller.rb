@@ -20,7 +20,8 @@ class Admin::UserTestPapersController < Admin::ApplicationController
         total_pages: user_test_papers.total_pages,
         current_page: user_test_papers.current_page,
         per_page: user_test_papers.limit_value
-      }
+      },
+      test_paper_result_completed_index_url: "/admin/test_results/completed_index"
     }
   end
 
