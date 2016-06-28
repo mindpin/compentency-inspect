@@ -12,7 +12,7 @@ class TestStatusController < ApplicationController
       }
       render json: data
     else
-      render json: DataFormer.new(current_user.user_test_paper).data
+      render json: DataFormer.new(current_user.user_test_paper).logic(:test_wares_index).data
     end
   end
 
@@ -20,6 +20,6 @@ class TestStatusController < ApplicationController
     current_user.start_test!
 
     user_test_paper = current_user.user_test_paper
-    render json: DataFormer.new(current_user.user_test_paper).data
+    render json: DataFormer.new(current_user.user_test_paper).logic(:test_wares_index).data
   end
 end

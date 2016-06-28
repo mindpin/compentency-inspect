@@ -10,6 +10,7 @@ class Admin::UserTestPapersController < Admin::ApplicationController
         .logic(:has_completed_reviews)
         .url(:admin_show_url)
         .url(:reviews_url)
+        .url(:review_complete_url)
         .data
     end
 
@@ -19,7 +20,24 @@ class Admin::UserTestPapersController < Admin::ApplicationController
         total_pages: user_test_papers.total_pages,
         current_page: user_test_papers.current_page,
         per_page: user_test_papers.limit_value
-      }
+      },
+      test_paper_result_completed_index_url: "/admin/test_results/completed_index"
     }
   end
+
+  def review_complete
+    user_test_paper = UserTestPaper.find params[:id]
+    tpr = user_test_paper.inspect_test_paper_result
+    tpr.review_complete!
+
+    data = DataFormer.new(user_test_paper)
+      .logic(:has_completed_reviews)
+      .url(:admin_show_url)
+      .url(:reviews_url)
+      .url(:review_complete_url)
+      .data
+
+    render json: data
+  end
+
 end
