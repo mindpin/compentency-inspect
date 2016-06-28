@@ -33,7 +33,16 @@
             <img src='http://i.teamkn.com/i/mAzYspqn.png' style={width: '100%'}/>
             </div>
           when 4
-            <div />
+            search_box_data =
+              search_url: "/search_box_post_search"
+              current_words: ["橘子", "苹果"]
+              recommend_words: ["香蕉", "栗子", "火龙果"]
+              results: [
+                {title: "title1111", desc: "desc111"}
+                {title: "title222", desc: "desc222"}
+              ]
+
+            <SearchBox data={search_box_data} />
           when 5
             <div />
       }

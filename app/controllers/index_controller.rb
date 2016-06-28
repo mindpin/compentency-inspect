@@ -25,4 +25,14 @@ class IndexController < ApplicationController
     text = File.read File.join(Rails.root, 'csm', 'yaml', 'images', file)
     render json: text.lines
   end
+
+  def search_box_post_search
+    render json: {
+      recommend_words: %w{盖饭 拉条子 凉皮},
+      results: [
+        {title: "title333", desc: "desc333"},
+        {title: "title4444", desc: "desc4444"},
+      ]
+    }
+  end
 end
