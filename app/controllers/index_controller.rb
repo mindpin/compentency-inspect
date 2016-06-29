@@ -41,7 +41,6 @@ class IndexController < ApplicationController
     @component_name = 'star_bar'
     @component_data = {
       total_star_count: 10,
-      curent_star_count: 1,
       post_url: "/star_bar_post_star_count"
     }
   end
