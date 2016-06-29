@@ -35,4 +35,21 @@ class IndexController < ApplicationController
       ]
     }
   end
+
+  # 打分
+  def star_bar
+    @component_name = 'star_bar'
+    @component_data = {
+      total_star_count: 10,
+      curent_star_count: 1,
+      post_url: "/star_bar_post_star_count"
+    }
+  end
+
+  # 更新當前分數
+  def star_bar_post_star_count
+    render json: {
+      curent_star_count: params[:star_count],
+    }
+  end
 end
