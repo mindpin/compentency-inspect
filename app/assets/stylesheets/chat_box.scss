@@ -1,0 +1,24 @@
+.chat-box{
+  .message-list{
+    .left-message{
+      float: left;
+      width: 480px;
+      background-color: #ccc;
+      margin : 0 0 1rem 0;
+      padding: 1rem;
+      clear: both;
+    }
+    .right-message{
+      float: right;
+      width: 480px;
+      background-color: #ccc;
+      margin : 0 0 1rem 0;
+      padding: 1rem;
+      clear: both;
+    }
+  }
+  .text-input{
+      float: left;
+      margin : 10rem 0;
+    }   
+}
