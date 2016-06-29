@@ -190,7 +190,7 @@ GEM
     rake (11.2.2)
     rdoc (4.2.2)
       json (~> 1.4)
-    react-rails (1.2.0)
+    react-rails (1.7.1)
       babel-transpiler (>= 0.7.0)
       coffee-script-source (~> 1.8)
       connection_pool
@@ -234,8 +234,8 @@ GEM
     spring (1.7.1)
     sprockets (3.4.0)
       rack (> 1, < 3)
-    sprockets-coffee-react (3.0.1)
-      coffee-react (>= 3.0.1)
+    sprockets-coffee-react (4.0.0)
+      coffee-react (>= 3.4.0)
       coffee-script
       sprockets
       tilt
@@ -287,15 +287,18 @@ DEPENDENCIES
   rails-assets-URIjs
   rails-assets-marked
   rails-assets-semantic
-  react-rails (= 1.2.0)
+  react-rails (= 1.7.1)
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
   sprockets (= 3.4.0)
-  sprockets-coffee-react (= 3.0.1)
+  sprockets-coffee-react (= 4.0.0)
   sprockets-rails (= 2.3.3)
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.11.2

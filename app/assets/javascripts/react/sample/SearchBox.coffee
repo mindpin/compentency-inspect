@@ -73,17 +73,19 @@ SearchBar = React.createClass
       <div className="search-input" onClick={@focus_input}>
         {
           for item in @props.data.current_words
-            delete_word = =>
-              @props.data.delete_word_form_current_words(item)
             <a className="ui label transition visible" key={item}>
               {item}
-              <i className="delete icon" onClick={delete_word}></i>
+              <i className="delete icon" onClick={@delete_word(item)}></i>
             </a>
         }
         <input type="text" placeholder="输入搜索关键词" onKeyDown={@props.data.search_bar_input_key_down} />
         <i className="search icon"></i>
       </div>
     </div>
+
+  delete_word: (word)->
+    =>
+      @props.data.delete_word_form_current_words(word)
 
   focus_input: (e)->
     div = jQuery(e.target)

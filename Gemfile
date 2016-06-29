@@ -16,8 +16,8 @@ gem "devise", "3.5.2"
 gem 'sprockets', '3.4.0'
 gem 'sprockets-rails', '2.3.3'
 
-gem 'react-rails', '1.2.0'
-gem 'sprockets-coffee-react', '3.0.1'
+gem 'react-rails', '1.7.1'
+gem 'sprockets-coffee-react', '4.0.0'
 gem 'non-stupid-digest-assets'
 
 group :development, :test do
