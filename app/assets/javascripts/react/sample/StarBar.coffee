@@ -3,23 +3,17 @@
     curent_star_count: @props.data.curent_star_count
 
   render: ->
+
     <div className="star-bar">
       {
         for star in [1..@props.data.total_star_count]
-          if star <= @state.curent_star_count
-            <a href = "javascript:;" key={star}>
-             <i className="star icon light" onClick={@update_star(star)}></i>
-            </a>
-          else
-            <a href = "javascript:;" key={star}>
-              <i className="star icon" onClick={@update_star(star)}></i>
-            </a>
+          star_data =
+            light: star <= @state.curent_star_count
+            update_star_count: @update_star_curent_count
+            star_num: star
+          <Star data={star_data} key={star} />
       }
     </div>
-
-  update_star: (star)->
-    =>
-      @update_star_curent_count(star)
 
   update_star_curent_count: (star)->
     jQuery.ajax
@@ -30,4 +24,18 @@
     .done (data)=>
       @setState
         curent_star_count: data.curent_star_count
-    
+
+Star = React.createClass
+  render: ->
+    <div className="star">
+      <a href="javascript:;">
+        <i className="star icon #{@class_name()}" onClick={@update_star()}></i>
+      </a>
+    </div>
+
+  update_star: ()->
+    =>
+      @props.data.update_star_count(@props.data.star_num)
+
+  class_name: ()->
+    if @props.data.light then "light" else ""
