@@ -26,6 +26,11 @@ class IndexController < ApplicationController
     render json: text.lines
   end
 
+  def video_player
+    @component_name = "video_player"
+    @component_data = "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD-04-480p.mp4"
+  end
+
   def search_box_post_search
     render json: {
       recommend_words: %w{盖饭 拉条子 凉皮},
