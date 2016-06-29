@@ -35,4 +35,15 @@ class IndexController < ApplicationController
       ]
     }
   end
+
+  def pie_graph
+    @component_name = 'pie_graph'
+    @component_data = [
+      {name: 'Ruby',count:100},
+      {name: 'python',count:70},
+      {name: 'perl',count:20},
+      {name: 'php',count:90}
+    ]
+
+  end
 end
