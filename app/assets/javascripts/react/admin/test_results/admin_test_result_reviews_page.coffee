@@ -7,6 +7,11 @@
       test_paper: @props.data.test_paper
       review_result:  @props.data.review_result
 
+    hader_data: =
+      user: @props.data.user
+      max_score: @props.data.max_score
+      total_score: @props.data.total_score
+
     <div className="admin-test-result-reviews-page">
       <AdminTestResultReviewsPage.Header data={@props.data.review_result.score_data} />
       <AdminTestResultReviewsPage.TestPaper data={data} />
@@ -17,6 +22,9 @@
     Header: React.createClass
       render: ->
         <div className="header">
+          <div>
+            {"答卷人：#{@props.data.user.name}"}
+          </div>
           <div>
             {"满分：#{@props.data.max_score}"}
           </div>
