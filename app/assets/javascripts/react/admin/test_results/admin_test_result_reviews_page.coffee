@@ -9,8 +9,8 @@
 
     header_data =
       user: @props.data.user
-      max_score: @props.data.review_result.max_score
-      total_score: @props.data.review_result.total_score
+      max_score: @props.data.review_result.score_data.max_score
+      total_score: @props.data.review_result.score_data.total_score
 
     <div className="admin-test-result-reviews-page">
       <AdminTestResultReviewsPage.Header data={header_data} />
