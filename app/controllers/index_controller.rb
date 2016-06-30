@@ -51,6 +51,26 @@ class IndexController < ApplicationController
     ]
   end
 
+  def radar_graph
+    @component_name = 'radar_graph'
+    @component_data ={
+      :radar=>
+      {
+        :max_count=>150,
+        :items=>
+          [
+          {name: 'Ruby',count:100},
+          {name: 'python',count:70},
+          {name: 'perl',count:40},
+          {name: 'js',count:120},
+          {name: 'c++',count:80},
+          {name: 'java',count:80},
+          {name: 'php',count:90}
+          ]
+      }
+    }
+  end
+
   # 打分
   def star_bar
     @component_name = 'star_bar'

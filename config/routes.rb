@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   get '/video_player', to: 'index#video_player'
   get '/pie_graph', to: 'index#pie_graph'
+  get '/radar_graph', to: 'index#radar_graph'
   post '/search_box_post_search', to: 'index#search_box_post_search'
 
   get '/star_bar', to: 'index#star_bar'
