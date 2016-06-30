@@ -40,7 +40,6 @@
 
 Star = React.createClass
   render: ->
-    console.log(@props.data)
     <div className="star">
       <a href="javascript:;" onClick={@update_star()} onMouseOut={@on_mouse_out()} onMouseOver={@on_mouse_over()}>
         <i className="star icon #{@class_name()}"></i>
