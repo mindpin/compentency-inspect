@@ -1,23 +1,23 @@
 @StarBar = React.createClass
   getInitialState: ->
-    curent_star_count: @props.data.curent_star_count
-    curent_moves_over_count: 0
+    current_star_count: @props.data.current_star_count
+    current_moves_over_count: 0
 
   render: ->
 
     <div className="star-bar">
       {
-        if @state.curent_star_count==undefined then @state.curent_star_count = 0
+        if @state.current_star_count==undefined then @state.current_star_count = 0
         for star in [1..@props.data.total_star_count]
-          if @state.curent_moves_over_count != 0
-            light_count = @state.curent_moves_over_count
+          if @state.current_moves_over_count != 0
+            light_count = @state.current_moves_over_count
           else
-            light_count = @state.curent_star_count
+            light_count = @state.current_star_count
           star_data =
             light: star <= light_count
             update_star_count: @update_star_curent_count
             change_star_count: @change_star_count
-            star_state_count: @state.curent_star_count
+            star_state_count: @state.current_star_count
             star_num: star
           <Star data={star_data} key={star} />
       }
@@ -31,11 +31,11 @@
         star_count: star
     .done (data)=>
       @setState
-        curent_star_count: data.curent_star_count
+        current_star_count: data.current_star_count
 
   change_star_count: (count)->
     @setState
-      curent_moves_over_count: count
+      current_moves_over_count: count
 
 Star = React.createClass
   render: ->
