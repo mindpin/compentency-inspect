@@ -40,7 +40,7 @@
 Star = React.createClass
   render: ->
     <div className="star">
-      <a href="javascript:;" onClick={@update_star()} onMouseOut={@onMouseout()} onMouseOver={@onMouseOver()}>
+      <a href="javascript:;" onClick={@update_star()} onMouseOut={@on_mouse_out()} onMouseOver={@on_mouse_over()}>
         <i className="star icon #{@class_name()}"></i>
       </a>
     </div>
@@ -52,10 +52,10 @@ Star = React.createClass
   class_name: ()->
     if @props.data.light then "light" else ""
 
-  onMouseOver: ()->
+  on_mouse_over: ()->
     =>
       @props.data.change_star_count(@props.data.star_num)
 
-  onMouseout: ()->
+  on_mouse_out: ()->
     =>
       @props.data.change_star_count(@props.data.star_state_count)
