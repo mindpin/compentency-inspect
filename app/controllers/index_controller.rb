@@ -71,6 +71,20 @@ class IndexController < ApplicationController
     }
   end
 
+  def trend_graph
+    @component_name = 'trend_graph'
+    @component_data ={:trend_datas=>
+      [
+        {date:5,count:35},
+        {date:10,count:25},
+        {date:15,count:25},
+        {date:20,count:45},
+        {date:25,count:45},
+        {date:30,count:5}
+      ]
+    }
+  end
+
   # 打分
   def star_bar
     @component_name = 'star_bar'
