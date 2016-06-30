@@ -23,6 +23,7 @@
       }
     </div>
 
+  
   update_star_curent_count: (star)->
     jQuery.ajax
       url: @props.data.post_url
@@ -39,6 +40,7 @@
 
 Star = React.createClass
   render: ->
+    console.log(@props.data)
     <div className="star">
       <a href="javascript:;" onClick={@update_star()} onMouseOut={@on_mouse_out()} onMouseOver={@on_mouse_over()}>
         <i className="star icon #{@class_name()}"></i>

@@ -25,69 +25,73 @@
     width = 600
     height = 300
     main = d3.select('.trend-chart svg')
-    .append('g')
-    .classed('main', true)
-    .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
+      .append('g')
+      .classed('main', true)
+      .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
 
     xScale = d3.scale
-    .linear()
-    .domain d3.extent dataset,(d)-> 
-      return d.x
-    .range [0,width - padding.left - padding.right]
+      .linear()
+      .domain d3.extent dataset,(d)-> 
+        return d.x
+      .range [0,width - padding.left - padding.right]
 
-    yScale = d3.scale.linear().domain [0,d3.max(dataset,(d)->
-                                      return d.y
-    )]
-    .range [height - padding.top - padding.bottom, 0]
+    yScale = d3.scale
+      .linear()
+      .domain [
+        0,
+        d3.max dataset,(d)->
+            return d.y
+      ]
+      .range [height - padding.top - padding.bottom, 0]
 
     xAxis = d3.svg.axis().scale(xScale).orient('bottom');
     yAxis = d3.svg.axis().scale(yScale).orient('left');
 
     # 绑定坐标轴
     main.append('g')
-    .attr('class', 'axis')
-    .attr('transform', 'translate(0,' + (height - padding.top - padding.bottom) + ')')
-    .call(xAxis);
+      .attr('class', 'axis')
+      .attr('transform', 'translate(0,' + (height - padding.top - padding.bottom) + ')')
+      .call(xAxis);
 
     main.append('g')
-    .attr('class', 'axis')
-    .call(yAxis);
+      .attr('class', 'axis')
+      .call(yAxis);
 
     # 线
     line = d3.svg.line()
-    .x (d)->
-      return xScale(d.x)
-    .y (d)->
-      return yScale(d.y)
-    .interpolate('linear')
+      .x (d)->
+        return xScale(d.x)
+      .y (d)->
+        return yScale(d.y)
+      .interpolate('linear')
 
     main.append('path').attr('class', 'line').attr('d', line(dataset));
 
     # 点
     main.selectAll('circle')
-    .data(dataset)
-    .enter()
-    .append('circle')
-    .attr 'cx', (d)->
-      return xScale(d.x);
-    .attr 'cy', (d)->
-      return yScale(d.y)
-    .attr('r', 4)
-    .attr 'fill' , (d,i)=>
-      return @getColor(i)
+      .data(dataset)
+      .enter()
+      .append('circle')
+      .attr 'cx', (d)->
+        return xScale(d.x);
+      .attr 'cy', (d)->
+        return yScale(d.y)
+      .attr('r', 4)
+      .attr 'fill' , (d, i)=>
+        return @getColor(i)
 
     # text
     main.selectAll(".MyText")
-    .data(dataset)
-    .enter()
-    .append("text")
-    .attr("class","MyText")
-    .attr "dx",(d)->
-      return xScale(d.x)
-    .attr "dy",(d)->
-      return yScale(d.y)-padding.top/5
-    .text (d)->
-      return d.y
+      .data(dataset)
+      .enter()
+      .append("text")
+      .attr("class","MyText")
+      .attr "dx",(d)->
+        return xScale(d.x)
+      .attr "dy",(d)->
+        return yScale(d.y)-padding.top/5
+      .text (d)->
+        return d.y
 
 
 

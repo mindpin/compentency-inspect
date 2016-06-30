@@ -9,14 +9,14 @@
     dataset = @props.data.pie
    
     tip = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([-10, 0])
-    .html (d)->
-      return "名称："+d.data.name+"数值"+d.data.count;
+      .attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html (d)->
+        return "名称："+d.data.name+"数值"+d.data.count;
 
     svg = d3.select(".pie-chart").append('svg')
-    .attr('width',width)
-    .attr('height',height);
+      .attr('width',width)
+      .attr('height',height);
     svg.call(tip)
 
     pie = d3.layout.pie().value (d)->
@@ -29,15 +29,15 @@
     color = d3.scale.category10();
 
     arcs = svg.selectAll("g")
-    .data(piedata)
-    .enter()
-    .append("g")
-    .attr("transform","translate("+ width/2 +","+ width/2 +")")
+      .data(piedata)
+      .enter()
+      .append("g")
+      .attr("transform","translate("+ width/2 +","+ width/2 +")")
 
     arcs.append("path")
-      .attr "fill",(d,i)->
+      .attr "fill", (d, i)->
         return color(i);
-      .attr "d",(d)->
+      .attr "d", (d)->
         return arc(d);
       .on 'mouseover', (d)->
         outer_dom = d3.event.target
@@ -52,7 +52,7 @@
         x = arc.centroid(d)[0] * 1.4;
         y = arc.centroid(d)[1] * 1.4;
         return "translate(" + x + "," + y + ")";
-      .attr("text-anchor","middle")
+      .attr("text-anchor", "middle")
       .attr("style", "pointer-events: none;")
       .attr 'id', (d)->
         return d.data.name

@@ -18,11 +18,11 @@
     height = 300
     
     main = d3.select('.radar-chart svg').append('g')
-    .classed('main', true)
-    .attr('transform', "translate(" + width/2 + ',' + height/2 + ')')
+      .classed('main', true)
+      .attr('transform', "translate(" + width/2 + ',' + height/2 + ')')
 
 
-    data = {fieldNames:[],values_percent:[[]]}
+    data = { fieldNames: [], values_percent: [[]] }
 
     for item in @props.data.radar.items
       data.fieldNames.push(item.name)
@@ -95,8 +95,8 @@
         x = r * Math.sin(k * onePiece)
         y = r * Math.cos(k * onePiece)
         area += x + ',' + y + ' '
-        points.push({x: x,y: y})
-      areasData.push({polygon:area,points:points})
+        points.push({ x: x, y: y })
+      areasData.push({ polygon: area, points: points })
 
     # 添加g分组包含所有雷达图区域
     areas = main.append('g').classed('areas', true)
@@ -138,7 +138,7 @@
       for i in [0...total]
         x = textRadius * Math.sin(i * onePiece)
         y = textRadius * Math.cos(i * onePiece)
-        textPoints.push({x:x,y:y})
+        textPoints.push({ x: x,y: y })
 
       # 绘制文字标签
       texts = main.append('g').classed('texts', true);
@@ -150,7 +150,7 @@
           return d.x;
         .attr 'y', (d)->
           return d.y;
-        .text (d,i)->
+        .text (d, i)->
           return data.fieldNames[i];
 
 
