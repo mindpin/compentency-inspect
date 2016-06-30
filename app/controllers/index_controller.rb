@@ -48,7 +48,7 @@ class IndexController < ApplicationController
   # 更新當前分數
   def star_bar_post_star_count
     render json: {
-      curent_star_count: params[:star_count],
+      current_star_count: params[:star_count],
     }
   end
 end
