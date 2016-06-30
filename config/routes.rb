@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get '/getimgs', to: 'index#getimgs'
   
   get '/video_player', to: 'index#video_player'
-  get '/pie_graph', to: 'index#pie_graph'
+  get '/pie_chart', to: 'index#pie_chart'
+  get '/radar_chart', to: 'index#radar_chart'
+  get '/trend_chart', to: 'index#trend_chart'
   post '/search_box_post_search', to: 'index#search_box_post_search'
 
   get '/star_bar', to: 'index#star_bar'

@@ -41,14 +41,48 @@ class IndexController < ApplicationController
     }
   end
 
-  def pie_graph
-    @component_name = 'pie_graph'
-    @component_data = [
-      {name: 'Ruby',count:100},
-      {name: 'python',count:70},
-      {name: 'perl',count:20},
-      {name: 'php',count:90}
-    ]
+  def pie_chart
+    @component_name = 'pie_chart'
+    @component_data = {
+      pie: [
+        { name: 'Ruby',   count:100 },
+        { name: 'python', count:70 },
+        { name: 'perl',   count:20 },
+        { name: 'php',    count:90 }
+      ]
+    }
+  end
+
+  def radar_chart
+    @component_name = 'radar_chart'
+    @component_data = {
+      radar: {
+        max_count: 150,
+        items: [
+          { name: 'Ruby',   count: 100 },
+          { name: 'python', count: 70 },
+          { name: 'perl',   count: 40 },
+          { name: 'js',     count: 120 },
+          { name: 'c++',    count: 80 },
+          { name: 'java',   count: 80 },
+          { name: 'php',    count: 90 }
+        ]
+      }
+    }
+  end
+
+  def trend_chart
+    @component_name = 'trend_chart'
+    @component_data = {
+      trend: [
+        { date: 5,  count: 35 },
+        { date: 10, count: 25 },
+        { date: 15, count: 25 },
+        { date: 20, count: 45 },
+        { date: 25, count: 45 },
+        { date: 30, count: 5 }
+      ]
+    }
   end
 
   # 打分

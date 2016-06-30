@@ -23,6 +23,7 @@
       }
     </div>
 
+  
   update_star_curent_count: (star)->
     jQuery.ajax
       url: @props.data.post_url
