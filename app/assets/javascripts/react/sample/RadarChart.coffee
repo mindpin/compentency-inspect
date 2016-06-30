@@ -1,28 +1,26 @@
-@RadarGraph = React.createClass
+@RadarChart = React.createClass
   render: ->
-    <div className="radar-graph">
+    <div className="radar-chart">
       <svg width= 1000 height=2000></svg>
     </div>
 
   getColor:(idx)->
     palette = [
-                    '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
-                    '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
-                    '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
-                    '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
-                ]
+      '#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+      '#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+      '#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+      '#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
+    ]
     return palette[idx % palette.length];
 
   componentDidMount: ->
     width = 600 
     height = 300
     
-    main = d3.select('.radar-graph svg').append('g')
+    main = d3.select('.radar-chart svg').append('g')
     .classed('main', true)
     .attr('transform', "translate(" + width/2 + ',' + height/2 + ')')
 
-
-    console.log(@props.data.radar)
 
     data = {fieldNames:[],values_percent:[[]]}
 

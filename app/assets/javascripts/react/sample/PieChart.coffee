@@ -1,12 +1,12 @@
-@PieGraph = React.createClass
+@PieChart = React.createClass
   render: ->
-    <div className="pie-graph">
+    <div className="pie-chart">
     </div>
 
   componentDidMount: ->
     width = 400;
     height = 400;
-    dataset = @props.data
+    dataset = @props.data.pie
    
     tip = d3.tip()
     .attr('class', 'd3-tip')
@@ -14,7 +14,7 @@
     .html (d)->
       return "名称："+d.data.name+"数值"+d.data.count;
 
-    svg = d3.select(".pie-graph").append('svg')
+    svg = d3.select(".pie-chart").append('svg')
     .attr('width',width)
     .attr('height',height);
     svg.call(tip)
@@ -46,7 +46,7 @@
         jQuery(".d3-tip").css("pointer-events","none")
       .on 'mouseout', (d)->
         tip.hide(d)
-# 
+ 
     arcs.append("text")
       .attr "transform",(d)->
         x = arc.centroid(d)[0] * 1.4;
