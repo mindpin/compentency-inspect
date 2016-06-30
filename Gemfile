@@ -49,3 +49,6 @@ source 'https://rails-assets.org'
 gem 'rails-assets-semantic'
 gem 'rails-assets-URIjs'
 gem 'rails-assets-marked'
+
+gem 'rails-assets-d3-tip'
+

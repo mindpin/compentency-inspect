@@ -5,6 +5,9 @@
 //= require ./highlight.min
 //= require marked
 
+//= require d3
+//= require d3-tip
+
 //= require react
 //= require react_ujs
 

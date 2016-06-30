@@ -172,6 +172,9 @@ GEM
       railties (= 4.2.3)
       sprockets-rails
     rails-assets-URIjs (1.18.1)
+    rails-assets-d3 (3.5.5)
+    rails-assets-d3-tip (0.6.7)
+      rails-assets-d3 (= 3.5.5)
     rails-assets-jquery (3.0.0)
     rails-assets-marked (0.3.5)
     rails-assets-semantic (2.1.8)
@@ -288,6 +291,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.2.3)
   rails-assets-URIjs
+  rails-assets-d3-tip
   rails-assets-marked
   rails-assets-semantic
   react-rails (= 1.7.1)
