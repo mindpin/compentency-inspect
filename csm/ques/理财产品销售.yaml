@@ -1,0 +1,30 @@
+- object_name: 客户
+  facts:
+  - fact_name: 家庭状况
+    facts:
+    - fact_name: 子女状况
+      tags:
+      - tag_name: 无子女
+      - tag_name: 单子女
+      - tag_name: 多子女
+    - fact_name: 婚姻状况
+      tags:
+      - tag_name: 未婚
+      - tag_name: 已婚
+      - tag_name: 丧偶
+      - tag_name: 离婚
+  - fact_name: 健康状况
+    tags:
+    - tag_name: 良好
+    - tag_name: 慢性疾病
+    - tag_name: 严重疾病
+  - fact_name: 年龄
+    tags:
+    - tag_name: 青年
+    - tag_name: 中年
+    - tag_name: 老年
+  - fact_name: 财务状况
+    tags:
+    - tag_name: 现金盈余多
+    - tag_name: 良好
+    - tag_name: 负债

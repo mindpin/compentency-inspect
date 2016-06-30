@@ -2,16 +2,8 @@ class IndexController < ApplicationController
   layout 'csm'
 
   def index
-    redirect_to "/sample"
-  end
-
-  def sample
-    data = YAML.load_file File.join(Rails.root, 'csm', 'yaml', '理财经理培训.yaml')
-
-    @component_name = 'csm_sample_page'
-    @component_data = {
-      data: data
-    }
+    @component_name = 'sample_index_page'
+    @component_data = {}
   end
 
   def getmd
@@ -33,6 +25,22 @@ class IndexController < ApplicationController
         {title: "title333", desc: "desc333"},
         {title: "title4444", desc: "desc4444"},
       ]
+    }
+  end
+
+  def views
+    name = params[:name]
+    view_data = case name
+    when 'read'
+      YAML.load_file File.join(Rails.root, 'csm', 'yaml', '理财经理培训.yaml')
+    when 'case'
+      YAML.load_file File.join(Rails.root, 'csm', 'ques', '理财产品销售.yaml')
+    end
+
+    @component_name = 'views_tab'
+    @component_data = {
+      name: name,
+      view_data: view_data
     }
   end
 end

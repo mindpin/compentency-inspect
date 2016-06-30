@@ -22,11 +22,16 @@ class ApplicationController < ActionController::Base
   # 如果 @component_name @component_data 存在就 render "/react/page"
   # 如果 @component_name @component_data 不存在就使用 rails 默认的 render :template => params[:action] 行为
   def default_render(*args)
-    if @component_name.present? && @component_data.present?
+    if @component_name.present? and not @component_data.nil?
       @component_name = @component_name.camelize
       return render "/react/page"
     else
       super
     end
+  end
+
+  def component(name, data)
+    @component_name = name
+    @component_data = data
   end
 end

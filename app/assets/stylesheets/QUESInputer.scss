@@ -1,0 +1,121 @@
+.QUES-inputer {
+  border: solid 1px #ececec;
+
+  .stack {
+    background-color: #ffffda;
+    border: solid 1px rgba(black, 0.1);
+    margin: 5px;
+    min-height: 40px;
+    overflow: hidden;
+
+    .object {
+      height: 30px;
+      line-height: 30px;
+      background-color: rgba(black, 0.1);
+      float: left;
+      margin-top: 4px;
+      margin-left: 4px;
+      padding: 0 1rem;
+      &.tag {
+        background-color: #FFE0C5;
+      }
+    }
+  }
+
+  .area {
+    min-height: 500px;
+    position: relative;
+  }
+
+  .current_object {
+    $w: 60px;
+
+    position: absolute;
+    height: $w;
+    line-height: $w;
+    font-size: 24px;
+    padding-left: $w * 1.2;
+    top: 50%;
+    margin-top: -$w / 2;
+    left: 80px;
+
+    .circle {
+      top:0;
+      left:0;
+      position: absolute;
+      width: $w;
+      height: $w;
+      border: solid 3px #BAECF1;
+      border-radius: 100%;
+      background-color: lighten(#BAECF1, 10%);
+      opacity: 0.8;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .facts {
+    position: absolute;
+    left: 320px;
+    top: 50%;
+  }
+  
+  .facts .child-fact {
+    $w: 40px;
+    $pd: 20px;
+
+    position: relative;
+    height: $w + $pd;
+    line-height: $w + $pd;
+    font-size: 24px;
+    padding-left: $w * 1.2;
+
+    .circle {
+      top:$pd / 2;
+      left:0;
+      position: absolute;
+      width: $w;
+      height: $w;
+      border: solid 3px #BAECF1;
+      border-radius: 100%;
+      background-color: lighten(#BAECF1, 10%);
+      opacity: 0.8;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .tags {
+    position: absolute;
+    left: 320px;
+    top: 50%;
+  }
+  
+  .tags .child-tag {
+    $w: 30px;
+    $pd: 20px;
+
+    position: relative;
+    height: $w + $pd;
+    line-height: $w + $pd;
+    font-size: 24px;
+    padding-left: $w * 1.2;
+
+    .circle {
+      top:$pd / 2;
+      left:0;
+      position: absolute;
+      width: $w;
+      height: $w;
+      border: solid 3px #FFBE84;
+      border-radius: 4px;
+      background-color: lighten(#FFBE84, 10%);
+      opacity: 0.8;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

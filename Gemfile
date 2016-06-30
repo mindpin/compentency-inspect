@@ -34,7 +34,7 @@ group :test do
 end
 
 gem "unicorn"
-gem "mongoid", "~> 5.1.0"
+gem "mongoid", "~> 4.0.0"
 gem "mina", "0.3.7"
 gem "figaro", "~> 1.1.1"
 
