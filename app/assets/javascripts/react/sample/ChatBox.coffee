@@ -2,7 +2,6 @@
   getInitialState: ->
     messages: @props.data.messages
 
-
   render: ->
     message_input_area_data =
       send_message_text: @send_message_text
@@ -35,6 +34,8 @@
         message_array.push(data)
         @setState
           messages: message_array
+        jQuery(".message-list").scrollTop(jQuery(".message-list")[0].scrollHeight)
+      
 
 MessageList = React.createClass
   render: ->

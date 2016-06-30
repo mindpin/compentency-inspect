@@ -1,5 +1,14 @@
 .chat-box{
+  height: 600px;
+  width: 720px;
+  position: relative;
   .message-list{
+    position: absolute;
+    top: 0;
+    bottom: 64;
+    left: 0;
+    right: 0;
+    overflow: auto;
     .left-message{
       float: left;
       width: 480px;
@@ -18,7 +27,9 @@
     }
   }
   .text-input{
-      float: left;
-      margin : 10rem 0;
-    }   
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }   
 }
