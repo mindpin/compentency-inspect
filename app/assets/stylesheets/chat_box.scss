@@ -1,8 +1,7 @@
 .chat-box{
-  $input_height: 3rem;
+  $input_height: 6rem;
 
   height: 600px;
-  // width: 720px;
   position: relative;
   .message-list{
     position: absolute;
@@ -30,14 +29,29 @@
     }
   }
   .text-input{
-    font-size: $input_height*0.6 !important;
-    input{
+    font-size: $input_height*0.1 !important;
+    .textarea{
+      position: absolute;
+      height: $input_height*0.6;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: $input_height*0.4;
+      textarea{
+      width:100%;
+      height:100%;
       padding: 0;
       padding-left: 0.5rem;
-      height: $input_height;
-      line-height: $input_height;
+      line-height: $input_height*0.15;
+      }
     }
-    height: 3rem;
+    button{
+      position: absolute;
+      height: $input_height*0.35;
+      right: 0;
+      bottom: 0;
+    }
+    height: $input_height;
     position: absolute;
     left: 0;
     right: 0;
