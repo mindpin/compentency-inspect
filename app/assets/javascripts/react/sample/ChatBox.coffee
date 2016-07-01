@@ -9,8 +9,6 @@
 
     message_input_area_data =
       send_message_text: @send_message_text
-      textarea_keyup: @textarea_keyup
-      textarea_keydown: @textarea_keydown
 
     <div className="chat-box">
       <MessageList data={message_list_data}/>
@@ -41,7 +39,8 @@
         @setState
           messages: message_array
         dom = ReactDOM.findDOMNode(@)
-        jQuery(dom).find(".message-list").scrollTop(jQuery(dom).find(".message-list")[0].scrollHeight)
+        message_list = jQuery(dom).find(".message-list")
+        message_list.scrollTop(message_list[0].scrollHeight)
       
 MessageList = React.createClass
   render: ->
