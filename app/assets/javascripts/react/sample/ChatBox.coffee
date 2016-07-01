@@ -14,9 +14,7 @@
     </div>
 
   textarea_keyup: (e)->
-    @input_keycodes ||= []
-    @input_keycodes[e.keyCode] = false
-
+    @input_keycodes = []
 
   textarea_keydown: (e)->
     @input_keycodes ||= []
