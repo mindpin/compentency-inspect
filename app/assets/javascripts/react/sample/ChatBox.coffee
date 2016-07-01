@@ -5,21 +5,20 @@
   render: ->
     message_input_area_data =
       send_message_text: @send_message_text
-      keydown: @keydown
-      keyup: @keyup
+      textarea_keyup: @textarea_keyup
+      textarea_keydown: @textarea_keydown
 
     <div className="chat-box">
       <MessageList data={@state.messages}/>
       <MessageInputArea data={message_input_area_data} ref="message_input_area"/>
     </div>
 
-  keyup: (e)->
+  textarea_keyup: (e)->
     @input_keycodes ||= []
     @input_keycodes[e.keyCode] = false
-    if @input_keycodes[13] && @input_keycodes[17]
-      @send_message_text()
 
-  keydown: (e)->
+
+  textarea_keydown: (e)->
     @input_keycodes ||= []
     @input_keycodes[e.keyCode] = true
     if @input_keycodes[13] && @input_keycodes[17]
@@ -70,7 +69,7 @@ MessageInputArea = React.createClass
   render: ->
     <div className="text-input">
       <div className="textarea">
-        <textarea type="text" placeholder="输入你想说的话" ref="message_input" onKeyDown={@props.data.keydown} onKeyUp={@props.data.keyup}/>
+        <textarea type="text" placeholder="输入你想说的话" ref="message_input" onKeyDown={@props.data.textarea_keydown} onKeyUp={@props.data.textarea_keyup}/>
       </div>
       <button className="ui button" onClick={@props.data.send_message_text}>发送</button>
     </div>
