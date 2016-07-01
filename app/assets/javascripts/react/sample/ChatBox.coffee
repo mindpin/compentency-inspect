@@ -3,7 +3,7 @@
     messages: @props.data.messages
 
   render: ->
-    message_list_data = 
+    message_list_data =
       chater_self: @props.data.chater_self
       messages: @state.messages
 
@@ -18,12 +18,12 @@
   send_message_text: ()->
      message_text = @refs.message_input_area.refs.message_input.value
      message =
-      chater: 
+      chater:
         id: @props.data.chater_self.id
         name: @props.data.chater_self.name
       text: message_text
      message_array = @state.messages
-     message_array.push(message) 
+     message_array.push(message)
      @setState
         messages: message_array
      @return_message(message_text,message_array)
@@ -41,22 +41,26 @@
         dom = ReactDOM.findDOMNode(@)
         message_list = jQuery(dom).find(".message-list")
         message_list.scrollTop(message_list[0].scrollHeight)
-      
+
 MessageList = React.createClass
   render: ->
     <div className="message-list">
       {
-        for item in @props.data.messages
+        for item, index in @props.data.messages
           replace_text = item.text.replace(/\r?\n/g, "</br>")
           message_text = {__html: replace_text}
-          if item.chater.id == @props.data.chater_self.id && item.chater.name == @props.data.chater_self.name
-            textclass = "left-message"
-          else
+
+          chater_self = @props.data.chater_self
+          if item.chater.id == chater_self.id && item.chater.name == chater_self.name
             textclass = "right-message"
-          <div className=textclass key={item.text}>
+          else
+            textclass = "left-message"
+
+          key = "#{index}:#{item.text}"
+          <div className=textclass key={key}>
              <div className="chater">{item.chater.name}:</div>
              <div className="text" dangerouslySetInnerHTML={message_text} />
-          </div>  
+          </div>
       }
     </div>
 
@@ -76,4 +80,4 @@ MessageInputArea = React.createClass
     @input_keycodes ||= []
     @input_keycodes[e.keyCode] = true
     if @input_keycodes[13] && @input_keycodes[17]
-      @props.data.send_message_text() 
+      @props.data.send_message_text()
