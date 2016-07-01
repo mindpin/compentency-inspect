@@ -35,11 +35,12 @@ class IndexController < ApplicationController
     @component_name = "chat_box"
     @component_data = {
       post_url: "/return_message",
+      chater_self: {id: 1, name: "我"},
       messages: [
-        {chater:{id: 1,name: "我"},text: "吃饭"},
-        {chater:{id: 2,name: "chat机器人"},text: "我不用吃饭"},
-        {chater:{id: 1,name: "我"},text: "睡觉"},
-        {chater:{id: 2,name: "chat机器人"},text: "我不用睡觉"}
+        {chater: {id: 1, name: "我"}, text: "吃饭"},
+        {chater: {id: 2, name: "chat机器人"}, text: "我不用吃饭"},
+        {chater: {id: 1, name: "我"}, text: "睡觉"},
+        {chater: {id: 2, name: "chat机器人"}, text: "我不用睡觉"}
       ]
     }
   end

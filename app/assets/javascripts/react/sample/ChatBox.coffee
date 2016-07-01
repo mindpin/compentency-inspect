@@ -1,5 +1,6 @@
 @ChatBox = React.createClass
   getInitialState: ->
+    chater_self: @props.data.chater_self
     messages: @props.data.messages
 
   render: ->
@@ -9,7 +10,7 @@
       textarea_keydown: @textarea_keydown
 
     <div className="chat-box">
-      <MessageList data={@state.messages}/>
+      <MessageList data={@state}/>
       <MessageInputArea data={message_input_area_data} ref="message_input_area"/>
     </div>
 
@@ -51,11 +52,13 @@ MessageList = React.createClass
   render: ->
     <div className="message-list">
       {
-        for item in @props.data
+        for item in @props.data.messages
           replace_text = item.text.replace(/\r?\n/g, "</br>")
           a = {__html: replace_text}
-          if item.chater.id == 1 then textclass = "left-message"
-          if item.chater.id == 2 then textclass = "right-message"
+          if item.chater.id == @props.data.chater_self.id && item.chater.name == @props.data.chater_self.name
+            textclass = "left-message"
+          else
+            textclass = "right-message"
           <div className=textclass key={item.text}>
              <div className="chater">{item.chater.name}:</div>
              <div className="text" dangerouslySetInnerHTML={a} />
