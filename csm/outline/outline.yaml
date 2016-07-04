@@ -1,44 +1,51 @@
 - id: "0"
   name: 平台结构
-  slide: http://i.teamkn.com/i/dsOMprlc.jpg
+  slide: http://i.teamkn.com/i/ifP7V0F3.jpg
+  icon: circle thin
+  uis: []
+  pc_demo: /views/case
+  mobile_demo: /views/case
 
 - id: "1"
   name: 知识体系的建立
-  slide: http://i.teamkn.com/i/jxQ40c2K.jpg
+  slide: http://i.teamkn.com/i/VqPzyKpo.jpg
+  icon: circle thin
   children:
     - id: "11"
-      name: 建立知识结构体系
+      name: 建立知识结构
       slide: http://i.teamkn.com/i/W9YNHWMR.png
     - id: "12"
-      name: 分享工作任务经验
+      name: 分享工作经验
       slide: http://i.teamkn.com/i/lw4MYzmE.png
     - id: "13"
-      name: 逐步改良经验结构
+      name: 逐步演化改进
       slide: http://i.teamkn.com/i/ucWVvefp.png
     - id: "14"
-      name: 关联企业培训内容
+      name: 关联培训内容
       slide: http://i.teamkn.com/i/brLIs1rl.png
 
 - id: "2"
-  name: 知识体系的应用
-  slide: http://i.teamkn.com/i/C2OqtfYK.jpg
+  name: 知识体系的运用
+  slide: http://i.teamkn.com/i/Ydo2Fvkp.jpg
+  icon: circle thin
   children: 
     - id: "21"
-      name: 如何获取内容
+      name: 获取内容
       slide: http://i.teamkn.com/i/P8B1L8v0.png
     - id: "22"
-      name: 如何发起提问
+      name: 发起提问
       slide: http://i.teamkn.com/i/AFRUj7dz.png
     - id: "23"
-      name: 如何作出反馈
+      name: 作出反馈
       slide: http://i.teamkn.com/i/DmYchAwU.png
     - id: "24"
-      name: 如何进行考核
+      name: 进行考核
       slide: http://i.teamkn.com/i/uCmwneMJ.png
       
 - id: "3"
   name: 移动内容的呈现
-  slide: http://i.teamkn.com/i/pL2lvPTx.jpg
+  slide: http://i.teamkn.com/i/iGsBCvEL.jpg
+  icon: circle thin
   children:
     - id: "32"
       name: 发布微站
@@ -47,5 +54,5 @@
       name: 访问微站
       slide: http://i.teamkn.com/i/THLEWfYX.png
     - id: "34"
-      name: 内容署名转发
+      name: 内容运用
       slide: http://i.teamkn.com/i/IJM89m6t.png
