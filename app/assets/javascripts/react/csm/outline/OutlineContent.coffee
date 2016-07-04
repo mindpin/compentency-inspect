@@ -108,6 +108,7 @@
 
   componentDidUpdate: ->
     jQuery ReactDOM.findDOMNode @refs.slide
+      .stop()
       .css
         'margin-top': -50
         'opacity': 0.1
@@ -117,6 +118,7 @@
       }, 500, 'linear'
 
     jQuery ReactDOM.findDOMNode @refs.rpart
+      .stop()
       .css
         'margin-top': 50
         'opacity': 0.1
