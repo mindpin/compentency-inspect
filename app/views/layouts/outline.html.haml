@@ -15,5 +15,4 @@
     :ruby
       outline_data = YAML.load_file File.join(Rails.root, 'csm', 'outline', 'outline.yaml')
 
-    = react_component 'OutlineSidebar', outline_data: outline_data
-    = react_component 'OutlineContent', outline_data: outline_data
+    = react_component 'OutlinePage', outline_data: outline_data

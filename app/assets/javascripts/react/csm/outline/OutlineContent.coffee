@@ -1,35 +1,54 @@
 @OutlineContent = React.createClass
   getInitialState: ->
-    pages = {}
+    pages = []
     for item in @props.outline_data
-      pages[item.id] = item
+      pages.push item
       for sitem in item.children || []
-        pages[sitem.id] = sitem
+        pages.push sitem
 
     pages: pages
 
   render: ->
-    cid = location.href.split('#')[1]
-    if cid? and cid.length
-      cid = cid
-    else
-      cid = '0'
+    pages = @state.pages
 
-    page = @state.pages[cid]
+    page = pages.filter((x)=> x.id == @props.cid)[0]
+    first_page = pages[0]
+    last_page = pages[pages.length - 1]
+
+    page_idx = pages.indexOf page
 
     <div className='outline-content'>
       <div className='left-part'>
         <div className='slide-outer'>
-          <div className='slide'>
+          <div className='slide' ref='slide'>
             <div className='slide-inner'>
               <img src={page.slide} />
             </div>
           </div>
+
+          {
+            prev_klass = new ClassName
+              "prev": true
+              "disabled": page == first_page
+
+            next_klass = new ClassName
+              "next": true
+              "disabled": page == last_page
+
+            <div className='page-turning'>
+              <a className={prev_klass} href='javascript:;' onClick={@prev(page_idx)}>
+                <i className='icon chevron left' /> 上一页
+              </a>
+              <a className={next_klass} href='javascript:;' onClick={@next(page_idx)}>
+                下一页 <i className='icon chevron right' />
+              </a>
+            </div>
+          }
         </div>
       </div>
 
 
-      <div className='right-part'>
+      <div className='right-part' ref='rpart'>
         <h2 className='title'>{page.name}</h2>
         <div className='detail'>
           <div className='desc'>
@@ -77,5 +96,31 @@
       </div>
     </div>
 
-  componentDidMount: ->
-    window.outline_content = @
+  prev: (page_idx)->
+    =>
+      prev_id = @state.pages[page_idx - 1].id
+      @props.page.nav_to prev_id
+
+  next: (page_idx)->
+    =>
+      next_id = @state.pages[page_idx + 1].id
+      @props.page.nav_to next_id
+
+  componentDidUpdate: ->
+    jQuery ReactDOM.findDOMNode @refs.slide
+      .css
+        'margin-top': -50
+        'opacity': 0.1
+      .animate {
+        'margin-top': 0
+        'opacity': 1
+      }, 500, 'linear'
+
+    jQuery ReactDOM.findDOMNode @refs.rpart
+      .css
+        'margin-top': 50
+        'opacity': 0.1
+      .animate {
+        'margin-top': 0
+        'opacity': 1
+      }, 500, 'linear'

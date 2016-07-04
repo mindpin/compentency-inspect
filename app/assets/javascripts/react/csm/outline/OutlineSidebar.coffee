@@ -1,19 +1,11 @@
 @OutlineSidebar = React.createClass
   render: ->
-    cid = location.href.split('#')[1]
-    if cid? and cid.length
-      cid = cid
-    else
-      cid = '0'
-
-    console.log cid
-
     <div className='outline-sidebar'>
     {
       for item in @props.outline_data
         klass0 = new ClassName
           "link": true
-          "active": item.id == cid
+          "active": item.id == @props.cid
 
         <div key={item.id} className='item'>
           <a href="javascript:;" className={klass0} onClick={@nav_to(item.id)}>
@@ -23,7 +15,7 @@
             for sitem in item.children || []
               klass1 = new ClassName
                 "slink": true
-                "active": sitem.id == cid
+                "active": sitem.id == @props.cid
 
               <a key={sitem.id} href="javascript:;" className={klass1} onClick={@nav_to(sitem.id)}>
                 <i className="icon angle right" /> {sitem.name}
@@ -33,8 +25,6 @@
     }
     </div>
 
-  nav_to: (id)->
+  nav_to: (cid)->
     =>
-      location.href = "/outline##{id}"
-      window.outline_content.setState {}
-      @setState {}
+      @props.page.nav_to(cid)
