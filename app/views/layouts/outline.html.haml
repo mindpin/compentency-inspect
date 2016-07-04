@@ -12,5 +12,8 @@
     = csrf_meta_tags
 
   %body
-    = react_component 'OutlineSidebar'
+    :ruby
+      outline_data = YAML.load_file File.join(Rails.root, 'csm', 'outline', 'outline.yaml')
+
+    = react_component 'OutlineSidebar', outline_data: outline_data
     = yield

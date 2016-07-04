@@ -1,0 +1,51 @@
+- id: "0"
+  name: 平台结构
+  slide: http://i.teamkn.com/i/dsOMprlc.jpg
+
+- id: "1"
+  name: 知识体系的建立
+  slide: http://i.teamkn.com/i/jxQ40c2K.jpg
+  children:
+    - id: "11"
+      name: 建立知识结构体系
+      slide: http://i.teamkn.com/i/W9YNHWMR.png
+    - id: "12"
+      name: 分享工作任务经验
+      slide: http://i.teamkn.com/i/lw4MYzmE.png
+    - id: "13"
+      name: 逐步改良经验结构
+      slide: http://i.teamkn.com/i/ucWVvefp.png
+    - id: "14"
+      name: 关联企业培训内容
+      slide: http://i.teamkn.com/i/brLIs1rl.png
+
+- id: "2"
+  name: 知识体系的应用
+  slide: http://i.teamkn.com/i/C2OqtfYK.jpg
+  children: 
+    - id: "21"
+      name: 如何获取内容
+      slide: http://i.teamkn.com/i/P8B1L8v0.png
+    - id: "22"
+      name: 如何发起提问
+      slide: http://i.teamkn.com/i/AFRUj7dz.png
+    - id: "23"
+      name: 如何作出反馈
+      slide: http://i.teamkn.com/i/DmYchAwU.png
+    - id: "24"
+      name: 如何进行考核
+      slide: http://i.teamkn.com/i/uCmwneMJ.png
+      
+- id: "3"
+  name: 移动内容的呈现
+  slide: http://i.teamkn.com/i/pL2lvPTx.jpg
+  children:
+    - id: "32"
+      name: 发布微站
+      slide: http://i.teamkn.com/i/f1igidol.png
+    - id: "33"
+      name: 访问微站
+      slide: http://i.teamkn.com/i/THLEWfYX.png
+    - id: "34"
+      name: 内容署名转发
+      slide: http://i.teamkn.com/i/IJM89m6t.png
