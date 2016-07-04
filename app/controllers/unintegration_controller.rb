@@ -1,5 +1,5 @@
 class UnintegrationController < ApplicationController
-  layout 'csm'
+  layout 'unintegration'
 
   # 视频播放
   def video_player
