@@ -1,0 +1,61 @@
+.sample-index-page {
+  .header-image {
+    min-height: 400px;
+    background-color: #ececec;
+    margin-bottom: 1rem;
+  }
+
+  .features {
+    overflow: hidden;
+    .feature {
+      width: 150px;
+      height: 150px;
+      border-radius: 100%;
+      background-color: #ececec;
+      float: left;
+      margin-right: 3rem;
+    }
+  }
+}
+
+.outline-sidebar {
+  background-color: #333;
+  color: white;
+  position: absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  width:240px;
+  padding: 1rem;
+}
+
+.outline-content {
+  position: absolute;
+  left: 240px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+
+  .image {
+    height: 500px;
+    width: 600px;
+    background-color: #ececec;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .right {
+    position: absolute;
+    top:0;right:0;
+    left:620px;
+    bottom:0;
+    padding: 1rem;
+  }
+
+  .bottom {
+    padding-top: 2rem;
+  }
+}
