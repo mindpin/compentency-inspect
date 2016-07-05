@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   # 评分组件
   get '/unintegration/star_bar', to: 'unintegration#star_bar'
   post '/unintegration/star_bar_post_star_count', to: 'unintegration#star_bar_post_star_count'
+
+  # 多级饼图
+  get '/unintegration/multistage_pie_chart', to: 'unintegration#multistage_pie_chart'
 end

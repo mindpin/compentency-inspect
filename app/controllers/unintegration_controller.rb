@@ -74,6 +74,43 @@ class UnintegrationController < ApplicationController
     }
   end
 
+  def multistage_pie_chart
+    @component_name = 'multistage_pie_chart'
+    @component_data = {
+      multistage_pie: [
+        [
+          { name: '男',   count: 40   }, 
+          { name: '女',   count: 60   }
+        ],
+
+        [
+          { name: '儿童',   count: 12 },
+          { name: '中年',   count: 24 }, 
+          { name: '老人',   count: 4  }, 
+          { name: '儿童',   count: 18 }, 
+          { name: '中年',   count: 36 }, 
+          { name: '老人',   count: 6  }  
+        ],
+
+        [
+          { name: '儿童a',   count: 10 },
+          { name: '儿童b',   count: 2  },
+          { name: '中年a',   count: 14 },
+          { name: '中年b',   count: 4  },
+          { name: '中年c',   count: 6  },   
+          { name: '老人a',   count: 2  },
+          { name: '老人b',   count: 2  },
+          { name: '儿童x',   count: 5  },
+          { name: '儿童y',   count: 13 },  
+          { name: '中年m',   count: 30 },
+          { name: '中年n',   count: 6  },  
+          { name: '老人i',   count: 4  },
+          { name: '老人l',   count: 2  }  
+        ]
+      ]
+    }
+  end
+
   # 打分
   def star_bar
     @component_name = 'star_bar'
