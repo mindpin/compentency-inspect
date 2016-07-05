@@ -17,7 +17,12 @@
     <div className="search-box">
       <SearchBar data={search_bar_data}/>
       <RecommendWordsList data={recommend_words_list_data} />
-      <ResultsList data={@state.results} />
+      {
+        if @state.results.length == 0
+          <CreateQuestionBox data={dashboard_url: @props.data.dashboard_url} />
+        else
+          <ResultsList data={@state.results} />
+      }
     </div>
 
 
@@ -92,7 +97,6 @@ SearchBar = React.createClass
     if div.hasClass("search-input")
       div.find("input").focus()
 
-
 RecommendWordsList = React.createClass
   render: ->
     <div className="recommend-words-list">
@@ -108,7 +112,6 @@ RecommendWordsList = React.createClass
     =>
       @props.data.add_word_to_current_words(word)
 
-
 ResultsList = React.createClass
   render: ->
     <div className="results-list">
@@ -120,3 +123,43 @@ ResultsList = React.createClass
           </div>
       }
     </div>
+
+CreateQuestionBox = React.createClass
+  getInitialState: ->
+    status: "uncreate"
+
+  render: ->
+    <div className="create-question-box">
+    {
+      switch @state.status
+        when "uncreate" then @uncreate_content()
+        when "creating" then @creating_content()
+        when "created"  then @created_content()
+    }
+    </div>
+
+  uncreate_content: ->
+    <div className="uncreate">
+      没有找到相关资料，
+      <a className="ui button" onClick={@open_question_form}>点击创建问题</a>
+    </div>
+
+  creating_content: ->
+    <div className="creating">
+      <textarea placeholder="输入问题内容" />
+      <a className="ui button" onClick={@create_question}>创建</a>
+    </div>
+
+  created_content: ->
+    <div className="created">
+      创建成功，
+      <a className="ui button" href={@props.data.dashboard_url}>点击进入个人中心</a>
+    </div>
+
+  open_question_form: ->
+    @setState
+      status: "creating"
+  create_question: (evt)->
+    evt.preventDefault()
+    @setState
+      status: "created"

@@ -4,6 +4,7 @@
     {
       search_box_data =
         search_url: "/search_box_post_search"
+        dashboard_url: "/user/dashboard"
         current_words: ["橘子", "苹果"]
         recommend_words: ["香蕉", "栗子", "火龙果"]
         results: [

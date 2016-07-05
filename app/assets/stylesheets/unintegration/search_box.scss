@@ -35,4 +35,13 @@
       box-shadow: 1px 1px 1px #e8e8e8;
     }
   }
+
+  .create-question-box{
+    textarea{
+      margin: 1rem 0 0 0;
+      padding: 0.5rem;
+      height: 6rem;
+      width: 100%;
+    }
+  }
 }
