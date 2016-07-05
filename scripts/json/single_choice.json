@@ -1,0 +1,22 @@
+{
+  "question": [{
+    "kind": "single_choice",
+    "content": "营业终了，柜员对当日无法核销的过渡账项，经运营主管审批，登记（）后，作挂账处理。",
+    "answer": {
+      "choices": [{
+        "id": "aaa",
+        "text": "重要事项登记簿"
+      }, {
+        "id": "bbb",
+        "text": "柜员交接登记簿"
+      }, {
+        "id": "ccc",
+        "text": "运营主管工作日志"
+      }, {
+        "id": "ddd",
+        "text": "会计档案调阅登记簿"
+      }],
+      "correct": "aaa"
+    }
+  }]
+}

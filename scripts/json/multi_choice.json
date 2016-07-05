@@ -1,0 +1,22 @@
+{
+  "question": [{
+    "kind": "multi_choice",
+    "content": "每日营业终了，柜员进行账实核对包括（）。",
+    "answer": {
+      "choices": [{
+        "id": "aaa",
+        "text": "核对现金"
+      }, {
+        "id": "bbb",
+        "text": "核对重要空白凭证"
+      }, {
+        "id": "ccc",
+        "text": "核对有价单证"
+      }, {
+        "id": "ddd",
+        "text": "清点印章"
+      }],
+      "corrects": ["aaa", "bbb", "ccc", "ddd"]
+    }
+  }]
+}
