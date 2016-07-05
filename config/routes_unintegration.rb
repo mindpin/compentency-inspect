@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   # 评分组件
   get '/unintegration/star_bar', to: 'unintegration#star_bar'
   post '/unintegration/star_bar_post_star_count', to: 'unintegration#star_bar_post_star_count'
+
+  # 学习进度汇总
+  get '/unintegration/study_progress', to: 'unintegration#study_progress'
 end

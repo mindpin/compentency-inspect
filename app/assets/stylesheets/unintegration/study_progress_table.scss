@@ -1,0 +1,25 @@
+.study-progress-table{
+
+  td.completed{
+    background: #F7FFE6;
+    color: #2c662d;
+  }
+
+  td.studing{
+    background: #FFF8E3;
+    color: #573a08;
+  }
+
+  td.completed, td.studing{
+    position: relative;
+    .progress{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 4px;
+      background: #62B500;
+    }
+  }
+
+}

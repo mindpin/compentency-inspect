@@ -89,4 +89,10 @@ class UnintegrationController < ApplicationController
       current_star_count: params[:star_count],
     }
   end
+
+  # 学习进度统计
+  def study_progress
+    @component_name = 'study_progress_table'
+    @component_data = DemoData.study_progress_data
+  end
 end
