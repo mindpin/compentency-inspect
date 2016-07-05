@@ -51,7 +51,7 @@
       .attr('class', 'd3-tip')
       .offset([-10, 0])
       .html (d)->
-        "名称：" + d.data.name + "数值：" + d.data.count
+        "名称：" + d.data.name + "</br>数值：" + d.data.count
 
     @svg = d3.select(".multistage-pie-chart").append('svg')
       .attr('width', @width)
