@@ -1,10 +1,11 @@
 - id: "0"
   name: 平台结构
+  subname: KC 知识平台构成
   slide: http://i.teamkn.com/i/ifP7V0F3.jpg
   icon: circle thin
-  uis: []
-  pc_demo: /views/case
-  mobile_demo: /views/case
+  # uis: []
+  # pc_demo: /views/case
+  # mobile_demo: /views/case
 
 - id: "1"
   name: 知识体系的建立
@@ -12,8 +13,20 @@
   icon: circle thin
   children:
     - id: "11"
-      name: 建立知识结构
+      name: 设计知识结构
       slide: http://i.teamkn.com/i/W9YNHWMR.png
+      desc: |
+        - 很好**很强大**  
+        - 很厉害  
+      videos:
+        - cover: http://i.teamkn.com/i/Rskxd9DA.png
+          name: 使用设计工具建立知识结构
+          mp4s:
+            - "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/01-%E5%BB%BA%E7%AB%8B%E6%B5%85%E5%B1%82%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB-720p.mp4"
+            - "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/02-%E5%9C%A8%E6%B5%85%E5%B1%82%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E7%BB%86%E5%8C%96-720p.mp4"
+            - "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/03-%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB%E7%9A%84%E4%B8%8D%E6%96%AD%E7%BB%86%E5%8C%96-720p.mp4"
+            - "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/04-%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB%E7%9A%84%E6%B5%8F%E8%A7%88%E5%92%8C%E6%9F%A5%E9%98%85-720p.mp4"
+
     - id: "12"
       name: 分享工作经验
       slide: http://i.teamkn.com/i/lw4MYzmE.png
@@ -43,10 +56,13 @@
       slide: http://i.teamkn.com/i/uCmwneMJ.png
       
 - id: "3"
-  name: 移动内容的呈现
+  name: 知识内容的呈现
   slide: http://i.teamkn.com/i/iGsBCvEL.jpg
   icon: circle thin
   children:
+    - id: "31"
+      name: 多屏幕展示
+      slide: http://i.teamkn.com/i/f1igidol.png
     - id: "32"
       name: 发布微站
       slide: http://i.teamkn.com/i/f1igidol.png
