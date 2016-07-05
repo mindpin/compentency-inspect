@@ -17,4 +17,11 @@ Rails.application.routes.draw do
   get "/parser/ques-yaml", to: 'parser#ques_yaml'
 
   get "/outline", to: 'outline#global'
+
+  # 测验DEMO
+  get  "/test",                   to: "test/test#show"
+  get  "/test_status",            to: "test/test_status#index"
+  post "/test_status/start",      to: "test/test_status#start"
+  get  "/test_wares/data",        to: "test/test_wares#data"
+  post "/test_wares/save_answer", to: "test/test_wares#save_answer"
 end

@@ -13,23 +13,16 @@ module UserTestPaperFormer
       }
 
       field :status, ->(instance) {
-        tpr = instance.user.inspect_test_paper_result
-        return "NOT_START" if tpr.blank?
-        return "RUNNING"   if Time.now < tpr.created_at + instance.test_paper.minutes.minutes
-        return "FINISHED"
+        return "RUNNING"
       }
 
       field :deadline_time, ->(instance) {
-        tpr = instance.user.inspect_test_paper_result
-        return 0 if tpr.blank?
-        time = tpr.created_at + instance.test_paper.minutes.minutes
+        time = Time.now + instance.test_paper.minutes.minutes
         time.to_i
       }
 
       field :remain_seconds, ->(instance) {
-        tpr = instance.user.inspect_test_paper_result
-        return 0 if tpr.blank?
-        time = tpr.created_at + instance.test_paper.minutes.minutes - Time.now
+        time = instance.test_paper.minutes.minutes
         time.to_i
       }
 
@@ -58,23 +51,6 @@ module UserTestPaperFormer
         end
       }
 
-      logic :has_completed_reviews, ->(instance) {
-        tpr = instance.user.inspect_test_paper_result
-        return false if tpr.blank?
-        tpr.has_completed_reviews?
-      }
-
-      url :reviews_url, ->(instance) {
-        tpr = instance.user.inspect_test_paper_result
-        return "" if tpr.blank?
-        "/admin/test_results/#{tpr.id}/reviews"
-      }
-
-      url :admin_show_url, ->(instance) {
-        tpr = instance.user.inspect_test_paper_result
-        return "" if tpr.blank?
-        "/admin/test_results/#{tpr.id}"
-      }
     end
 
   end
