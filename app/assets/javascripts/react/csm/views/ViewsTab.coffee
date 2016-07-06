@@ -22,7 +22,7 @@
           when 'read'
             <ReadView data={@props.data.view_data} />
           when 'outline'
-            <OutlineView />
+            <OutlineView data={@props.data.view_data} />
           when 'graph'
             <GraphView />
           when 'target'

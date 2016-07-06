@@ -19,14 +19,14 @@
         <PageTurning pages={pages} page={page} prev={@prev} next={@next} />
       </div>
 
-      <RightPart page={page} ref='rpart' />
+      <RightPart page={page} ref='rpart' play_video_album={@play_video_album} key={page.id} />
 
       <div className='bottom'>
         <a className='ui button'>前翻</a>
         <a className='ui button'>后翻</a>
       </div>
 
-      <VideoLayer />
+      <VideoLayer ref='video_player' />
     </div>
 
   prev: (page_idx)->
@@ -42,6 +42,9 @@
   componentDidUpdate: ->
     ref_animate @refs.slide, 'animate-slide-down'
     ref_animate @refs.rpart, 'animate-slide-up'
+
+  play_video_album: (album)->
+    @refs.video_player.open album
 
 
 SlideArea = React.createClass
@@ -91,14 +94,15 @@ RightPart = React.createClass
   render: ->
     page = @props.page
 
-    desc = 
-      __html: marked(page.desc || '')
-
     <div className='right-part'>
       <h2 className='title'>{page.subname || page.name}</h2>
       <div className='detail'>
-        <div className='desc' dangerouslySetInnerHTML={desc} />
-        <Videos videos={page.videos} />
+        {
+          if page.desc?
+            desc = __html: marked(page.desc)
+            <div className='desc' dangerouslySetInnerHTML={desc} />
+        }
+        <Videos videos={page.videos} play_video_album={@props.play_video_album} />
 
         {
           if page.uis?
@@ -143,7 +147,7 @@ Videos = React.createClass
             </div>
             <div className='video-ct'>
               <div className='name'>{album.name}</div>
-              <div className='ui button basic green small'>播放视频</div>
+              <div className='ui button basic green mini'>播放视频</div>
             </div>
           </div>
       }
@@ -153,19 +157,50 @@ Videos = React.createClass
 
   play: (album)->
     =>
-      console.log album.mp4s
+      @props.play_video_album album
 
 VideoLayer = React.createClass
+  getInitialState: ->
+    album: null
+    open: false
+    current_idx: null
+
   render: ->
-    <div className='video-layer'>
-      <VideoPlayer src='http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/01-%E5%BB%BA%E7%AB%8B%E6%B5%85%E5%B1%82%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB-720p.mp4' />
-      <div className='video-list'>
-        <a className='item' href='javascript:;'>1. blahblah</a>
-        <a className='item' href='javascript:;'>2. blahblah</a>
-        <a className='item' href='javascript:;'>3. blahblah</a>
-        <a className='item' href='javascript:;'>4. blahblah</a>
+    if @state.open
+      src = @state.album.mp4s[@state.current_idx].url
+
+      <div className='video-layer'>
+        <VideoPlayer key={@state.current_idx} src={src} />
+        <div className='video-list'>
+          {
+            for mp4, idx in @state.album.mp4s
+              klass = new ClassName
+                'item': true
+                'active': idx == @state.current_idx
+
+              <a className={klass} key={idx} href='javascript:;' onClick={@toggle(idx)}>{mp4.name}</a>
+          }
+          <a className='close' href='javascript:;' onClick={@close}><i className='icon power' /> 关闭</a>
+        </div>
       </div>
-    </div>
+    else
+      <div />
+
+  close: ->
+    @setState open: false
+
+  open: (album)->
+    @setState
+      open: true
+      album: album
+      current_idx: 0
+
+  toggle: (idx)->
+    =>
+      return if idx == @state.current_idx
+      @setState
+        current_idx: idx
+
 
 ref_animate = (ref, animate_css_name)->
     $dom = jQuery ReactDOM.findDOMNode ref

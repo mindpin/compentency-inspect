@@ -35,6 +35,8 @@ class IndexController < ApplicationController
       YAML.load_file File.join(Rails.root, 'csm', 'yaml', '理财经理培训.yaml')
     when 'case'
       YAML.load_file File.join(Rails.root, 'csm', 'ques', '理财产品销售.yaml')
+    when 'outline'
+      YAML.load_file File.join(Rails.root, 'csm', 'yaml', '理财经理培训.yaml')
     end
 
     @component_name = 'views_tab'
