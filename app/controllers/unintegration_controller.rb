@@ -77,38 +77,11 @@ class UnintegrationController < ApplicationController
   def multistage_pie_chart
     @component_name = 'multistage_pie_chart'
     @component_data = {
-      multistage_pie: [
-        [
-          { name: '男',   count: 40   }, 
-          { name: '女',   count: 60   }
-        ],
-
-        [
-          { name: '儿童',   count: 12 },
-          { name: '中年',   count: 24 }, 
-          { name: '老人',   count: 4  }, 
-          { name: '儿童',   count: 18 }, 
-          { name: '中年',   count: 36 }, 
-          { name: '老人',   count: 6  }  
-        ],
-
-        [
-          { name: '儿童a',   count: 10 },
-          { name: '儿童b',   count: 2  },
-          { name: '中年a',   count: 14 },
-          { name: '中年b',   count: 4  },
-          { name: '中年c',   count: 6  },   
-          { name: '老人a',   count: 2  },
-          { name: '老人b',   count: 2  },
-          { name: '儿童x',   count: 5  },
-          { name: '儿童y',   count: 13 },  
-          { name: '中年m',   count: 30 },
-          { name: '中年n',   count: 6  },  
-          { name: '老人i',   count: 4  },
-          { name: '老人l',   count: 2  }  
-        ]
-      ]
+      multistage_pie: tree_nodes_to_arrays()
     }
+
+
+    tree_nodes_to_arrays()
   end
 
   # 打分
@@ -125,5 +98,143 @@ class UnintegrationController < ApplicationController
     render json: {
       current_star_count: params[:star_count],
     }
+  end
+
+# ----------------------------------------------------
+  def tree_nodes_to_arrays
+    tree_datas_hash = 
+    {
+      name: "客户",
+      value: 100,
+      children: [
+        {
+          name: "家庭状况",
+          value: 40,
+          children: [
+            {
+              name: "子女状况",
+              value: 50,
+              children: [
+                {name: "无子女",   value: 30},
+                {name: "独生子女", value: 30},
+                {name: "多子女",   value: 40}
+              ]
+            },
+            {
+              name: "婚姻状况",
+              value: 50,
+              children: [
+                {name: "未婚",   value: 30},
+                {name: "已婚",   value: 30},
+                {name: "离婚",   value: 30},
+                {name: "丧偶",   value: 10}
+              ]
+            }
+          ]
+        },
+        {
+          name: "个人状况",
+          value: 40,
+          children: [
+            {
+              name: "健康状况",
+              value: 50,
+              children: [
+                {name: "良好",     value: 30},
+                {name: "亚健康",   value: 30},
+                {name: "轻疾病",   value: 30},
+                {name: "重疾病",   value: 10}
+              ]
+            },
+            {
+              name: "年龄",
+              value: 50,
+              children: [
+                {name: "青年",   value: 30},
+                {name: "中年",   value: 30},
+                {name: "老年",   value: 40}
+              ]
+            }
+          ]
+        },
+        {
+          name: "工作状况",
+          value: 20,
+          children: [
+            {name: "刚入职",   value: 20},
+            {name: "稳定",     value: 30},
+            {name: "退休",     value: 20},
+            {name: "失业",     value: 20},
+            {name: "创业",     value: 10}
+          ]
+        },
+        {
+          name: "财务状况",
+          value: 20,
+          children: [
+            {name: "普通",    value: 30},
+            {name: "负债",    value: 10},
+            {name: "大量现金", value: 60}
+          ]
+        }
+      ]
+    }
+
+    tree_datas_hash_ary = [tree_datas_hash]
+    results_arys = []
+
+    results_arys = make_a_layer_ary(tree_datas_hash_ary, results_arys)
+    return results_arys
+
+    # p results_arys.length
+    # results_arys.each do |x|
+    #   p '=====================>'
+    #   p x
+    # end
+  end
+
+  def make_a_layer_ary(input_ary, results_arys)
+    if results_arys.length == 0
+      total_count = 0
+      scan_to_add_blank_to_first_layer = input_ary.map do |node|
+        total_count += node[:value]
+        node[:display] = true
+        node
+      end
+      if total_count < 100
+        scan_to_add_blank_to_first_layer.push({:name => '', :value => 100 - total_count, display: false })
+      end
+      make_a_layer_ary(scan_to_add_blank_to_first_layer, results_arys.push(scan_to_add_blank_to_first_layer))  
+    else
+      make_next_layer = input_ary.map do |node|
+        if node[:children].present?
+          total_count = 0
+          node_childs = []
+          node[:children].each do |child|
+            child[:value] = 100 * (node[:value].to_f/100) * (child[:value].to_f/100)
+            child[:display] = true
+            total_count += child[:value]
+            node_childs.push(child)
+          end
+          if total_count < node[:value]
+             node_childs.push({
+                name: "",
+                value: node[:value] - total_count,
+                display: false
+              })
+          end
+          node = node_childs
+          node
+        else
+          node[:display] = false
+          node
+        end
+      end
+      if make_next_layer.flatten.length > make_next_layer.length
+          make_a_layer_ary(make_next_layer.flatten,results_arys.push(make_next_layer.flatten))
+      else
+        return results_arys
+      end
+    end
   end
 end
