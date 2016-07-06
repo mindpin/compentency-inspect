@@ -21,4 +21,8 @@ Rails.application.routes.draw do
 
   # 学习进度汇总
   get '/unintegration/study_progress', to: 'unintegration#study_progress'
+
+  # 经验对象结构
+  get '/unintegration/experience_target_structure_table', to: 'unintegration#experience_target_structure_table'
+  get '/unintegration/edit_experience_target_structure',  to: 'unintegration#edit_experience_target_structure'
 end
