@@ -5,7 +5,7 @@
 
   make_pie_chart: (datas, inner_radius, outer_radius, deep)->
     pie = d3.layout.pie().sort(null).value (datas)->
-      return datas.value
+      return datas.count
     piedata = pie(datas)
     arc = d3.svg.arc().innerRadius(inner_radius).outerRadius(outer_radius)
 
@@ -43,8 +43,8 @@
         return d.data.name
 
   componentDidMount: ->
-    @width = 1000
-    @height = 1000
+    @width = 800
+    @height = 800
     dataset = @props.data.multistage_pie
     diameters = [0]
     @unique_color_index = [0]
@@ -54,7 +54,7 @@
       .attr('class', 'd3-tip')
       .offset([-10, 0])
       .html (d)->
-        "名称：" + d.data.name + "</br>数值：" + d.data.value
+        "名称：" + d.data.name + "</br>数值：" + d.data.count
 
     @svg = d3.select(".multistage-pie-chart").append('svg')
       .attr('width', @width)
