@@ -66,9 +66,9 @@
           fields:
             question: '问题'
             creator:  '提问者'
+            keywords: '关键词'
             status:   '状态'
             actions:  '操作'
-            keywords: '关键词'
           data_set: @props.data.items.map (x)=>
             actions = switch x.status
               when "未解答"
