@@ -26,7 +26,7 @@
           when 'graph'
             <GraphView />
           when 'target'
-            <TargetView />
+            <TargetView data={@props.data.view_data}/>
           when 'case'
             <CaseView data={@props.data.view_data}/>
       }

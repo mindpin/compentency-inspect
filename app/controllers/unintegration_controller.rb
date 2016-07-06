@@ -89,4 +89,21 @@ class UnintegrationController < ApplicationController
       current_star_count: params[:star_count],
     }
   end
+
+  # 学习进度统计
+  def study_progress
+    @component_name = 'study_progress_table'
+    @component_data = DemoData.study_progress_data
+  end
+
+  # experience_target_structure_table
+  def experience_target_structure_table
+    @component_name = 'experience_target_structure_table'
+    @component_data = DemoData.experience_target_structure_table
+  end
+
+  def edit_experience_target_structure
+    @component_name = 'edit_experience_target_structure'
+    @component_data = DemoData.edit_experience_target_structure
+  end
 end
