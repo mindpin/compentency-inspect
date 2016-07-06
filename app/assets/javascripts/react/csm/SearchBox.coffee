@@ -18,7 +18,7 @@
       <SearchBar data={search_bar_data}/>
       <RecommendWordsList data={recommend_words_list_data} />
       {
-        if @state.results.length == 0
+        if @state.results.length == 0 && @state.current_words.length != 0
           <CreateQuestionBox data={dashboard_url: @props.data.dashboard_url} />
         else
           <ResultsList data={@state.results} />
@@ -67,6 +67,8 @@
     jQuery.ajax
       url: @props.data.search_url
       type: 'POST'
+      data:
+        keywords: @state.current_words
     .done (data)=>
       @setState
         recommend_words: data.recommend_words

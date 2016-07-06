@@ -19,10 +19,18 @@
   }
   .recommend-words-list{
     margin: 1rem 0;
+    &:after{
+      display: block;
+      clear: both;
+      content: "";
+      visibility: hidden;
+    }
     .word{
+      display: block;
+      float: left;
       cursor:pointer;
       padding: 0.5rem;
-      margin-right: 0.5rem;
+      margin: 0.5rem 0.5rem 0.5rem 0;
       background: #e8e8e8;
     }
   }
