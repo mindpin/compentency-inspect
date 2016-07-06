@@ -11,6 +11,7 @@
     table_data =
       items: @get_filter_questions()
       add_word_to_filter_words: @add_word_to_filter_words
+      edit_url: "/unintegration/specialist_answer_question"
 
     <div className="specialist-answer-question-table">
       <SpecialistAnswerQuestionTable.FilterBar data={filter_bar_data} />
@@ -72,7 +73,7 @@
             actions = switch x.status
               when "未解答"
                 <div>
-                  <a className="ui button mini blue basic" href={x.edit_url}>
+                  <a className="ui button mini blue basic" href={@props.data.edit_url}>
                     <i className='icon write' />
                     解答
                   </a>

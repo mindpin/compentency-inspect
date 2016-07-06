@@ -28,4 +28,5 @@ Rails.application.routes.draw do
 
   # 专家答疑
   get '/unintegration/specialist_answer_question_table', to: 'unintegration#specialist_answer_question_table'
+  get '/unintegration/specialist_answer_question',       to: 'unintegration#specialist_answer_question'
 end

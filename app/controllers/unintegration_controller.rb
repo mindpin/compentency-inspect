@@ -111,4 +111,9 @@ class UnintegrationController < ApplicationController
     @component_name = 'specialist_answer_question_table'
     @component_data = SearchBox::Parser.get_questions()
   end
+
+  def specialist_answer_question
+    @component_name = 'specialist_answer_question'
+    @component_data = SearchBox::Parser.get_questions()[0]
+  end
 end
