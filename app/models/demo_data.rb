@@ -360,4 +360,86 @@ class DemoData
       {name: "理财产品", updated_at: "2016-04-10 12:53:14", status: "已关闭"}
     ]
   end
+
+  def self.multi_pie_chart
+    hash = {
+      name: "客户",
+      value: 100,
+      children: [
+        {
+          name: "家庭状况",
+          value: 40,
+          children: [
+            {
+              name: "子女状况",
+              value: 50,
+              children: [
+                {name: "无子女",   value: 30},
+                {name: "独生子女", value: 30},
+                {name: "多子女",   value: 40}
+              ]
+            },
+            {
+              name: "婚姻状况",
+              value: 50,
+              children: [
+                {name: "未婚",   value: 30},
+                {name: "已婚",   value: 30},
+                {name: "离婚",   value: 30},
+                {name: "丧偶",   value: 10}
+              ]
+            }
+          ]
+        },
+        {
+          name: "个人状况",
+          value: 40,
+          children: [
+            {
+              name: "健康状况",
+              value: 50,
+              children: [
+                {name: "良好",     value: 30},
+                {name: "亚健康",   value: 30},
+                {name: "轻疾病",   value: 30},
+                {name: "重疾病",   value: 10}
+              ]
+            },
+            {
+              name: "年龄",
+              value: 50,
+              children: [
+                {name: "青年",   value: 30},
+                {name: "中年",   value: 30},
+                {name: "老年",   value: 40}
+              ]
+            }
+          ]
+        },
+        {
+          name: "工作状况",
+          value: 10,
+          children: [
+            {name: "刚入职",   value: 20},
+            {name: "稳定",     value: 30},
+            {name: "退休",     value: 20},
+            {name: "失业",     value: 20},
+            {name: "创业",     value: 10}
+          ]
+        },
+        {
+          name: "财务状况",
+          value: 10,
+          children: [
+            {name: "普通",    value: 30},
+            {name: "负债",    value: 10},
+            {name: "大量现金", value: 60}
+          ]
+        }
+      ]
+    }
+
+    MultiPieChartData.new(hash).result
+  end
+
 end

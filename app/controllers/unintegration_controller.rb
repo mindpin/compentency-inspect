@@ -116,4 +116,11 @@ class UnintegrationController < ApplicationController
     @component_name = 'specialist_answer_question'
     @component_data = SearchBox::Parser.get_questions()[0]
   end
+
+  def multi_pie_chart
+    @component_name = 'multi_pie_chart'
+    @component_data = {
+      multistage_pie: DemoData.multi_pie_chart
+    }
+  end
 end
