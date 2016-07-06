@@ -1,0 +1,18 @@
+.specialist-answer-question-table{
+  margin: 1rem;
+  .filter-bar{
+    .filter-input{
+      border: 1px solid rgba(34, 36, 38, 0.15);
+      input{
+        padding-left: 0.5rem;
+        border: none;
+        outline:0px;
+        line-height: 2.5rem;
+      }
+
+      &:hover{
+        cursor:text;
+      }
+    }
+  }
+}
