@@ -169,6 +169,28 @@ $descw: 360px;
             position: absolute;
             top:5px;left:5px;right:5px;bottom:5px;
           }
+
+          a.maximize {
+            $w: 32px;
+            position: absolute;
+            top:5px;right:5px;
+            width:$w;height:$w;
+            line-height:$w;
+            color: white;
+            background-color: rgba(black, 0.6);
+            font-size: $w/2;
+            opacity: 0;
+            i {
+              width:$w;height:$w;
+              line-height:$w;
+              margin-right: 0;
+              transition: opacity ease-out .3s;
+            }
+          }
+
+          &:hover {
+            a.maximize {opacity: 1;}
+          }
         }
 
 
@@ -241,6 +263,7 @@ $descw: 360px;
     .detail {
       .videos {
         .video-card {
+          margin-bottom: 2rem;
           margin-left: -30px;
           width:300px;
           height:100px;
@@ -382,6 +405,26 @@ $descw: 360px;
   .bottom {
     padding-top: 2rem;
     display: none;
+  }
+}
+
+.outline-page.maximize {
+  .outline-sidebar {
+    margin-left: -$osw;
+  }
+  .outline-content {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    .left-part {
+      right: 0;
+    }
+    .right-part {
+      display: none;
+      opacity: 0 !important;
+      pointer-events: none;
+    }
   }
 }
 

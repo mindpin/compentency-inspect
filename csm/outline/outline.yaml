@@ -38,7 +38,7 @@
     - id: "11"
       name: 设计知识结构
       # slide: http://i.teamkn.com/i/W9YNHWMR.png
-      slide: http://i.teamkn.com/i/fugrCHdn.jpg
+      slide: http://i.teamkn.com/i/yLb6U41N.jpg
       desc: |
         - 知识库平台内所有内容，课件，文档，数据均依托于知识结构进行归纳管理
         - 知识结构分为两类：概念型知识结构，经验型知识结构，由**业务专家角色**进行创建和维护
@@ -54,38 +54,48 @@
               url: "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/03-%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB%E7%9A%84%E4%B8%8D%E6%96%AD%E7%BB%86%E5%8C%96-720p.mp4"
             - name: 创建概念结构（四）
               url: "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/04-%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB%E7%9A%84%E6%B5%8F%E8%A7%88%E5%92%8C%E6%9F%A5%E9%98%85-720p.mp4"
+      pc_demo: /unintegration/experience_target_structure_table
+
 
     - id: "12"
       name: 分享工作经验
       # slide: http://i.teamkn.com/i/lw4MYzmE.png
       slide: http://i.teamkn.com/i/h7fQ1SKG.jpg
+      pc_demo: /views/case
+
     - id: "13"
       name: 逐步演化改进
       # slide: http://i.teamkn.com/i/ucWVvefp.png
       slide: http://i.teamkn.com/i/K7qSvkXA.jpg
+
     - id: "14"
       name: 关联培训内容
       # slide: http://i.teamkn.com/i/brLIs1rl.png
       slide: http://i.teamkn.com/i/RLXSpVV6.jpg
+      pc_demo: /views/outline
 
 - id: "2"
   name: 知识体系的运用
   # slide: http://i.teamkn.com/i/Ydo2Fvkp.jpg
-  slide: http://i.teamkn.com/i/FUiQffmX.jpg
+  slide: http://i.teamkn.com/i/D5LKlmSM.jpg
   icon: circle thin
   children: 
     - id: "21"
       name: 获取内容
       # slide: http://i.teamkn.com/i/P8B1L8v0.png
       slide: http://i.teamkn.com/i/uttAs2KS.jpg
+      pc_demo: /views/read
+
     - id: "22"
       name: 发起提问
       # slide: http://i.teamkn.com/i/AFRUj7dz.png
-      slide: http://i.teamkn.com/i/ppPFlMES.jpg
+      slide: http://i.teamkn.com/i/Actx22It.jpg
+      pc_demo: /views/target
+
     - id: "23"
       name: 作出反馈
       # slide: http://i.teamkn.com/i/DmYchAwU.png
-      slide: http://i.teamkn.com/i/czqV0Ejm.jpg
+      slide: http://i.teamkn.com/i/MNlrv6m3.jpg
     - id: "24"
       name: 进行考核
       # slide: http://i.teamkn.com/i/uCmwneMJ.png

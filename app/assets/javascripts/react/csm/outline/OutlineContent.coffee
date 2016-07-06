@@ -11,15 +11,19 @@
   render: ->
     pages = @state.pages
     page = pages.filter((x)=> x.id == @props.cid)[0]
-    
 
     <div className='outline-content'>
       <div className='left-part'>
-        <SlideArea page={page} ref='slide' />
+        <SlideArea page={page} ref='slide' maximize={@props.maximize} />
         <PageTurning pages={pages} page={page} prev={@prev} next={@next} />
       </div>
 
-      <RightPart page={page} ref='rpart' play_video_album={@play_video_album} key={page.id} />
+      <RightPart 
+        page={page} 
+        ref='rpart' 
+        play_video_album={@play_video_album}
+        key={page.id} 
+      />
 
       <div className='bottom'>
         <a className='ui button'>前翻</a>
@@ -57,6 +61,9 @@ SlideArea = React.createClass
           <div className='slide-inner'>
             <img src={page.slide} />
           </div>
+          <a href='javascript:;' className='maximize' onClick={@props.maximize}>
+            <i className='icon maximize' />
+          </a>
         </div>
       </div>
     </div>
@@ -115,7 +122,7 @@ RightPart = React.createClass
         {
           if page.pc_demo
             <div className='pc-demo'>
-              <a href='/views/case' target='_blank' className='ui button green large'>
+              <a href={page.pc_demo} target='_blank' className='ui button green large'>
                 <i className='icon desktop' /> 访问 PC 演示
               </a>
             </div>

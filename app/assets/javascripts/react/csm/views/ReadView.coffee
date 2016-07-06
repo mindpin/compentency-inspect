@@ -43,7 +43,7 @@ CSMReader = React.createClass
     @setState {
       nav_params: nav_params
     }, =>
-      location.href = "/sample##{nav_params.join(',')}"
+      location.href = "/views/read##{nav_params.join(',')}"
 
 
 

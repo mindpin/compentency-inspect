@@ -105,3 +105,23 @@
             name: "着装礼仪"
             file: "着装礼仪.list"
             count: 40
+
+          - type: "images"
+            name: "aaa"
+            file: "aaa.list"
+            count: 9
+
+          - type: "images"
+            name: "bbb"
+            file: "bbb.list"
+            count: 107
+
+          - type: "images"
+            name: "ccc"
+            file: "ccc.list"
+            count: 16
+
+          - type: "images"
+            name: "ddd"
+            file: "ddd.list"
+            count: 57
