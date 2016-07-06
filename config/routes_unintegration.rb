@@ -18,4 +18,11 @@ Rails.application.routes.draw do
   # 评分组件
   get '/unintegration/star_bar', to: 'unintegration#star_bar'
   post '/unintegration/star_bar_post_star_count', to: 'unintegration#star_bar_post_star_count'
+
+  # 学习进度汇总
+  get '/unintegration/study_progress', to: 'unintegration#study_progress'
+
+  # 经验对象结构
+  get '/unintegration/experience_target_structure_table', to: 'unintegration#experience_target_structure_table'
+  get '/unintegration/edit_experience_target_structure',  to: 'unintegration#edit_experience_target_structure'
 end

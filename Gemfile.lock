@@ -15,6 +15,16 @@ GIT
       mime-types
       qiniu (~> 6.4.1)
 
+GIT
+  remote: git://github.com/mindpin/question_bank.git
+  revision: 956db943e5107e46bf3bf00236f0a0c667eccf8f
+  ref: 956db94
+  specs:
+    question_bank (0.0.1)
+      enumerize
+      kaminari
+      simple_form
+
 GEM
   remote: https://ruby.taobao.org/
   remote: https://rails-assets.org/
@@ -236,6 +246,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     slop (3.6.0)
     spring (1.7.1)
     sprockets (3.4.0)
@@ -289,6 +302,7 @@ DEPENDENCIES
   mongoid (~> 4.0.0)
   non-stupid-digest-assets
   pry-rails
+  question_bank!
   rails (= 4.2.3)
   rails-assets-URIjs
   rails-assets-d3-tip

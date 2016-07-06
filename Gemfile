@@ -38,6 +38,9 @@ gem "mongoid", "~> 4.0.0"
 gem "mina", "0.3.7"
 gem "figaro", "~> 1.1.1"
 
+gem 'question_bank',   github: 'mindpin/question_bank',
+                       ref: '956db94'
+                       
 gem 'file-part-upload', github: "mindpin/file-part-upload",
                         tag: "3.2.0"
 
@@ -51,4 +54,3 @@ gem 'rails-assets-URIjs'
 gem 'rails-assets-marked'
 
 gem 'rails-assets-d3-tip'
-
