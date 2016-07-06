@@ -25,4 +25,10 @@ Rails.application.routes.draw do
   # 经验对象结构
   get '/unintegration/experience_target_structure_table', to: 'unintegration#experience_target_structure_table'
   get '/unintegration/edit_experience_target_structure',  to: 'unintegration#edit_experience_target_structure'
+
+  # 专家答疑
+  get '/unintegration/specialist_answer_question_table', to: 'unintegration#specialist_answer_question_table'
+  get '/unintegration/specialist_answer_question',       to: 'unintegration#specialist_answer_question'
+
+  get '/unintegration/multi_pie_chart', to: 'unintegration#multi_pie_chart'
 end
