@@ -106,4 +106,9 @@ class UnintegrationController < ApplicationController
     @component_name = 'edit_experience_target_structure'
     @component_data = DemoData.edit_experience_target_structure
   end
+
+  def specialist_answer_question_table
+    @component_name = 'specialist_answer_question_table'
+    @component_data = SearchBox::Parser.get_questions()
+  end
 end
