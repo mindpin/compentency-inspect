@@ -23,28 +23,24 @@
     for item in @props.data.items
       fruit_name_array.push(item.name)
 
-
     width = parseInt(jQuery(".stack-bar-chart").css("width"))
     height = parseInt(jQuery(".stack-bar-chart").css("height"))
 
-    height = 200 if height < 100
+    height = 500 if height < 500
 
-    padding = {left:50, right:50, top:50, bottom:80}
     colors = d3.scale.category20b()
 
 
     tip = d3.tip()
-    .attr('class', 'stack-bar-d3-tip')
-    .offset([100,0])
-    .style("pointer-events", "none")
-    .html (d)->
-      for i in [0..city_array.length - 1]
-        if city_array[i] == d.x
-          data_str = ""
-          for j in [0..fruit_name_array.length - 1]
-            data_str = data_str + "<li>" + fruit_name_array[j] + "：" + fruit_nums[j][i].y + "</li>"
-
-          return "<div>" + d.x + "</div>" + "<ul>" + data_str + "</ul>"
+      .attr('class', 'stack-bar-d3-tip')
+      .offset([100,0])
+      .html (d)->
+        for i in [0..city_array.length - 1]
+          if city_array[i] == d.x
+            data_str = ""
+            for j in [0..fruit_name_array.length - 1]
+              data_str = data_str + "<li>" + fruit_name_array[j] + ":" + fruit_nums[j][i].y + "</li>"
+        return "<div>" + d.x + "</div>" + "<ul>" + data_str + "</ul>"
 
     svg = d3.select(".stack-bar-chart")
       .append("svg")
@@ -55,7 +51,8 @@
 
     stack(fruit_nums)
 
-    if @props.data.type == "vertical"
+    if @props.data.type == "horizontal"
+      padding = {left:50, right:150, top:50, bottom:50}
       # 在y轴上绘制
       yScale = d3.scale.ordinal()
         .domain(d3.range(fruit_nums[0].length))
@@ -122,6 +119,7 @@
         )
         .on "mouseover", (d)->
           tip.show(d)
+          jQuery(".stack-bar-d3-tip").css("pointer-events", "none")
         .on "mouseout", (d)->
           tip.hide(d)
 
@@ -130,7 +128,7 @@
         .enter()
         .append("circle")
         .attr("class", "circle")
-        .attr("cx", width - 40)
+        .attr("cx", width - padding.right + 15)
         .attr("cy",
           (d,i)->
             return height - 20 * i - padding.bottom
@@ -146,10 +144,10 @@
         .enter()
         .append("text")
         .attr("class", "text")
-        .attr("x", width - 35)
+        .attr("x", width - padding.right + 25)
         .attr("y",
           (d,i)->
-            return height - 20 * i  - 45
+            return height - 20 * i  - padding.bottom + 5
         )
         .text(
           (d)->
@@ -169,7 +167,8 @@
             return d
         )
         .call(yAxis)
-    if @props.data.type == "horizontal"
+    if @props.data.type == "vertical"
+      padding = {left:50, right:50, top:50, bottom:80}
       # 在x轴上绘制
       xScale = d3.scale.ordinal()
         .domain(d3.range(fruit_nums[0].length))
@@ -235,7 +234,7 @@
             return height - yScale(d.y)
         )
         .on "mouseover", (d)->
-          tip.show(d, d3.event.target)
+          tip.show(d)
           jQuery(".stack-bar-d3-tip").css("pointer-events", "none")
         .on "mouseout", (d)->
           tip.hide(d)
@@ -245,10 +244,10 @@
         .enter()
         .append("circle")
         .attr("class", "circle")
-        .attr("cx", width - 43)
+        .attr("cx", width - 40)
         .attr("cy",
           (d,i)->
-            return height - 20 * i - padding.bottom - 5
+            return height - 20 * i - padding.bottom - 10
         )
         .attr("r", 5)
         .style("fill",
@@ -261,10 +260,10 @@
         .enter()
         .append("text")
         .attr("class", "text")
-        .attr("x", width - 35)
+        .attr("x", width - 30)
         .attr("y",
           (d,i)->
-            return height - 20 * i  - padding.bottom
+            return height - 20 * i  - padding.bottom - 5
         )
         .text(
           (d)->
@@ -288,18 +287,7 @@
       @fix_x_values()
 
   fix_x_values: ->
-
     jQuery(".x.axis").find("text").each (text)->
       div = jQuery(this)
-      width  = parseInt(div.css("width"))
-
-      y_plus = width/4
-      x_plus = Math.sqrt(width/2 * width/2 - y_plus*y_plus)
-
-      x = parseInt(div.attr("x"))
-      y = parseInt(div.attr("y"))
-      # div.attr("x", x + x_plus)
-      # div.attr("y", y + y_plus)
       div.attr("transform", "rotate(30, 0, 0)")
       div.css("text-anchor", "start")
-    # jQuery(".x.axis").find("text").attr("transform", "rotate(30 20,40)")

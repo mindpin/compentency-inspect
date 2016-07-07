@@ -124,8 +124,13 @@ class UnintegrationController < ApplicationController
     }
   end
 
-  def stack_bar_chart
+  def vertical_stack_bar_chart
     @component_name = 'stack_bar_chart'
-    @component_data = DemoData.study_progress_data_2
+    @component_data = DemoData.study_progress_data_vertical
+  end
+
+  def horizontal_stack_bar_chart
+    @component_name = 'stack_bar_chart'
+    @component_data = DemoData.study_progress_data_horizontal
   end
 end
