@@ -27,6 +27,8 @@
     width = parseInt(jQuery(".stack-bar-chart").css("width"))
     height = parseInt(jQuery(".stack-bar-chart").css("height"))
 
+    height = 200 if height < 100
+
     padding = {left:50, right:50, top:50, bottom:80}
     colors = d3.scale.category20b()
 
