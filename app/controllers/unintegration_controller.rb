@@ -123,4 +123,9 @@ class UnintegrationController < ApplicationController
       multistage_pie: DemoData.multi_pie_chart
     }
   end
+
+  def stack_bar_chart
+    @component_name = 'stack_bar_chart'
+    @component_data = DemoData.study_progress_data_2
+  end
 end
