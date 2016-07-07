@@ -1,10 +1,11 @@
 class DemoData
-  def self.study_progress_data
-    {bottom_name:"知识点",height_name:"学习进度",category_name:"学习者",items:[{name:"与客户进行前期沟通",nums:[{category_value:"张三",num:100},{category_value:"李四",num:95},{category_value:"王五",num:10},{category_value:"赵六",num:10},{category_value:"钱七",num:0},{category_value:"孙八",num:88}]},{name:"客户维护与管理",nums:[{category_value:"张三",num:0},{category_value:"李四",num:47},{category_value:"王五",num:100},{category_value:"赵六",num:0},{category_value:"钱七",num:100},{category_value:"孙八",num:100}]},{name:"寻找目标客户",nums:[{category_value:"张三",num:100},{category_value:"李四",num:0},{category_value:"王五",num:100},{category_value:"赵六",num:79},{category_value:"钱七",num:100},{category_value:"孙八",num:0}]},{name:"掌握客户信息",nums:[{category_value:"张三",num:43},{category_value:"李四",num:100},{category_value:"王五",num:0},{category_value:"赵六",num:0},{category_value:"钱七",num:81},{category_value:"孙八",num:0}]},{name:"正式接触客户",nums:[{category_value:"张三",num:100},{category_value:"李四",num:0},{category_value:"王五",num:0},{category_value:"赵六",num:100},{category_value:"钱七",num:29},{category_value:"孙八",num:0}]},{name:"销售的促成",nums:[{category_value:"张三",num:0},{category_value:"李四",num:0},{category_value:"王五",num:100},{category_value:"赵六",num:0},{category_value:"钱七",num:56},{category_value:"孙八",num:100}]},{name:"电话沟通的礼仪",nums:[{category_value:"张三",num:78},{category_value:"李四",num:13},{category_value:"王五",num:100},{category_value:"赵六",num:100},{category_value:"钱七",num:76},{category_value:"孙八",num:25}]},{name:"网点营销的礼仪",nums:[{category_value:"张三",num:0},{category_value:"李四",num:100},{category_value:"王五",num:5},{category_value:"赵六",num:19},{category_value:"钱七",num:0},{category_value:"孙八",num:0}]},{name:"电话营销话术",nums:[{category_value:"张三",num:0},{category_value:"李四",num:91},{category_value:"王五",num:100},{category_value:"赵六",num:100},{category_value:"钱七",num:100},{category_value:"孙八",num:0}]},{name:"营销风险类型",nums:[{category_value:"张三",num:100},{category_value:"李四",num:100},{category_value:"王五",num:81},{category_value:"赵六",num:0},{category_value:"钱七",num:98},{category_value:"孙八",num:71}]}]}
+  def self.study_progress_data_horizontal
+    {type: 'horizontal', bottom_name:"知识点",height_name:"学习进度",category_name:"学习者",items:[{name:"与客户进行前期沟通",nums:[{category_value:"张三",num:100},{category_value:"李四",num:95},{category_value:"王五",num:10},{category_value:"赵六",num:10},{category_value:"钱七",num:0},{category_value:"孙八",num:88}]},{name:"客户维护与管理",nums:[{category_value:"张三",num:0},{category_value:"李四",num:47},{category_value:"王五",num:100},{category_value:"赵六",num:0},{category_value:"钱七",num:100},{category_value:"孙八",num:100}]},{name:"寻找目标客户",nums:[{category_value:"张三",num:100},{category_value:"李四",num:0},{category_value:"王五",num:100},{category_value:"赵六",num:79},{category_value:"钱七",num:100},{category_value:"孙八",num:0}]},{name:"掌握客户信息",nums:[{category_value:"张三",num:43},{category_value:"李四",num:100},{category_value:"王五",num:0},{category_value:"赵六",num:0},{category_value:"钱七",num:81},{category_value:"孙八",num:0}]},{name:"正式接触客户",nums:[{category_value:"张三",num:100},{category_value:"李四",num:0},{category_value:"王五",num:0},{category_value:"赵六",num:100},{category_value:"钱七",num:29},{category_value:"孙八",num:0}]},{name:"销售的促成",nums:[{category_value:"张三",num:0},{category_value:"李四",num:0},{category_value:"王五",num:100},{category_value:"赵六",num:0},{category_value:"钱七",num:56},{category_value:"孙八",num:100}]},{name:"电话沟通的礼仪",nums:[{category_value:"张三",num:78},{category_value:"李四",num:13},{category_value:"王五",num:100},{category_value:"赵六",num:100},{category_value:"钱七",num:76},{category_value:"孙八",num:25}]},{name:"网点营销的礼仪",nums:[{category_value:"张三",num:0},{category_value:"李四",num:100},{category_value:"王五",num:5},{category_value:"赵六",num:19},{category_value:"钱七",num:0},{category_value:"孙八",num:0}]},{name:"电话营销话术",nums:[{category_value:"张三",num:0},{category_value:"李四",num:91},{category_value:"王五",num:100},{category_value:"赵六",num:100},{category_value:"钱七",num:100},{category_value:"孙八",num:0}]},{name:"营销风险类型",nums:[{category_value:"张三",num:100},{category_value:"李四",num:100},{category_value:"王五",num:81},{category_value:"赵六",num:0},{category_value:"钱七",num:98},{category_value:"孙八",num:71}]}]}
   end
 
-  def self.study_progress_data_2
+  def self.study_progress_data_vertical
     {
+      type: "vertical",
       bottom_name: "学习者",
       height_name: "学习进度",
       category_name: "知识点",
@@ -442,4 +443,41 @@ class DemoData
     MultiPieChartData.new(hash).result
   end
 
+  def self.stack_bar_chart
+    {
+      type: "horizontal",
+      bottom_name: "水果种类",
+      height_name: "销售量",
+      category_name: "城市",
+      items: [
+        {
+          name: "苹果",
+          nums: [
+            {category_value: "北京", num: 50},
+            {category_value: "上海", num: 30},
+            {category_value: "广州", num: 40},
+            {category_value: "杭州", num: 40}
+          ]
+        },
+        {
+          name: "香蕉",
+          nums: [
+            {category_value: "北京", num: 20},
+            {category_value: "上海", num: 30},
+            {category_value: "广州", num: 30},
+            {category_value: "杭州", num: 40}
+          ]
+        },
+        {
+          name: "橘子",
+          nums: [
+            {category_value: "北京", num: 45},
+            {category_value: "上海", num: 60},
+            {category_value: "广州", num: 40},
+            {category_value: "杭州", num: 40}
+          ]
+        }
+      ]
+    }
+  end
 end

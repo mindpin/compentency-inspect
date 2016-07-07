@@ -1,6 +1,6 @@
 @MultiPieChart = React.createClass
   render: ->
-    <div className="multistage-pie-chart">
+    <div className="multi-pie-chart">
     </div>
 
   make_pie_chart: (datas, inner_radius, outer_radius, deep)->
@@ -13,7 +13,7 @@
       .data(piedata)
       .enter()
       .append("g")
-      .attr("transform", "translate(" + @width/2 + "," + @width/2 + ")")
+      .attr("transform", "translate(" + @get_min_len()/2 + "," + @get_min_len()/2 + ")")
 
     arcs.append("path")
       .attr "fill", (d, i)=>
@@ -42,9 +42,20 @@
       .text (d)->
         return d.data.name
 
+  get_min_r: ->
+    @get_min_len() / 2 / @props.data.multistage_pie.length
+
+  get_min_len: ->
+    min_size = @width
+    min_size = @height if @width > @height
+    min_size
+
   componentDidMount: ->
-    @width = 800
-    @height = 800
+    @width = parseInt(jQuery(".multi-pie-chart").css("width"))
+    @height = parseInt(jQuery(".multi-pie-chart").css("height"))
+
+    @height = 500 if @height < 500
+
     dataset = @props.data.multistage_pie
     diameters = [0]
     @unique_color_index = [0]
@@ -56,7 +67,7 @@
       .html (d)->
         "名称：" + d.data.name + "</br>数值：" + d.data.count
 
-    @svg = d3.select(".multistage-pie-chart").append('svg')
+    @svg = d3.select(".multi-pie-chart").append('svg')
       .attr('width', @width)
       .attr('height', @height)
     @svg.call(@tip)
@@ -64,5 +75,5 @@
     for item in dataset
       index = dataset.indexOf item
       #  每一层级半径+100
-      diameters.push(diameters[diameters.length - 1] + 100)
+      diameters.push(diameters[diameters.length - 1] + @get_min_r())
       @make_pie_chart(item, diameters[index], diameters[index + 1], index)

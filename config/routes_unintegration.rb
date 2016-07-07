@@ -31,4 +31,6 @@ Rails.application.routes.draw do
   get '/unintegration/specialist_answer_question',       to: 'unintegration#specialist_answer_question'
 
   get '/unintegration/multi_pie_chart', to: 'unintegration#multi_pie_chart'
+  get '/unintegration/vertical_stack_bar_chart', to: 'unintegration#vertical_stack_bar_chart'
+  get '/unintegration/horizontal_stack_bar_chart', to: 'unintegration#horizontal_stack_bar_chart'
 end
