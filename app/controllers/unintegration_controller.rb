@@ -123,4 +123,24 @@ class UnintegrationController < ApplicationController
       multistage_pie: DemoData.multi_pie_chart
     }
   end
+
+  def vertical_stack_bar_chart
+    @component_name = 'stack_bar_chart'
+    @component_data = DemoData.study_progress_data_vertical
+  end
+
+  def horizontal_stack_bar_chart
+    @component_name = 'stack_bar_chart'
+    @component_data = DemoData.study_progress_data_horizontal
+  end
+
+  def weixin_site_manager_table
+    @component_name = 'weixin_site_manager_table'
+    @component_data = DemoData.weixin_site_manager_table
+  end
+
+  def new_weixin_site
+    @component_name = 'new_weixin_site'
+    @component_data =  DemoData.new_weixin_site
+  end
 end
