@@ -33,4 +33,8 @@ Rails.application.routes.draw do
   get '/unintegration/multi_pie_chart', to: 'unintegration#multi_pie_chart'
   get '/unintegration/vertical_stack_bar_chart', to: 'unintegration#vertical_stack_bar_chart'
   get '/unintegration/horizontal_stack_bar_chart', to: 'unintegration#horizontal_stack_bar_chart'
+
+  # 微站管理
+  get '/unintegration/weixin_site_manager_table', to: 'unintegration#weixin_site_manager_table'
+  get '/unintegration/new_weixin_site', to: 'unintegration#new_weixin_site'
 end

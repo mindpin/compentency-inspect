@@ -480,4 +480,69 @@ class DemoData
       ]
     }
   end
+
+  def self.weixin_site_manager_table
+    {
+      new_url: "/unintegration/new_weixin_site",
+      items: [
+        {
+          name: "微站一",
+          organization: "北京",
+          url: "weizhan1",
+          status: "未发布"
+        },
+        {
+          name: "微站二",
+          organization: "上海",
+          url: "weizhan2",
+          status: "已发布"
+        },
+        {
+          name: "微站三",
+          organization: "天津",
+          url: "weizhan3",
+          status: "已关闭"
+        }
+      ]
+    }
+  end
+
+  def self.new_weixin_site
+    {
+      organization: {
+        id: "0",
+        name: "总部",
+        children: [
+          {
+            id: "0-0",
+            name: "北京总部",
+            children: [
+              {
+                id: "0-0-0",
+                name: "朝阳部"
+              },
+              {
+                id: "0-0-1",
+                name: "海淀部",
+                children: [
+                  {
+                    id: "0-0-1-0",
+                    name: "海淀一部"
+                  },
+                  {
+                    id: "0-0-1-1",
+                    name: "海淀二部"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "0-1",
+            name: "河北总部"
+          }
+        ]
+      }
+    }
+  end
 end
