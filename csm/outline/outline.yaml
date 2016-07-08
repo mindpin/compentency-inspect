@@ -61,7 +61,7 @@
       name: 分享工作经验
       # slide: http://i.teamkn.com/i/lw4MYzmE.png
       slide: http://i.teamkn.com/i/h7fQ1SKG.jpg
-      pc_demo: /views/case
+      pc_demo: /tools/ques
 
     - id: "13"
       name: 逐步演化改进
