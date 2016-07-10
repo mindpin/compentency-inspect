@@ -1,8 +1,7 @@
 - id: "0"
   name: 平台结构
   subname: KC 企业知识平台构成
-  # slide: http://i.teamkn.com/i/ifP7V0F3.jpg
-  slide: http://i.teamkn.com/i/vXUAG5ho.jpg
+  slide: http://i.teamkn.com/i/g82N98fC.jpg
   icon: circle thin
   desc: |
     KC 企业知识平台产品由两大主要部分构成：  
@@ -22,8 +21,7 @@
 
 - id: "1"
   name: 知识体系的建立
-  # slide: http://i.teamkn.com/i/VqPzyKpo.jpg
-  slide: http://i.teamkn.com/i/aU166sWd.jpg
+  slide: http://i.teamkn.com/i/z2iiQujH.jpg
   icon: circle thin
   desc: |
     通过建立知识体系，将企业内的以下几类角色串联在一起：
@@ -38,7 +36,7 @@
     - id: "11"
       name: 设计知识结构
       # slide: http://i.teamkn.com/i/W9YNHWMR.png
-      slide: http://i.teamkn.com/i/yLb6U41N.jpg
+      slide: http://i.teamkn.com/i/oDc9ktNX.jpg
       desc: |
         - 知识库平台内所有内容，课件，文档，数据均依托于知识结构进行归纳管理
         - 知识结构分为两类：概念型知识结构，经验型知识结构，由**业务专家角色**进行创建和维护
@@ -60,46 +58,46 @@
     - id: "12"
       name: 分享工作经验
       # slide: http://i.teamkn.com/i/lw4MYzmE.png
-      slide: http://i.teamkn.com/i/h7fQ1SKG.jpg
+      slide: http://i.teamkn.com/i/jSWTfsdL.jpg
       pc_demo: /tools/ques
 
     - id: "13"
       name: 逐步演化改进
       # slide: http://i.teamkn.com/i/ucWVvefp.png
-      slide: http://i.teamkn.com/i/K7qSvkXA.jpg
+      slide: http://i.teamkn.com/i/ep0I0i16.jpg
 
     - id: "14"
       name: 关联培训内容
       # slide: http://i.teamkn.com/i/brLIs1rl.png
-      slide: http://i.teamkn.com/i/RLXSpVV6.jpg
+      slide: http://i.teamkn.com/i/fTgURWmR.jpg
       pc_demo: /views/outline
 
 - id: "2"
   name: 知识体系的运用
   # slide: http://i.teamkn.com/i/Ydo2Fvkp.jpg
-  slide: http://i.teamkn.com/i/D5LKlmSM.jpg
+  slide: http://i.teamkn.com/i/HGEkOoC1.jpg
   icon: circle thin
   children: 
     - id: "21"
       name: 获取内容
       # slide: http://i.teamkn.com/i/P8B1L8v0.png
-      slide: http://i.teamkn.com/i/uttAs2KS.jpg
+      slide: http://i.teamkn.com/i/RjbX0g13.jpg
       pc_demo: /views/read
 
     - id: "22"
       name: 发起提问
       # slide: http://i.teamkn.com/i/AFRUj7dz.png
-      slide: http://i.teamkn.com/i/Actx22It.jpg
+      slide: http://i.teamkn.com/i/jFSOH3n4.jpg
       pc_demo: /views/target
 
     - id: "23"
       name: 作出反馈
       # slide: http://i.teamkn.com/i/DmYchAwU.png
-      slide: http://i.teamkn.com/i/MNlrv6m3.jpg
+      slide: http://i.teamkn.com/i/boJXZWBJ.jpg
     - id: "24"
       name: 进行考核
       # slide: http://i.teamkn.com/i/uCmwneMJ.png
-      slide: http://i.teamkn.com/i/XTJNRUxh.jpg
+      slide: http://i.teamkn.com/i/ZgSYcmMK.jpg
       
 - id: "3"
   name: 知识内容的呈现
@@ -109,16 +107,36 @@
   children:
     - id: "31"
       name: 多屏幕展示
-      slide: http://i.teamkn.com/i/f1igidol.png
+      subname: 多尺寸屏幕展示
+      slide: http://i.teamkn.com/i/Vb7AtCuE.jpg
+      desc: |
+        KC 平台提供多屏幕内容适配技术。
+
+        使用平台内容组织和课件制作工具，内容只需制作一次，即可自动匹配 PC 屏幕，PAD 屏幕，智能手机屏幕，以最合适的方式显示。  
+
     - id: "32"
       name: 发布微站
       # slide: http://i.teamkn.com/i/f1igidol.png
       slide: http://i.teamkn.com/i/X7jKt56r.jpg
+      desc: |
+        - KC 平台支持创建任意多个手机微站，所有微站内容均来源于中心内容库，彼此间独立不受干扰。
+        - 可以为每个微站设置不同的发布规则和访问限制，以便按照业务岗位或区域划分来区分内容。
+
+
     - id: "33"
       name: 访问微站
       # slide: http://i.teamkn.com/i/THLEWfYX.png
       slide: http://i.teamkn.com/i/VyJQInoq.jpg
+      desc: |
+        - 微站可与企业现有 OA 系统整合，针对不同的分支机构绑定不同的微站站点。
+
+        - 员工可使用 OA 系统身份验证直接登录到微站，使用手机获取线上内容。
+
     - id: "34"
       name: 内容运用
       # slide: http://i.teamkn.com/i/IJM89m6t.png
       slide: http://i.teamkn.com/i/DK2SEcyT.jpg
+      desc: |
+        - 使用微站过程中，员工可以根据自己的需要，把站内内容添加到个人内容库。
+        - 个人内容库中的内容，可以自动添加个人署名后，转发到微信等社交平台。对客户经理的营销工作带来帮助。
+        - 平台提供微信公众号服务接口，更方便地支持微信公众号内容管理。
