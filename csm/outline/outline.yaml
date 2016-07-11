@@ -111,6 +111,15 @@
   # slide: http://i.teamkn.com/i/Ydo2Fvkp.jpg
   slide: http://i.teamkn.com/i/HGEkOoC1.jpg
   icon: circle thin
+  desc: |
+      平台依赖知识体系以及附加在其中的内容来支持线上培训，测验等场景。
+
+      受训员工按照以下方式完成每一轮培训：
+
+      1. 确定目标，获取内容
+      2. 提出问题，进行反馈
+      3. 练习与测验
+
   children: 
     - id: "21"
       name: 获取内容
@@ -156,6 +165,9 @@
         受训者对于感兴趣或者感到有帮助的内容，可以在线进行点赞并附加留言。
 
         内容制作运营团队和业务专家能够实时对线上反馈做出回复。
+      mobiles:
+        - name: 在浏览线上内容时进行点赞和留言
+          url: /views/read
 
     - id: "24"
       name: 进行考核
@@ -201,6 +213,9 @@
       desc: |
         - KC 平台支持创建任意多个手机微站，所有微站内容均来源于中心内容库，彼此间独立不受干扰。
         - 可以为每个微站设置不同的发布规则和访问限制，以便按照业务岗位或区域划分来区分内容。
+      pcs:
+        - name: 微站发布管理
+          url: /unintegration/weixin_site_manager_table
 
 
     - id: "33"

@@ -222,12 +222,12 @@ PC = React.createClass
   render: ->
     pc = @props.pc
 
-    <div className='pc-card'>
+    <a className='pc-card' href={pc.url} target='_blank'>
       <div className='cover' />
       <div className='demo-ct'>
         <div className='name'>PC 演示：{pc.name}</div>
       </div>
-    </div>
+    </a>
 
 QRCode = React.createClass
   getInitialState: ->
