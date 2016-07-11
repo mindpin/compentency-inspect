@@ -1,0 +1,36 @@
+.kc-test-dispatcher{
+  @media only screen and (max-width: 767px){
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  .running-status{
+    > span:nth-child(2){
+      @media only screen and (max-width: 767px){
+        display: none;
+      }
+    }
+  }
+
+  .test-paginate{
+    @media only screen and (max-width: 767px){
+      text-align: left;
+    }
+
+    .text{
+      @media only screen and (max-width: 767px){
+        margin-right: 10px;
+        font-size: 1rem;
+      }
+    }
+
+  }
+
+}
+
+.test-dispatcher-select-wares-modal .tuli{
+  @media only screen and (max-width: 767px){
+    top: 78px;
+    left: 185px;
+  }
+}

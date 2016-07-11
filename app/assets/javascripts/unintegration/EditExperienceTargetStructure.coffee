@@ -23,6 +23,7 @@ Child = React.createClass
 TagContent = React.createClass
   render: ->
     <div className="tag-content">
+      <i className="tag icon"></i>
       <div className="tag-name">{@props.data.tag_name}</div>
     </div>
 

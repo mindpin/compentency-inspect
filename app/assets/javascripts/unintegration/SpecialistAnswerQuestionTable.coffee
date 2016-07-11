@@ -92,9 +92,11 @@
               <div>
               {
                 for item in x.keywords
-                  <a className="ui label transition visible"  onClick={@add_word(item)}>
-                    {item}
-                  </a>
+                  <div className="keyword" key={item}>
+                    <a className="ui label transition visible"  onClick={@add_word(item)}>
+                      {item}
+                    </a>
+                  </div>
               }
               </div>
 
@@ -107,15 +109,18 @@
               keywords: keywords
             }
 
-          th_classes: {}
+          th_classes: {
+            creator: 'collapsing'
+          }
           td_classes: {
             actions: 'collapsing'
+            creator: 'collapsing'
+            keywords: 'collapsing'
+            status:   'collapsing'
           }
         }
 
-        <div className='ui segment'>
-          <ManagerTable data={table_data} title='专家答疑' />
-        </div>
+        <ManagerTable data={table_data} title='专家答疑' />
 
       add_word: (word)->
         =>

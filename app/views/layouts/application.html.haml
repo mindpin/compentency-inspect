@@ -4,6 +4,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %meta{:name => 'renderer', :content => 'webkit'}
     %meta{:'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1'}
+    %meta{:content => 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', :name => 'viewport'}
 
     %title CompentencyInspect
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
@@ -22,8 +23,5 @@
       })();
 
   %body
-    .ui.menu
-      .right.menu
-        = link_to "登出", "/sign_out", method: :delete, class: 'item'
     .ui.container
       = yield
