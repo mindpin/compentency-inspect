@@ -39,6 +39,4 @@
           }
         }
 
-        <div className='ui segment'>
-          <ManagerTable data={table_data} title='经验对象结构' />
-        </div>
+        <ManagerTable data={table_data} title='经验对象结构' />

@@ -23,7 +23,7 @@
   statics:
     Table: React.createClass
       render: ->
-        <table className='ui celled table small'>
+        <table className='ui celled table small unstackable'>
           <ManagerTable.Thead data={@props.data} />
           <ManagerTable.Tbody data={@props.data} />
           <ManagerTable.Tfoot data={@props.data} />

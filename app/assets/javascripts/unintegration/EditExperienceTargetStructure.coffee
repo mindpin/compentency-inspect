@@ -23,7 +23,8 @@ Child = React.createClass
 TagContent = React.createClass
   render: ->
     <div className="tag-content">
-      <div className="tag-name"><i className='icon tag' style={color: '#69ABDB'} /> {@props.data.tag_name}</div>
+      <i className="tag icon"></i>
+      <div className="tag-name">{@props.data.tag_name}</div>
     </div>
 
 FactContent = React.createClass
