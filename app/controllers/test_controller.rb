@@ -2,9 +2,11 @@ class TestController < ApplicationController
   def show
     return render text: '未登录系统，不能进行测验' if current_user.blank?
 
-    tpr = current_user.inspect_test_paper_result
-    if tpr.present? && tpr.status == "REVIEW_COMPLETED"
-      return redirect_to "/test/result"
+    if !current_user.user_test_paper.blank?
+      tpr = current_user.inspect_test_paper_result
+      if tpr.present? && tpr.status == "REVIEW_COMPLETED"
+        return redirect_to "/test/result"
+      end
     end
 
     @component_name = 'test_show_page'
