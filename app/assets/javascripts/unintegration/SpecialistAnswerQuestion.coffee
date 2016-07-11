@@ -1,6 +1,9 @@
 @SpecialistAnswerQuestion = React.createClass
   render: ->
     <div className="specialist-answer-question">
+      <div className="head">
+      专业答题
+      </div>
       <div className="creator">
         <div className="name">{@props.data.creator}</div>
       </div>
@@ -21,13 +24,7 @@
           <i className="font icon"></i>
           <i className="italic icon"></i>
           <i className="quote left icon"></i>
-          <i className="list icon"></i>
-          <i className="align center icon"></i>
-          <i className="align justify icon"></i>
-          <i className="align left icon"></i>
-          <i className="align right icon"></i>
-          <i className="youtube play icon"></i>
-        </div>
+          </div>
         <textarea placeholder="进行解答" />
         <a className="ui button">解答</a>
       </div>
