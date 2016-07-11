@@ -16,11 +16,6 @@
       .attr("transform", "translate(" + @get_min_len()/2 + "," + @get_min_len()/2 + ")")
 
     arcs.append("path")
-      .attr "fill", (d, i)=>
-        @unique_color_index.push(@unique_color_index[@unique_color_index.length - 1] + 1)
-        return @colors_maker(@unique_color_index[@unique_color_index.length - 1])
-      .attr "d", (d)->
-        return arc(d)
       .on 'mouseover', (d)=>
         outer_dom = d3.event.target
         text_dom = jQuery(outer_dom).closest('g').find('text')[0]
@@ -31,14 +26,26 @@
       .attr "style", (d)=>
         if !d.data.display
           return "display: none;"
+      .attr "d", (d)->
+        arc(d)
+      .attr "fill", (d, i)=>
+        @colors_maker(i + deep)
 
     arcs.append("text")
       .attr "transform", (d)->
         x = arc.centroid(d)[0] * 1
         y = arc.centroid(d)[1] * 1
-        return "translate(" + x + "," + y + ")"
+        angle = d.startAngle + (d.endAngle - d.startAngle)/2
+        if d.value == 100
+          return "translate(#{x},#{y-20})"
+        dushu = 360/6.29 * angle
+        # 左上角 左下角
+        if dushu > 180
+          return "translate(#{x},#{y})rotate(#{360/6.29 * angle + 90})"
+        return "translate(#{x},#{y})rotate(#{360/6.29 * angle + 270})"
       .attr("text-anchor", "middle")
       .attr("style", "pointer-events: none;")
+      .attr("style", "font-size:10px;")
       .text (d)->
         return d.data.name
 
@@ -58,14 +65,14 @@
 
     dataset = @props.data.multistage_pie
     diameters = [0]
-    @unique_color_index = [0]
-    @colors_maker = d3.scale.category20c()
+    # @unique_color_index = [0]
+    @colors_maker = d3.scale.category20b()
 
     @tip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([-10, 0])
       .html (d)->
-        "名称：" + d.data.name + "</br>数值：" + d.data.count
+        d.data.name + "，" + d.data.count + "%"
 
     @svg = d3.select(".multi-pie-chart").append('svg')
       .attr('width', @width)
