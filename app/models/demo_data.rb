@@ -456,6 +456,7 @@ class DemoData
       end
       digui.call(hash)
 
+      filter_item[:value] = 100
       return [MultiPieChartData.new(filter_item).result[1]]
     end
     MultiPieChartData.new(hash).result
@@ -563,4 +564,28 @@ class DemoData
       }
     }
   end
+
+  def self.user_article_table
+    [
+      {
+        name: "背景知识",
+        created_at: Time.now.strftime("%F %T"),
+        show_url: "/views/read#0:0",
+        share_url: "/unintegration/share_article"
+      },
+      {
+        name: "战略意义",
+        created_at: "2016-07-10 15:22:17",
+        show_url: "/views/read#0:0,0:0",
+        share_url: "/unintegration/share_article"
+      },
+      {
+        name: "电话销售技巧",
+        created_at: "2016-07-09 11:38:36",
+        show_url: "/views/read#2:0",
+        share_url: "/unintegration/share_article"
+      }
+    ]
+  end
+
 end

@@ -1,0 +1,59 @@
+.share-article{
+  background: #FAF8F7;
+  padding: 0 1rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  .head{
+    background: #FFF;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    line-height: 50px;
+    border-bottom: 1px solid #dedede;
+  }
+
+  .user-card{
+    overflow: hidden;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 2px;
+    background: #FFF;
+    box-shadow: 0 1px 3px #D4D4D4;
+    img{
+      float: left;
+      width: 100px;
+      height: 100px;
+    }
+
+    .name{
+      font-size: 1.2rem;
+      line-height: 2rem;
+      font-weight: bold;
+      margin-left: 130px;
+    }
+    .post, .phone{
+      margin-left: 130px;
+      span:nth-child(1) {
+        font-weight: bold;
+      }
+    }
+    .desc{
+      margin-left: 130px;
+      margin-top: 10px;
+      color: #777;
+    }
+  }
+
+  .share-url{
+    div:nth-child(1) {
+      font-weight: bold;
+    }
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: #FFF;
+    box-shadow: 0 1px 3px #D4D4D4;
+  }
+}
