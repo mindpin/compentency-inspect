@@ -128,15 +128,8 @@ RightPart = React.createClass
             </div>
         }
         {
-          if page.mobile_demo
-            <div className='mobile-demo'>
-              <div className='tip'>
-                <i className='icon qrcode' /> 扫码访问手机演示
-              </div>
-              <div className='qr'>
-                <img src='http://i.teamkn.com/i/TF4iJEUp.jpg?qrcode|imageMogr2/crop/!248x248a24a24' />
-              </div>
-            </div>
+          for mobile, idx in page.mobiles || []
+            <Mobile key={idx} mobile={mobile} />
         }
       </div>
     </div>
@@ -152,7 +145,7 @@ Videos = React.createClass
             <div className='cover' style={backgroundImage: "url(#{album.cover || ''})"}>
               <i className='icon video play outline' />
             </div>
-            <div className='video-ct'>
+            <div className='demo-ct'>
               <div className='name'>{album.name}</div>
               <div className='ui button basic green mini'>播放视频</div>
             </div>
@@ -207,6 +200,48 @@ VideoLayer = React.createClass
       return if idx == @state.current_idx
       @setState
         current_idx: idx
+
+
+Mobile = React.createClass
+  render: ->
+    mobile = @props.mobile
+
+    <div className='mobile-card'>
+      <QRCode url={mobile.url} ref='qrcode' />
+      <div className='demo-ct'>
+        <div className='name'>手机演示：{mobile.name}</div>
+        <a className='ui button basic green mini' href={mobile.url} target='_blank'>扫码访问演示</a>
+      </div>
+    </div>
+
+
+QRCode = React.createClass
+  getInitialState: ->
+    imgurl: null
+
+  render: ->
+    if @state.imgurl?
+      <div className='qrcode'>
+        <img src={@state.imgurl} />
+      </div>
+    else
+      <div></div>
+
+  componentDidMount: ->
+    @refresh()
+
+  refresh: ->
+    root = location.href.split('/outline')[0]
+
+    jQuery.ajax
+      type: 'post'
+      url: 'http://s.4ye.me/parse'
+      data:
+        long_url: "#{root}#{@props.url}"
+    .done (res)=>
+      console.log res
+      @setState imgurl: res.qrcode
+
 
 
 ref_animate = (ref, animate_css_name)->

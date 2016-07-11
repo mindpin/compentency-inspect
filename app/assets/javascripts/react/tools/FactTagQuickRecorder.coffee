@@ -1,6 +1,6 @@
 @FactTagQuickRecorder = React.createClass
   getInitialState: ->
-    start: true
+    start: false
 
   render: ->
     object = @props.data.object
@@ -21,13 +21,13 @@
 StartUI = React.createClass
   render: ->
     <div className='start-ui'>
-      <div className='ui message'>
+      <div className='ui message warning'>
         使用快速特征记录工具，能够以快捷的操作完成对客户，产品或任务特征的描述<br/>
         从而记录，管理和分享工作经验
       </div>
 
       <a href='javascript:;' className='ui button fluid large green' onClick={@props.start}>
-        开始记录
+        <i className='icon pencil' /> 开始记录
       </a>
     </div>
 
@@ -35,7 +35,7 @@ StartUI = React.createClass
 Recorder = React.createClass
   getInitialState: ->
     records: []
-    adding: true
+    adding: false
 
   render: ->
     <div className='recorder'>

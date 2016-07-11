@@ -2,8 +2,10 @@ class IndexController < ApplicationController
   layout 'csm'
 
   def index
-    @component_name = 'sample_index_page'
-    @component_data = {}
+    # @component_name = 'sample_index_page'
+    # @component_data = {}
+
+    redirect_to '/outline'
   end
 
   def getmd
