@@ -33,10 +33,10 @@ lines = results.map do |rr|
   songliang_comment = ""
   xiuyu_comment = ""
 
-  tpprs = QuestionBank::TestPaperResultReview.where(test_paper_result_id: rr.id, _status: "completed")
+  tpprs = QuestionBank::TestPaperResultReview.where(test_paper_result_id: rr.id, status: "completed")
   tpprs.each do |review|
-    xiuyu_comment     = review.comment if review.creator.name == "张修瑜"
-    songliang_comment = review.comment if review.creator.name == "宋亮"
+    xiuyu_comment     = review.comment if review.user.name == "张修瑜"
+    songliang_comment = review.comment if review.user.name == "宋亮"
   end
 
   "#{user_name},#{total_score},#{single_choice_score},#{multi_choice_score},#{essay_score},#{file_upload_score},#{songliang_comment},#{xiuyu_comment}"
