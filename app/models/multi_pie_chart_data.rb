@@ -1,7 +1,7 @@
 class MultiPieChartData
   def initialize(hash)
     @result = []
-    @un_flatten_array = [hash]
+    @un_flatten_array = [hash].flatten
     fix
     @flatten_array    = @un_flatten_array
     process_flatten
@@ -38,9 +38,10 @@ class MultiPieChartData
     array = []
     @flatten_array.each do |item|
       hash = {}
-      hash[:name]    = item[:name]
-      hash[:count]   = item[:count]
-      hash[:display] = item[:display]
+      hash[:name]        = item[:name]
+      hash[:count]       = item[:count]
+      hash[:display]     = item[:display]
+      hash[:has_children] = !item[:children].blank?
       array.push hash
     end
     result.push array

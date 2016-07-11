@@ -16,6 +16,9 @@
       .attr("transform", "translate(" + @get_min_len()/2 + "," + @get_min_len()/2 + ")")
 
     arcs.append("path")
+      .on 'click', (d)=>
+        if d.data.has_children
+          window.location.href = "/unintegration/multi_pie_chart_page?deep=#{deep}&name=#{d.data.name}"
       .on 'mouseover', (d)=>
         outer_dom = d3.event.target
         text_dom = jQuery(outer_dom).closest('g').find('text')[0]
@@ -72,7 +75,7 @@
       .attr('class', 'd3-tip')
       .offset([-10, 0])
       .html (d)->
-        d.data.name + "，" + d.data.count + "%"
+        "#{d.data.name}，#{d.data.count}%"
 
     @svg = d3.select(".multi-pie-chart").append('svg')
       .attr('width', @width)

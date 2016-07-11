@@ -118,11 +118,22 @@ class UnintegrationController < ApplicationController
   end
 
   def multi_pie_chart_page
-    # 经验特征统计
-    @component_name = 'multi_pie_chart_page'
-    @component_data = {
-      multistage_pie: DemoData.multi_pie_chart
-    }
+
+    if params[:deep].blank? && params[:name].blank?
+      # 经验特征统计
+      @component_name = 'multi_pie_chart_page'
+      @component_data = {
+        multistage_pie: DemoData.multi_pie_chart
+      }
+    else
+      deep = params[:deep]
+      name = params[:name]
+      # 经验特征统计
+      @component_name = 'multi_pie_chart_page'
+      @component_data = {
+        multistage_pie: DemoData.multi_pie_chart(name)
+      }
+    end
   end
 
   def multi_pie_chart
