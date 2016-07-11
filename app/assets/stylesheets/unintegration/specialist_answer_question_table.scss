@@ -14,14 +14,110 @@
         cursor:text;
       }
     }
+
+    a.label {
+      $h: 24px;
+      $fz: 12px;
+
+      float: left;
+      font-weight: normal;
+      border-radius: 0;
+      margin: 5px;
+      font-size: $fz;
+      background-color: #fff;
+      color: #444;
+      height: $h;
+      line-height: $h;
+      box-sizing: content-box;
+      padding: 0 $fz * 0.9;
+      // border: solid 1px #ddd;
+      box-shadow: 0 0 2px rgba(black, 0.3);
+      border-right: solid 3px #F36501;
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: #F36501;
+        border-radius: 6px 0 0 6px;
+        top: ($h - 6px) / 2;
+        right: -3px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 767px){
+    .filter-bar {
+      margin:-1rem -1rem 0;
+      .filter-input {
+        border-left: 0 none;
+        border-right: 0 none;
+        border-top: 0 none;
+      }
+    }
   }
 
 
   table{
+    @media only screen and (max-width: 767px){
+      th:nth-child(2) {
+        display: none;
+      }
+      td:nth-child(2) {
+        display: none;
+      }
+      td:nth-child(1) {
+        font-size: 12px;
+      }
+
+      a.button span {
+        display: none;
+      }
+      a.button i {
+        margin-right: 0 !important;
+      }
+      a.button {
+        padding-left: 0.7rem;
+        padding-right: 0.7rem;
+      }
+    }
+
     tbody{
       .keyword{
+        margin-bottom: 5px;
+
+        a.label {
+          $h: 24px;
+          $fz: 12px;
+
+          font-weight: normal;
+          border-radius: 0;
+          margin-right: 0;
+          font-size: $fz;
+          background-color: #fff;
+          color: #444;
+          height: $h;
+          line-height: $h;
+          box-sizing: content-box;
+          padding: 0 $fz * 0.9;
+          // border: solid 1px #ddd;
+          box-shadow: 0 0 2px rgba(black, 0.3);
+          border-right: solid 3px #F36501;
+          position: relative;
+          &:after {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #F36501;
+            border-radius: 6px 0 0 6px;
+            top: ($h - 6px) / 2;
+            right: -3px;
+          }
+        }
+
         @media only screen and (max-width: 767px){
-          margin-bottom: 5px;
         }
       }
 

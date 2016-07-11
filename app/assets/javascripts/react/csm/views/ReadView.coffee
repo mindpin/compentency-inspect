@@ -122,7 +122,7 @@ NodeContent = React.createClass
     {
       if current_node.paths?
         <div className='paths-content'>
-          <h3 className='ui header'>认知线索：</h3>
+          <h3 className='ui header'>进一步了解：</h3>
           <div className='paths'>
           {
             for path, idx in current_node.paths
@@ -228,8 +228,8 @@ Sharebar = React.createClass
   render: ->
     <div className='share-bar'>
       <div className='shares'>
-        <a href='javascript:;' className='s'><i className='icon wechat' /> 分享到微信</a>
-        <a href='javascript:;' className='s'><i className='icon weibo' /> 分享到微博</a>
+        <a href='javascript:;' className='s'><i className='icon wechat' style={color: '#84C40E'} /> 分享到微信</a>
+        <a href='javascript:;' className='s'><i className='icon weibo' style={color: '#E6162D'} /> 分享到微博</a>
         <a href='javascript:;' className='s'><i className='icon share' /> 其他</a>
       </div>
     </div>

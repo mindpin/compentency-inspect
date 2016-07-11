@@ -394,7 +394,7 @@ class DemoData
         },
         {
           name: "个人状况",
-          value: 40,
+          value: 20,
           children: [
             {
               name: "健康状况",
@@ -430,7 +430,7 @@ class DemoData
         },
         {
           name: "财务状况",
-          value: 10,
+          value: 30,
           children: [
             {name: "普通",    value: 30},
             {name: "负债",    value: 10},

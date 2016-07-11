@@ -1,6 +1,9 @@
 @OutlineView = React.createClass
   render: ->
     <div>
+      <div className='ui message warning' style={marginTop: '1rem'}>
+        大纲内容结构编排演示
+      </div>
       <PathNodesNav nodes={@props.data} />
     </div>
 
@@ -22,7 +25,7 @@ Node = React.createClass
 
     if text?
       <div className='csm-node text'>
-        <div className='text'>TEXT: {text}</div>
+        <div className='text'>目标：{text} <i className='icon write square' /></div>
       </div>
     else
       klass = new ClassName
@@ -41,8 +44,8 @@ Node = React.createClass
                 <i className='icon chevron down' />
               </a>
         }
-        <div className='from'>FROM: {from}</div>
-        <div className='target'>TARGET: {target}</div>
+        <div className='from'>主题：{from} <i className='icon write square' /></div>
+        <div className='target'>目标：{target} <i className='icon write square' /></div>
         {
           if @state.close and paths.length
             <div className='paths closed'>...</div>

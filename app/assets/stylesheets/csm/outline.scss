@@ -261,7 +261,7 @@ $descw: 360px;
     }
 
     @mixin card {
-      margin-bottom: 2rem;
+      margin-bottom: 1.0rem;
       margin-left: -30px;
       width:300px;
       height:100px;
@@ -329,6 +329,20 @@ $descw: 360px;
             height: 100px;
             display: block;
           }
+        }
+      }
+
+      .pc-card {
+        @include card;
+        height: 40px;
+        .demo-ct {
+          padding: 0 1rem;
+          line-height: 40px;
+        }
+        .cover {
+          background-image: url("http://i.teamkn.com/i/nbe5NtOS.png");
+          background-repeat: no-repeat;
+          background-position: center center;
         }
       }
 

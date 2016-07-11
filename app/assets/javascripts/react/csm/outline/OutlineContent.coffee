@@ -131,6 +131,10 @@ RightPart = React.createClass
           for mobile, idx in page.mobiles || []
             <Mobile key={idx} mobile={mobile} />
         }
+        {
+          for pc, idx in page.pcs || []
+            <PC key={idx} pc={pc} />
+        }
       </div>
     </div>
 
@@ -214,6 +218,16 @@ Mobile = React.createClass
       </div>
     </div>
 
+PC = React.createClass
+  render: ->
+    pc = @props.pc
+
+    <div className='pc-card'>
+      <div className='cover' />
+      <div className='demo-ct'>
+        <div className='name'>PC 演示：{pc.name}</div>
+      </div>
+    </div>
 
 QRCode = React.createClass
   getInitialState: ->

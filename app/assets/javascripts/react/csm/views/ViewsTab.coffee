@@ -8,7 +8,7 @@
         'active': name == _name
 
     <div className='sample-views-tab'>
-      <div className='ui tabular menu'>
+      <div className='ui tabular menu' style={display: 'none'}>
         <a className={klasses[0]} onClick={@tab('read')}>阅读视图</a>
         <a className={klasses[1]} onClick={@tab('outline')}>大纲视图</a>
         <a className={klasses[2]} onClick={@tab('graph')}>图形视图</a>
