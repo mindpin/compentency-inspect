@@ -100,10 +100,18 @@
               }
               </div>
 
+            status = switch x.status
+              when "未解答"
+                <div className="ui red horizontal label">未解答</div>
+              when "已解答"
+                <div className="ui green horizontal label">已解答</div>
+              else
+                <div className="ui grey horizontal label">已关闭</div>
+
             {
               id: x.question
               question: x.question
-              status: x.status
+              status: status
               creator: x.creator
               actions: actions
               keywords: keywords

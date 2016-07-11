@@ -362,7 +362,7 @@ class DemoData
     ]
   end
 
-  def self.multi_pie_chart
+  def self.multi_pie_chart(filter_name = "")
     hash = {
       name: "客户",
       value: 100,
@@ -440,6 +440,24 @@ class DemoData
       ]
     }
 
+
+    if !filter_name.blank?
+      filter_item = nil
+      digui = ->(item) do
+        return if !filter_item.blank?
+        if item[:name] == filter_name
+          filter_item = item
+          return
+        end
+
+        (item[:children] || []).each do |item|
+          digui.call(item)
+        end
+      end
+      digui.call(hash)
+
+      return [MultiPieChartData.new(filter_item).result[1]]
+    end
     MultiPieChartData.new(hash).result
   end
 
