@@ -236,5 +236,5 @@
         - 个人内容库中的内容，可以自动添加个人署名后，转发到微信等社交平台。对客户经理的营销工作带来帮助。
         - 平台提供微信公众号服务接口，更方便地支持微信公众号内容管理。
       mobiles:
-        - name: 线上测验
-          url: /test
+        - name: 个人内容库
+          url: /unintegration/user_article_table

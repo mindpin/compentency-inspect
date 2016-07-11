@@ -11,7 +11,7 @@
         <div className="name">宋亮</div>
         <div className="post">
           <span>职务：</span>
-          <span>销售经理</span>
+          <span>客户经理</span>
         </div>
         <div className="phone">
           <span>电话：</span>
@@ -30,6 +30,6 @@
       </div>
 
       <div className="ui warning message">
-      文章已经增加到你的个人文章中心，你可以通过复制上面的链接来进行分享
+        文章已经添加了你的电子名片，你可以通过复制上面的链接来进行分享
       </div>
     </div>
