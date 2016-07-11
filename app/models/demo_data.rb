@@ -456,6 +456,7 @@ class DemoData
       end
       digui.call(hash)
 
+      filter_item[:value] = 100
       return [MultiPieChartData.new(filter_item).result[1]]
     end
     MultiPieChartData.new(hash).result

@@ -47,8 +47,7 @@
           return "translate(#{x},#{y})rotate(#{360/6.29 * angle + 90})"
         return "translate(#{x},#{y})rotate(#{360/6.29 * angle + 270})"
       .attr("text-anchor", "middle")
-      .attr("style", "pointer-events: none;")
-      .attr("style", "font-size:10px;")
+      .attr("style", "pointer-events: none;font-size:10px;")
       .text (d)->
         return d.data.name
 
