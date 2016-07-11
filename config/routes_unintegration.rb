@@ -39,4 +39,8 @@ Rails.application.routes.draw do
   # 微站管理
   get '/unintegration/weixin_site_manager_table', to: 'unintegration#weixin_site_manager_table'
   get '/unintegration/new_weixin_site', to: 'unintegration#new_weixin_site'
+
+  # 个人文章中心
+  get '/unintegration/user_article_table', to: 'unintegration#user_article_table'
+  get '/unintegration/share_article', to: 'unintegration#share_article'
 end

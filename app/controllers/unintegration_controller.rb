@@ -162,4 +162,15 @@ class UnintegrationController < ApplicationController
     @component_name = 'new_weixin_site'
     @component_data =  DemoData.new_weixin_site
   end
+
+  def user_article_table
+    @component_name = 'user_article_table'
+    @component_data =  DemoData.user_article_table
+  end
+
+  def share_article
+    @component_name = 'share_article'
+    @component_data =  { placeholder: "placeholder" }
+  end
+
 end
