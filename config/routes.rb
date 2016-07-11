@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/parser/ques-yaml", to: 'parser#ques_yaml'
 
   get "/outline", to: 'outline#global'
+  get "/tools/ques", to: 'tools#ques'
 
   # 测验DEMO
   get  "/test",                   to: "test/test#show"

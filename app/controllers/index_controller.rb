@@ -2,8 +2,10 @@ class IndexController < ApplicationController
   layout 'csm'
 
   def index
-    @component_name = 'sample_index_page'
-    @component_data = {}
+    # @component_name = 'sample_index_page'
+    # @component_data = {}
+
+    redirect_to '/outline'
   end
 
   def getmd
@@ -38,6 +40,8 @@ class IndexController < ApplicationController
       YAML.load_file File.join(Rails.root, 'csm', 'yaml', '理财经理培训.yaml')
     when 'case'
       YAML.load_file File.join(Rails.root, 'csm', 'ques', '理财产品销售.yaml')
+    when 'outline'
+      YAML.load_file File.join(Rails.root, 'csm', 'yaml', '理财经理培训.yaml')
     when 'target'
       {
         search_url: "/search_box_post_search",

@@ -1,58 +1,222 @@
 - id: "0"
   name: 平台结构
-  slide: http://i.teamkn.com/i/ifP7V0F3.jpg
+  subname: KC 企业知识平台构成
+  slide: http://i.teamkn.com/i/g82N98fC.jpg
   icon: circle thin
-  uis: []
-  pc_demo: /views/case
-  mobile_demo: /views/case
+  desc: |
+    KC 企业知识平台产品由两大主要部分构成：  
+    1. 内容制作发布平台
+      - 使用平台自带内容工具制作课件内容
+      - 托管现有音视频，OFFICE 文档类内容
+      - 通过二次开发引入外部系统内容
+
+    2. 知识管理平台
+      - 建立知识体系并关联内容
+      - 根据业务需要分发内容
+      - 支持企业培训与测评
+
+  pcs:
+    - name: 定制类课件
+      url: http://113.31.18.105/manager/finance/teller_wares/117100/preview
+
+    - name: 视频类课件
+      url: http://113.31.18.105/courses/5720df9de138232aef000081/wares/5720df9ce138232aef000014
+
+  # uis: []
+  # pc_demo: /views/case
+  # mobile_demo: /views/case
 
 - id: "1"
   name: 知识体系的建立
-  slide: http://i.teamkn.com/i/VqPzyKpo.jpg
+  slide: http://i.teamkn.com/i/z2iiQujH.jpg
   icon: circle thin
+  desc: |
+    通过建立知识体系，将企业内的以下几类角色串联在一起：
+    - 业务专家团队
+    - 人力资源团队
+    - 有经验的员工
+    - 不熟练的员工（受训者）
+
+    从而，对企业内部培训以及企业内知识，经验分享提供有效的支持。
+
   children:
     - id: "11"
-      name: 建立知识结构
-      slide: http://i.teamkn.com/i/W9YNHWMR.png
+      name: 设计知识结构
+      # slide: http://i.teamkn.com/i/W9YNHWMR.png
+      slide: http://i.teamkn.com/i/oDc9ktNX.jpg
+      desc: |
+        - 知识库平台内所有内容，课件，文档，数据均依托于知识结构进行归纳管理
+        - 知识结构分为两类：概念型知识结构，经验型知识结构，由**业务专家角色**进行创建和维护
+      videos:
+        - cover: http://i.teamkn.com/i/Rskxd9DA.png
+          name: 视频演示：使用设计工具建立概念结构
+          mp4s:
+            - name: 创建概念结构（一）
+              url: "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/01-%E5%BB%BA%E7%AB%8B%E6%B5%85%E5%B1%82%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB-720p.mp4"
+            - name: 创建概念结构（二）
+              url: "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/02-%E5%9C%A8%E6%B5%85%E5%B1%82%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E7%BB%86%E5%8C%96-720p.mp4"
+            - name: 创建概念结构（三）
+              url: "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/03-%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB%E7%9A%84%E4%B8%8D%E6%96%AD%E7%BB%86%E5%8C%96-720p.mp4"
+            - name: 创建概念结构（四）
+              url: "http://pimfans.oss-cn-beijing.aliyuncs.com/%E9%93%B6%E8%A1%8C%E7%A7%91%E6%8A%80%E4%B8%AD%E5%BF%83%E5%9F%B9%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%90%86%E8%B4%A2%E7%BB%8F%E7%90%86%E5%9F%B9%E8%AE%AD/04-%E6%A6%82%E5%BF%B5%E4%BD%93%E7%B3%BB%E7%9A%84%E6%B5%8F%E8%A7%88%E5%92%8C%E6%9F%A5%E9%98%85-720p.mp4"
+      mobiles:
+        - name: 管理经验结构
+          url: /unintegration/experience_target_structure_table
+
+
     - id: "12"
       name: 分享工作经验
-      slide: http://i.teamkn.com/i/lw4MYzmE.png
+      # slide: http://i.teamkn.com/i/lw4MYzmE.png
+      slide: http://i.teamkn.com/i/jSWTfsdL.jpg
+      mobiles:
+        - name: 输入经验分享
+          url: /tools/ques
+      desc: |
+          根据已经存在的经验型知识结构，一线员工在完成任务时可以将客户，理财产品等任务要素的特征信息快速输入到平台中。
+
+          由员工自己或业务专家补充思考决策和行动后，这些内容就可以作为经验案例积累下来。
+
+          将来，其他员工可以根据类似的特征标签查找到对应经验案例，以改善自己的工作方法。
+
     - id: "13"
       name: 逐步演化改进
-      slide: http://i.teamkn.com/i/ucWVvefp.png
+      # slide: http://i.teamkn.com/i/ucWVvefp.png
+      slide: http://i.teamkn.com/i/ep0I0i16.jpg
+      desc: |
+          业务专家可以在任何时间对平台内的知识体系结构进行调整与补充。从而做到去粗存精。
+
+          所有正在阅读或阅读过对应内容的平台用户，都能够自动获得内容变更通知。
+
+          通过平台提供的数据分析工具，业务专家也能及时获知当前平台内容的业务倾向和可能存在的欠缺。
+      mobiles:
+        - name: 经验特征分布
+          url: /unintegration/multi_pie_chart
+
     - id: "14"
       name: 关联培训内容
-      slide: http://i.teamkn.com/i/brLIs1rl.png
+      # slide: http://i.teamkn.com/i/brLIs1rl.png
+      slide: http://i.teamkn.com/i/fTgURWmR.jpg
+      mobiles:
+        - name: 内容库大纲视图
+          url: /views/outline
+      desc: |
+          根据已经存在的概念型知识结构，平台自动形成逐级展开的大纲。
+
+          内容制作运营团队可将课件内容，练习内容，业务规范，产品资料，通知，纪要等内容挂载到大纲结构之中。
+
+          从而形成带有索引的，有明确导航结构的，可以进行再次内容分发的内容库。
 
 - id: "2"
   name: 知识体系的运用
-  slide: http://i.teamkn.com/i/Ydo2Fvkp.jpg
+  # slide: http://i.teamkn.com/i/Ydo2Fvkp.jpg
+  slide: http://i.teamkn.com/i/HGEkOoC1.jpg
   icon: circle thin
   children: 
     - id: "21"
       name: 获取内容
-      slide: http://i.teamkn.com/i/P8B1L8v0.png
+      # slide: http://i.teamkn.com/i/P8B1L8v0.png
+      slide: http://i.teamkn.com/i/RjbX0g13.jpg
+      mobiles:
+        - name: 浏览内容库
+          url: /views/read
+        - name: 特征查找
+          url: /views/target
+      desc: |
+        所有受训者可使用多种方式从平台内容库获取所需内容：
+
+        1. 根据所属岗位
+        2. 根据业务类型
+        3. 根据特征线索查找
+
+        内容查找和阅读浏览的行为都会被系统记录，作为统计分析的依据。
+
     - id: "22"
       name: 发起提问
-      slide: http://i.teamkn.com/i/AFRUj7dz.png
+      # slide: http://i.teamkn.com/i/AFRUj7dz.png
+      slide: http://i.teamkn.com/i/jFSOH3n4.jpg
+      mobiles:
+        - name: 提出问题
+          url: /views/target
+        - name: 集中处理问题
+          url: /unintegration/specialist_answer_question_table
+      desc: |
+        所有受训者可在多种时机发起提问：
+
+        1. 阅读和浏览知识库内容的过程中
+        2. 学习课件的过程中
+        3. 未找到所需内容时
+
+        平台将根据提问产生的位置和特征，将其汇入到中心知识体系结构中。从而便于业务专家进行统一集中解答处理。
+
     - id: "23"
       name: 作出反馈
-      slide: http://i.teamkn.com/i/DmYchAwU.png
+      # slide: http://i.teamkn.com/i/DmYchAwU.png
+      slide: http://i.teamkn.com/i/boJXZWBJ.jpg
+      desc: |
+        受训者对于感兴趣或者感到有帮助的内容，可以在线进行点赞并附加留言。
+
+        内容制作运营团队和业务专家能够实时对线上反馈做出回复。
+
     - id: "24"
       name: 进行考核
-      slide: http://i.teamkn.com/i/uCmwneMJ.png
+      # slide: http://i.teamkn.com/i/uCmwneMJ.png
+      slide: http://i.teamkn.com/i/ZgSYcmMK.jpg
+      mobiles:
+        - name: 线上测验
+          url: /test
+      desc: |
+          平台通过两种方式对受训员工进行考核：
+
+          1. 方式一：根据该员工对其所属业务岗位所需要掌握的知识技能，统计其对于线上内容的阅读浏览情况。
+          2. 方式二：通过线上组卷测验，集中对某批次员工给出考核成绩。
+
       
 - id: "3"
-  name: 移动内容的呈现
-  slide: http://i.teamkn.com/i/iGsBCvEL.jpg
+  name: 知识内容的呈现
+  # slide: http://i.teamkn.com/i/iGsBCvEL.jpg
+  slide: http://i.teamkn.com/i/vCoaHboU.jpg
   icon: circle thin
+  desc: |
+      为了有效呈现知识内容，做到内容利用率最大化，平台提供以下特性支持：
+
+      1. 多终端的自适应内容展示
+      2. 针对手机优化的多站点内容分发
+      3. 个人内容库管理
+      4. 微信订阅号绑定
+
   children:
+    - id: "31"
+      name: 多屏幕展示
+      subname: 多尺寸屏幕展示
+      slide: http://i.teamkn.com/i/Vb7AtCuE.jpg
+      desc: |
+        KC 平台提供多屏幕内容适配技术。
+
+        使用平台内容组织和课件制作工具，内容只需制作一次，即可自动匹配 PC 屏幕，PAD 屏幕，智能手机屏幕，以最合适的方式显示。  
+
     - id: "32"
       name: 发布微站
-      slide: http://i.teamkn.com/i/f1igidol.png
+      # slide: http://i.teamkn.com/i/f1igidol.png
+      slide: http://i.teamkn.com/i/X7jKt56r.jpg
+      desc: |
+        - KC 平台支持创建任意多个手机微站，所有微站内容均来源于中心内容库，彼此间独立不受干扰。
+        - 可以为每个微站设置不同的发布规则和访问限制，以便按照业务岗位或区域划分来区分内容。
+
+
     - id: "33"
       name: 访问微站
-      slide: http://i.teamkn.com/i/THLEWfYX.png
+      # slide: http://i.teamkn.com/i/THLEWfYX.png
+      slide: http://i.teamkn.com/i/VyJQInoq.jpg
+      desc: |
+        - 微站可与企业现有 OA 系统整合，针对不同的分支机构绑定不同的微站站点。
+
+        - 员工可使用 OA 系统身份验证直接登录到微站，使用手机获取线上内容。
+
     - id: "34"
       name: 内容运用
-      slide: http://i.teamkn.com/i/IJM89m6t.png
+      # slide: http://i.teamkn.com/i/IJM89m6t.png
+      slide: http://i.teamkn.com/i/DK2SEcyT.jpg
+      desc: |
+        - 使用微站过程中，员工可以根据自己的需要，把站内内容添加到个人内容库。
+        - 个人内容库中的内容，可以自动添加个人署名后，转发到微信等社交平台。对客户经理的营销工作带来帮助。
+        - 平台提供微信公众号服务接口，更方便地支持微信公众号内容管理。

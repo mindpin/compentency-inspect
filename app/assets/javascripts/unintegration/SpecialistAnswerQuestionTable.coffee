@@ -75,14 +75,14 @@
                 <div>
                   <a className="ui button mini blue basic" href={@props.data.edit_url}>
                     <i className='icon write' />
-                    解答
+                    <span>解答</span>
                   </a>
                 </div>
               when "已解答"
                 <div>
-                  <a className="ui button mini blue basic" href="">
-                    <i className='icon write' />
-                    发布
+                  <a className="ui button mini green basic" href="">
+                    <i className='icon send' />
+                    <span>发布</span>
                   </a>
                 </div>
               else

@@ -35,7 +35,7 @@ FactContent = React.createClass
           <i className="angle right icon"></i>
           <i className="angle down icon"></i>
         </div>
-        <div className="fact-name">{@props.data.fact_name}</div>
+        <div className="fact-name"><i className='icon circle thin' style={color: '#69ABDB'} /> {@props.data.fact_name}</div>
       </div>
       <ChildrenList data={@props.data.children} />
     </div>
