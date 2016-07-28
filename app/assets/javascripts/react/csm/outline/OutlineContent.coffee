@@ -14,7 +14,7 @@
 
     <div className='outline-content'>
       <div className='left-part'>
-        <SlideArea page={page} ref='slide' maximize={@props.maximize} />
+        <SlideArea page={page} ref='slide' maximize={@props.maximize} restoresize={@props.restoresize} />
         <PageTurning pages={pages} page={page} prev={@prev} next={@next} />
       </div>
 
@@ -63,6 +63,9 @@ SlideArea = React.createClass
           </div>
           <a href='javascript:;' className='maximize' onClick={@props.maximize}>
             <i className='icon maximize' />
+          </a>
+          <a href='javascript:;' className='restoresize' onClick={@props.restoresize}>
+            <i className='icon caret down' />
           </a>
         </div>
       </div>
@@ -214,7 +217,10 @@ Mobile = React.createClass
       <QRCode url={mobile.url} ref='qrcode' />
       <div className='demo-ct'>
         <div className='name'>手机演示：{mobile.name}</div>
-        <a className='ui button basic green mini' href={mobile.url} target='_blank'>扫码访问演示</a>
+        <a className='ui button basic green mini' href={mobile.url} target='_blank'>
+          <span className='sm'>扫码</span>
+          <span>访问演示</span>
+        </a>
       </div>
     </div>
 
