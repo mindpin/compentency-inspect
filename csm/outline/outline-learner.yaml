@@ -1,0 +1,64 @@
+- id: "0"
+  name: 定位个人知识
+  subname: 个人知识体系的形成
+  slide: http://i.teamkn.com/i/uPJ5WgyM.jpg
+  icon: circle thin
+  desc: |
+    - 企业领域知识可能包括庞大的体系，而参与学习的个体却不需要掌握全部的知识。  
+    - 学习者为了解决工作中的问题而持续学习的过程，事实上就是不断梳理与定位个人知识体系的过程。  
+    - 平台能够通过多种方式，辅导学习者尽快形成自己的知识体系。
+  mobiles:
+    - name: 个人学习面板
+      url: http://csm1.mindpin.com/mobile/learning-center
+
+- id: "1"
+  name: 分发学习内容
+  subname: 学习内容的分发与获取
+  slide: http://i.teamkn.com/i/ha1BzKEg.jpg
+  icon: circle thin
+  desc: |
+    - 企业内不同的受训员工具有不同的属性，他们之间存在岗位的区别，知识特征的区别，个人思维习惯（主动性）的区别，以及学习行为的区别。  
+    - 平台在学习者持续不断的学习过程中，采集他们的行为，获取到这些属性，通过人为设置的分发规则，将适合每个学习者的内容推送给他们。
+  mobiles:
+    - name: 按岗位区分知识点
+      url: http://csm1.mindpin.com/mobile/learning-center/subjects/posts/all
+
+- id: "2"
+  name: 查找有用知识
+  subname: 知识的不同查找方式
+  slide: http://i.teamkn.com/i/itR6jp2z.jpg
+  icon: circle thin
+  desc: |
+    - 较为主动的学习者，可以通过客观的全局脉络，根据自己的喜好与规划，浏览式的获取自己需要的知识内容；
+    - 主动性稍弱的学习者，可以根据自己的岗位要求，有针对的获取自己需要的知识内容；
+    - 只专注于解决当前问题的学习者，可以通过平台内建的标签式 FAQ 得到直接的帮助；
+  mobiles:
+    - name: 以不同方式查找知识
+      url: http://csm1.mindpin.com/mobile/learning-center/subjects
+
+
+- id: "3"
+  name: 展示学习进度
+  subname: 学习进度的分解
+  slide: http://i.teamkn.com/i/C7Q081Ly.jpg
+  icon: circle thin
+  desc: |
+    - 从不同的角度看过去时，学习者的学习进度有着不同的衡量方法。
+    - 既然学习是为了解决各种问题，那么“是否学完，已经学了多少”在不同的环境和场景下有不同的计算方式。
+    - 平台支持每个学习者自行定义多维度的学习计划表，学习者可以根据自己的实际情况，在自定义的学习计划，和由企业指定推送的学习计划之间选择适合自己的顺序进行学习。
+    - 任何一个计划表的学习进度都独立计算。既不会遗漏也不会重复。
+  mobiles:
+    - name: 自定义学习计划表
+      url: http://csm1.mindpin.com/mobile/learning-center/plan?1
+
+- id: "4"
+  name: 组织个人中心
+  subname: KC 企业知识平台构成
+  slide: http://i.teamkn.com/i/FtsQ5MSt.jpg
+  icon: circle thin
+  desc: |
+    - 一个学习者的个人中心内容由变化的消息构成。
+    - 在平台中，这些变化的消息序列形成不同的频道，学习者可以按照使用 IM 工具的习惯用法来关注和获知围绕自身的知识更新消息。
+  mobiles:
+    - name: 访问不同的消息频道
+      url: http://csm1.mindpin.com/mobile/learning-center/messages?1

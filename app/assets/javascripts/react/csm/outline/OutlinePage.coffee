@@ -25,7 +25,9 @@
     </div>
 
   nav_to: (cid)->
-    location.href = "/outline##{cid}"
+    path = @props.path || 'outline'
+
+    location.href = "/#{path}##{cid}"
     @setState cid: cid
 
   maximize: ->
